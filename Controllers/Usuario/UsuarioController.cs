@@ -4,14 +4,23 @@ using GalaxyControl.Repositories;
 
 namespace GalaxyControl.Controllers;
 
-public class UserController(IUserRepository userRepository) : Controller
+public class UsuarioController(IUsuarioRepository usuarioRepository) : Controller
 {
-    private readonly IUserRepository _userRepository = userRepository;
+    private readonly IUsuarioRepository _usuarioRepository = usuarioRepository;
 
     public IActionResult Index()
     {
-        List<UserModel> users = _userRepository.GetAll().Where(x => x.Login != "admin").ToList();
-        return View(users);
+        List<Usuario> usuarios = _usuarioRepository.GetAll().Where(x => x.Login != "admin").ToList();
+
+        var usuarioViewModel = usuarios.Select(x => new UsuarioViewModel()
+        {
+            Id = x.Id,
+            Nome = x.Nome,
+            Login = x.Login,
+            Email = x.Email
+        }).ToList();
+
+        return View(usuarios);
     }
 
     public IActionResult Create()
@@ -21,21 +30,21 @@ public class UserController(IUserRepository userRepository) : Controller
 
     public IActionResult Update(int id)
     {
-        UserModel contato = _userRepository.Get(id);
-        return View(contato);
+        Usuario usuario = _usuarioRepository.Get(id);
+        return View(usuario);
     }
 
     public IActionResult DeleteConfirmation(int id)
     {
-        UserModel contato = _userRepository.Get(id);
-        return View(contato);
+        Usuario usuario = _usuarioRepository.Get(id);
+        return View(usuario);
     }
 
     public IActionResult Delete(int id)
     {
         try
         {
-            bool excluded = _userRepository.Delete(id);
+            bool excluded = _usuarioRepository.Delete(id);
 
             if (excluded)
                 TempData["SuccessMessage"] = "Usuário excluído com sucesso";
@@ -53,23 +62,23 @@ public class UserController(IUserRepository userRepository) : Controller
     }
 
     [HttpPost]
-    public IActionResult Create(UserModel user)
+    public IActionResult Create(UsuarioViewModel usuario)
     {
         try
         {
-            if (user.Login == "admin")
+            if (usuario.Login == "admin")
             {
                 TempData["ErrorMessage"] = $"O login não pode ser igual a 'admin'";
                 return RedirectToAction("Index");
             }
             else if (ModelState.IsValid)
             {
-                _userRepository.Create(user);
+                _usuarioRepository.Create(new Usuario() { Login = usuario.Login, Email = usuario.Email, Nome = usuario.Nome, Senha = usuario.Senha, DataCadastro = usuario.DataCadastro });
                 TempData["SuccessMessage"] = "Usuário cadastrado com sucesso";
                 return RedirectToAction("Index");
             }
 
-            return View(user);
+            return View(usuario);
         }
         catch (Exception ex)
         {
@@ -79,33 +88,33 @@ public class UserController(IUserRepository userRepository) : Controller
     }
 
     [HttpPost]
-    public IActionResult Update(UserUpdateModel userUpdate)
+    public IActionResult Update(UsuarioUpdateViewModel usuarioUpdate)
     {
         try
         {
-            UserModel? user = null;
+            Usuario? usuario = null;
 
-            if (userUpdate.Login == "admin")
+            if (usuarioUpdate.Login == "admin")
             {
                 TempData["ErrorMessage"] = $"O login não pode ser igual a 'admin'";
                 return RedirectToAction("Index");
             }
             else if (ModelState.IsValid)
             {
-                user = new UserModel()
+                usuario = new Usuario()
                 {
-                    Id = userUpdate.Id,
-                    Name = userUpdate.Name,
-                    Login = userUpdate.Login,
-                    Email = userUpdate.Email
+                    Id = usuarioUpdate.Id,
+                    Nome = usuarioUpdate.Nome,
+                    Login = usuarioUpdate.Login,
+                    Email = usuarioUpdate.Email
                 };
 
-                user = _userRepository.Update(user);
+                usuario = _usuarioRepository.Update(usuario);
                 TempData["SuccessMessage"] = "Usuário alterado com sucesso";
                 return RedirectToAction("Index");
             }
 
-            return View(user);
+            return View(usuario);
         }
         catch (Exception ex)
         {

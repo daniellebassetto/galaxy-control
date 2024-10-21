@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    @model UserModel
+    @model UsuarioViewModel
 </head>
 <body>
     <div style="background-color: #19332A; width: 250px;" class="offcanvas offcanvas-start" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
@@ -24,17 +24,17 @@
             </ul>
             <hr style="color: wheat;">
             <div class="dropdown pb-4">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="d-none d-sm-inline mx-3" style="color: white; font-size: 20px;">Olá, @Model.Name! </span>
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUsuario1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="d-none d-sm-inline mx-3" style="color: white; font-size: 20px;">Olá, @Model.Nome! </span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow dropdown-menu-md-end">
                     <li>
-                        <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Index" style="color: white;">
+                        <a class="dropdown-item" asp-area="" asp-controller="Usuario" asp-action="Index" style="color: white;">
                             <span class="ms-1 d-none d-sm-inline">Usuário</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-area="" asp-controller="RedefinePassword" asp-action="Index" class="dropdown-item" style="color: white;">Redefinir Senha</a>
+                        <a asp-area="" asp-controller="RedefinirSenha" asp-action="Index" class="dropdown-item" style="color: white;">Redefinir Senha</a>
                     </li>
                     <li>
                         <hr class="dropdown-divider">

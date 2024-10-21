@@ -12,14 +12,14 @@ public class Session(IHttpContextAccessor httpContextAccessor) : ISession
         _httpContextAccessor.HttpContext!.Session.SetString("loggedUserSession", userSerialize);
     }
 
-    public UserModel? GetUserSession()
+    public Usuario? GetUserSession()
     {
         string userSession = _httpContextAccessor.HttpContext!.Session.GetString("loggedUserSession")!;
 
         if (string.IsNullOrEmpty(userSession))
             return null;
 
-        return JsonConvert.DeserializeObject<UserModel>(userSession);
+        return JsonConvert.DeserializeObject<Usuario>(userSession);
     }
 
     public void RemoveUserSession()

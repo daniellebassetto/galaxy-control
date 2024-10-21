@@ -2,14 +2,14 @@
 
 namespace GalaxyControl.Models;
 
-public class UserUpdateModel
+public class UsuarioUpdateViewModel
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
     [Required(ErrorMessage = "Informe o nome")]
-    public string Name { get; set; }
+    public string? Nome { get; set; }
     [Required(ErrorMessage = "Informe o login")]
-    public string Login { get; set; }
+    public string? Login { get; set; }
     [Required(ErrorMessage = "Informe o e-mail")]
     [EmailAddress(ErrorMessage = "E-mail inválido")]
-    public string Email { get; set; }
+    public string? Email { get; set; }
 }

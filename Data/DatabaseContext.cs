@@ -6,13 +6,13 @@ namespace GalaxyControl.Data;
 
 public class DataBaseContext(DbContextOptions<DataBaseContext> options) : DbContext(options)
 {
-    public DbSet<UserModel> User { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new UserMap());
+        modelBuilder.ApplyConfiguration(new UsuarioMap());
 
-        modelBuilder.Entity<UserModel>().HasData(new UserModel { Id = 1, Name = "Admin", Email = "galaxycontrol@outlook.com", Login = "Admin", Password = "1234", RegistrationDate = DateTime.Now});
+        modelBuilder.Entity<Usuario>().HasData(new Usuario { Id = 1, Nome = "Admin", Email = "galaxycontrol@outlook.com", Login = "Admin", Senha = "1234", DataCadastro = DateTime.Now});
 
         base.OnModelCreating(modelBuilder);
     }

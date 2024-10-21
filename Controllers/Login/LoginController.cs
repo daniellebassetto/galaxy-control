@@ -6,9 +6,9 @@ using Newtonsoft.Json;
 
 namespace GalaxyControl.Controllers;
 
-public class LoginController(IUserRepository userRepository, Helpers.ISession session, IEmail email) : Controller
+public class LoginController(IUsuarioRepository usuarioRepository, Helpers.ISession session, IEmail email) : Controller
 {
-    private readonly IUserRepository _userRepository = userRepository;
+    private readonly IUsuarioRepository _usuarioRepository = usuarioRepository;
     private readonly Helpers.ISession _session = session;
     private readonly IEmail _email = email;
 
@@ -19,25 +19,34 @@ public class LoginController(IUserRepository userRepository, Helpers.ISession se
         return View();
     }
 
-    public IActionResult RedefinePassword()
+    public IActionResult RedefinirSenha()
     {
         return View();
     }
 
     [HttpPost]
-    public IActionResult Enter(LoginModel loginModel)
+    public IActionResult Enter(LoginViewModel loginViewModel)
     {
         try
         {
             if (ModelState.IsValid)
             {
-                UserModel user = _userRepository.GetLogin(loginModel.Login);
+                Usuario usuario = _usuarioRepository.GetLogin(loginViewModel.Login!);
 
-                if (user != null)
+                if (usuario != null)
                 {
-                    if (user.IsValidPassword(loginModel.Password))
+                    if (usuario.IsValidPassword(loginViewModel.Senha!))
                     {
-                        _session.CreateUserSession(JsonConvert.SerializeObject(user));
+                        _session.CreateUserSession(JsonConvert.SerializeObject(new UsuarioViewModel() 
+                        { 
+                            Id = usuario.Id, 
+                            Email = usuario.Email,
+                            Nome = usuario.Nome,
+                            Login = usuario.Login,
+                            DataCadastro = usuario.DataCadastro,
+                            Senha = usuario.Senha,
+                            DataAlteracao = usuario.DataAlteracao
+                        }));
                         return RedirectToAction("Index", "Home");
                     }                            
 
@@ -64,23 +73,23 @@ public class LoginController(IUserRepository userRepository, Helpers.ISession se
     }
 
     [HttpPost]
-    public IActionResult SendLinkToRedefinePassword(RedefinePasswordLoginModel redefinePasswordModel)
+    public IActionResult SendLinkToRedefinePassword(RedefinirSenhaPeloLoginViewModel redefinirSenhaPeloLoginViewModel)
     {
         try
         {
             if (ModelState.IsValid)
             {
-                UserModel user = _userRepository.GetLoginAndEmail(redefinePasswordModel.Login, redefinePasswordModel.Email);
+                Usuario usuario = _usuarioRepository.GetLoginAndEmail(redefinirSenhaPeloLoginViewModel.Login, redefinirSenhaPeloLoginViewModel.Email);
 
-                if (user != null)
+                if (usuario != null)
                 {
-                    string newPassword = user.GenerateNewPassword();                        
+                    string newPassword = usuario.GenerateNewPassword();                        
                     string message = $"Sua nova senha é: {newPassword}";
-                    bool emailSent = _email.Send(user.Email, "GalaxyControl - Nova Senha", message);
+                    bool emailSent = _email.Send(usuario.Email!, "GalaxyControl - Nova Senha", message);
 
                     if(emailSent)
                     {
-                        _userRepository.Update(user);
+                        _usuarioRepository.Update(usuario);
                         TempData["SuccessMessage"] = $"Enviamos para seu e-mail cadastrado uma nova senha.";
                     }
                     else

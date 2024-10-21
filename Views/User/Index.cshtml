@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    @model List<UserModel>
+    @model List<UsuarioViewModel>
     @{
         ViewData["Title"] = "Listagem de Usuários";
     }
@@ -25,7 +25,7 @@
         }
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-1">
-            <a class="btn btn-success" role="button" asp-controller="User" asp-action="Create">Adicionar</a>
+            <a class="btn btn-success" role="button" asp-controller="Usuario" asp-action="Create">Adicionar</a>
         </div>
 
         <h1 class="display-4">Listagem de Usuários</h1>
@@ -45,21 +45,21 @@
             <tbody>
                 @if (Model != null && Model.Any())
                 {
-                    @foreach (UserModel user in Model)
+                    @foreach (UsuarioViewModel user in Model)
                     {
                         <tr>
                             <th>@(Model.IndexOf(user) + 1)</th>
-                            <td>@user.Name</td>
+                            <td>@user.Nome</td>
                             <td>@user.Login</td>
                             <td>@user.Email</td>
-                            <td>@user.RegistrationDate</td>
-                            <td>@(user.ChangeDate != null ? user.ChangeDate.ToString() : "N/A")</td>
+                            <td>@user.DataAlteracao</td>
+                            <td>@(user.DataAlteracao != null ? user.DataAlteracao.ToString() : "N/A")</td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a role="button" class="btn btn-primary" asp-route-id="@user.Id" asp-controller="User" asp-action="Update" title="Editar">
+                                    <a role="button" class="btn btn-primary" asp-route-id="@user.Id" asp-controller="Usuario" asp-action="Update" title="Editar">
                                         <i class="bi bi-pencil-square fs-6"></i>
                                     </a>
-                                    <a role="button" class="btn btn-danger" asp-route-id="@user.Id" asp-controller="User" asp-action="DeleteConfirmation" title="Excluir">
+                                    <a role="button" class="btn btn-danger" asp-route-id="@user.Id" asp-controller="Usuario" asp-action="DeleteConfirmation" title="Excluir">
                                         <i class="bi bi-trash fs-6"></i>
                                     </a>
                                 </div>

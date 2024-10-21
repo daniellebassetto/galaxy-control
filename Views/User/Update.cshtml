@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    @model UserModel
+    @model UsuarioViewModel
     @{
         ViewData["Title"] = "Editar usuário";
     }
@@ -11,13 +11,13 @@
         <h1 class="display-4">Editar Usuário</h1>
     </div>
 
-    <form asp-controller="User" asp-action="Update" method="post">
+    <form asp-controller="Usuario" asp-action="Update" method="post">
 
         <input type="hidden" asp-for="Id" />
         <div class="form-row d-flex">
             <div class="col-md-6 me-2">
-                <label for="name">Nome</label> @Html.ValidationMessageFor(x => x.Name)
-                <input type="text" asp-for="Name" class="form-control" placeholder="Informe o nome">
+                <label for="nome">Nome</label> @Html.ValidationMessageFor(x => x.Nome)
+                <input type="text" asp-for="Nome" class="form-control" placeholder="Informe o nome">
             </div>
             <div class="col-md-6 me-2">
                 <label for="email">E-mail</label> @Html.ValidationMessageFor(x => x.Email)
@@ -35,7 +35,7 @@
 
         <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-primary me-1">Alterar</button>
-            <a class="btn btn-danger" role="button" asp-controller="User" asp-action="Index">Cancelar</a>
+            <a class="btn btn-danger" role="button" asp-controller="Usuario" asp-action="Index">Cancelar</a>
         </div>
     </form>
 </body>

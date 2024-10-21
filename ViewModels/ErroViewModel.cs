@@ -1,6 +1,6 @@
 namespace GalaxyControl.Models;
 
-public class ErrorViewModel
+public class ErroViewModel
 {
     public string? RequestId { get; set; }
 

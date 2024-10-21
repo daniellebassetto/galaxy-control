@@ -6,5 +6,5 @@ public interface ISession
 {
     void CreateUserSession(string userSerialize);
     void RemoveUserSession();
-    UserModel? GetUserSession();
+    Usuario? GetUserSession();
 }

@@ -3,40 +3,41 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GalaxyControl.Models;
 
-public class UserModel
+public class Usuario
 {
-    public long Id { get; set; }
+    [Key]
+    public int Id { get; set; }
     [Required(ErrorMessage = "Informe o nome")]
-    public string Name { get; set; }
+    public string? Nome { get; set; }
     [Required(ErrorMessage = "Informe o login")]
-    public string Login { get; set; }
+    public string? Login { get; set; }
     [Required(ErrorMessage = "Informe a senha")]
-    public string Password { get; set; }
+    public string? Senha { get; set; }
     [Required(ErrorMessage = "Informe o e-mail")]
     [EmailAddress(ErrorMessage = "E-mail inválido")]
-    public string Email { get; set; }       
-    public DateTime RegistrationDate { get; set; }
-    public DateTime? ChangeDate { get; set; }
+    public string? Email { get; set; }       
+    public DateTime DataCadastro { get; set; }
+    public DateTime? DataAlteracao { get; set; }
 
     public bool IsValidPassword(string password)
     {
-        return Password == password.GenerateHash(); 
+        return Senha == password.GenerateHash(); 
     }
 
     public void SetHashPassword()
     {
-        Password = Password.GenerateHash();
+        Senha = Senha?.GenerateHash();
     }
 
     public void SetNewPassword(string newPassword)
     {
-        Password = newPassword.GenerateHash();
+        Senha = newPassword.GenerateHash();
     }
 
     public string GenerateNewPassword()
     {
         string newPassword = Guid.NewGuid().ToString().Substring(0,8);
-        Password = newPassword.GenerateHash();
+        Senha = newPassword.GenerateHash();
         return newPassword;
     }
 }

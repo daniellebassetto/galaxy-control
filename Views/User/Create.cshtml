@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    @model UserModel
+    @model UsuarioViewModel
     @{
         ViewData["Title"] = "Criar usuário";
     }
@@ -11,11 +11,11 @@
         <h1 class="display-4">Cadastrar Usuário</h1>
     </div>
 
-    <form asp-controller="User" asp-action="Create" method="post">
+    <form asp-controller="Usuario" asp-action="Create" method="post">
         <div class="form-row d-flex">
             <div class="col-md-6 me-2">
-                <label for="name">Nome</label> @Html.ValidationMessageFor(x => x.Name)
-                <input type="text" asp-for="Name" class="form-control" placeholder="Informe o nome">
+                <label for="nome">Nome</label> @Html.ValidationMessageFor(x => x.Nome)
+                <input type="text" asp-for="Nome" class="form-control" placeholder="Informe o nome">
             </div>
             <div class="col-md-6 me-2">
                 <label for="email">E-mail</label> @Html.ValidationMessageFor(x => x.Email)
@@ -29,8 +29,8 @@
                 <input type="text" asp-for="Login" class="form-control" placeholder="Informe o login">
             </div>
             <div class="col-md-6 me-2">
-                <label for="password">Senha</label> @Html.ValidationMessageFor(x => x.Password)
-                <input type="password" asp-for="Password" class="form-control" placeholder="Informe a senha">
+                <label for="senha">Senha</label> @Html.ValidationMessageFor(x => x.Senha)
+                <input type="senha" asp-for="Senha" class="form-control" placeholder="Informe a senha">
             </div>            
         </div>
         <br />
@@ -38,7 +38,7 @@
         <div class="d-flex justify-content-end">
             <button type="reset" class="btn btn-warning text-white me-1" role="button">Limpar</button>
             <button type="submit" class="btn btn-primary me-1">Adicionar</button>
-            <a class="btn btn-danger" role="button" asp-controller="User" asp-action="Index">Cancelar</a>
+            <a class="btn btn-danger" role="button" asp-controller="Usuario" asp-action="Index">Cancelar</a>
         </div>
     </form>
 </body>

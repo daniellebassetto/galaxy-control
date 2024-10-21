@@ -8,12 +8,12 @@ public class Menu : ViewComponent
 {
     public IViewComponentResult Invoke()
     {
-        string userSession = HttpContext.Session.GetString("loggedUserSession");
+        string? userSession = HttpContext.Session.GetString("loggedUserSession");
 
         if (string.IsNullOrEmpty(userSession))
             return null;
 
-        UserModel user = JsonConvert.DeserializeObject<UserModel>(userSession);
+        UsuarioViewModel user = JsonConvert.DeserializeObject<UsuarioViewModel>(userSession)!;
 
         return View(user);
     }
