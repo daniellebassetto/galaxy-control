@@ -12,7 +12,7 @@ public class UsuarioController(IUsuarioRepository usuarioRepository) : Controlle
     {
         List<Usuario> usuarios = _usuarioRepository.GetAll().Where(x => x.Login != "admin").ToList();
 
-        var usuarioViewModel = usuarios.Select(x => new UsuarioViewModel()
+        var usuariosViewModel = usuarios.Select(x => new UsuarioViewModel()
         {
             Id = x.Id,
             Nome = x.Nome,
@@ -20,7 +20,7 @@ public class UsuarioController(IUsuarioRepository usuarioRepository) : Controlle
             Email = x.Email
         }).ToList();
 
-        return View(usuarios);
+        return View(usuariosViewModel);
     }
 
     public IActionResult Create()

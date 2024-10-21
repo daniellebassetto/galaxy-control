@@ -5,7 +5,7 @@ public enum EnumClassificacaoNave
     SucataEspacial,
     JoiaTecnologica,
     ArsenalAlienigena,
-    AmeaçaEmPotencial,
+    AmeacaEmPotencial,
     FonteDeEnergiaAlternativa,
-    Mistureba
+    MisturebaInconclusiva
 }

@@ -5,7 +5,6 @@ namespace GalaxyControl.Models;
 
 public class Tripulante
 {
-    [Key]
     public int Id { get; set; }
 
     [Required(ErrorMessage = "Informe o nome")]

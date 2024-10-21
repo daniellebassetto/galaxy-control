@@ -5,7 +5,8 @@ using GalaxyControl.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<GalaxyControlContext>(options => options.UseMySql(builder.Configuration["DataBase"], ServerVersion.AutoDetect(builder.Configuration["DataBase"])));
+var connectionString = builder.Configuration.GetConnectionString("DataBase");
+builder.Services.AddDbContext<GalaxyControlContext>(opts => opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -42,6 +43,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Index}");
 
 app.Run();

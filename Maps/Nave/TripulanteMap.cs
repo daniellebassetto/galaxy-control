@@ -18,6 +18,8 @@ public class TripulanteMap : IEntityTypeConfiguration<Tripulante>
 
         builder.Property(x => x.Estado).HasColumnName("estado").IsRequired();
 
-        builder.HasOne(x => x.Nave).WithMany(x => x.Tripulante).HasForeignKey(x => x.NaveId).OnDelete(DeleteBehavior.Cascade); // Comportamento ao excluir
+        builder.Property(x => x.NaveId).HasColumnName("id_nave").IsRequired();
+
+        builder.HasOne(x => x.Nave).WithMany(x => x.Tripulante).HasForeignKey(x => x.NaveId).OnDelete(DeleteBehavior.Cascade);
     }
 }

@@ -6,7 +6,7 @@ namespace GalaxyControl.ViewComponents;
 
 public class Menu : ViewComponent
 {
-    public IViewComponentResult Invoke()
+    public IViewComponentResult? Invoke()
     {
         string? userSession = HttpContext.Session.GetString("loggedUserSession");
 
