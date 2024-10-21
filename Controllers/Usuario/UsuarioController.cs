@@ -10,13 +10,12 @@ public class UsuarioController(IUsuarioRepository usuarioRepository) : Controlle
 
     public IActionResult Index()
     {
-        List<Usuario> usuarios = _usuarioRepository.GetAll().Where(x => x.Login != "admin").ToList();
+        List<Usuario>? usuarios = _usuarioRepository.GetAll()?.Where(x => x.Email != "galaxycontrol@outlook.com").ToList();
 
-        var usuariosViewModel = usuarios.Select(x => new UsuarioViewModel()
+        var usuariosViewModel = usuarios?.Select(x => new UsuarioViewModel()
         {
             Id = x.Id,
             Nome = x.Nome,
-            Login = x.Login,
             Email = x.Email
         }).ToList();
 
@@ -30,35 +29,8 @@ public class UsuarioController(IUsuarioRepository usuarioRepository) : Controlle
 
     public IActionResult Update(int id)
     {
-        Usuario usuario = _usuarioRepository.Get(id);
+        Usuario? usuario = _usuarioRepository.Get(id);
         return View(usuario);
-    }
-
-    public IActionResult DeleteConfirmation(int id)
-    {
-        Usuario usuario = _usuarioRepository.Get(id);
-        return View(usuario);
-    }
-
-    public IActionResult Delete(int id)
-    {
-        try
-        {
-            bool excluded = _usuarioRepository.Delete(id);
-
-            if (excluded)
-                TempData["SuccessMessage"] = "Usuário excluído com sucesso";
-            else
-                TempData["ErrorMessage"] = $"Erro: não foi possível apagar este usuário";
-
-            return RedirectToAction("Index");
-        }
-        catch (Exception ex)
-        {
-            TempData["ErrorMessage"] = $"Erro: {ex.Message}";
-            return RedirectToAction("Index");
-        }
-
     }
 
     [HttpPost]
@@ -66,14 +38,9 @@ public class UsuarioController(IUsuarioRepository usuarioRepository) : Controlle
     {
         try
         {
-            if (usuario.Login == "admin")
+            if (ModelState.IsValid)
             {
-                TempData["ErrorMessage"] = $"O login não pode ser igual a 'admin'";
-                return RedirectToAction("Index");
-            }
-            else if (ModelState.IsValid)
-            {
-                _usuarioRepository.Create(new Usuario() { Login = usuario.Login, Email = usuario.Email, Nome = usuario.Nome, Senha = usuario.Senha, DataCadastro = usuario.DataCadastro });
+                _usuarioRepository.Create(new Usuario() { Email = usuario.Email, Nome = usuario.Nome, Senha = usuario.Senha, DataCadastro = usuario.DataCadastro });
                 TempData["SuccessMessage"] = "Usuário cadastrado com sucesso";
                 return RedirectToAction("Index");
             }
@@ -88,33 +55,24 @@ public class UsuarioController(IUsuarioRepository usuarioRepository) : Controlle
     }
 
     [HttpPost]
-    public IActionResult Update(UsuarioUpdateViewModel usuarioUpdate)
+    public IActionResult Update(UsuarioUpdateViewModel usuarioUpdateViewModel)
     {
         try
         {
-            Usuario? usuario = null;
-
-            if (usuarioUpdate.Login == "admin")
+            if (ModelState.IsValid)
             {
-                TempData["ErrorMessage"] = $"O login não pode ser igual a 'admin'";
-                return RedirectToAction("Index");
-            }
-            else if (ModelState.IsValid)
-            {
-                usuario = new Usuario()
-                {
-                    Id = usuarioUpdate.Id,
-                    Nome = usuarioUpdate.Nome,
-                    Login = usuarioUpdate.Login,
-                    Email = usuarioUpdate.Email
-                };
+                Usuario usuario = _usuarioRepository.Get(usuarioUpdateViewModel.Id) ?? throw new Exception("Usuário inválido ou inexistente");
 
-                usuario = _usuarioRepository.Update(usuario);
+                usuario.Nome = usuarioUpdateViewModel.Nome;
+                usuario.Email = usuarioUpdateViewModel.Email;
+                usuario.DataAlteracao = DateTime.Now;
+
+                _usuarioRepository.Update(usuario);
                 TempData["SuccessMessage"] = "Usuário alterado com sucesso";
                 return RedirectToAction("Index");
             }
 
-            return View(usuario);
+            return View(usuarioUpdateViewModel);
         }
         catch (Exception ex)
         {

@@ -18,8 +18,6 @@ public class UsuarioMap : IEntityTypeConfiguration<Usuario>
 
         builder.Property(x => x.Email).HasColumnName("email").IsRequired().HasMaxLength(256).ValueGeneratedNever();
 
-        builder.Property(x => x.Login).HasColumnName("login").IsRequired().HasMaxLength(256).ValueGeneratedNever();
-
         builder.Property(x => x.Senha).HasColumnName("senha").IsRequired().HasMaxLength(100).ValueGeneratedNever();
 
         builder.Property(x => x.DataCadastro).HasColumnName("data_cadastro").IsRequired().ValueGeneratedNever();
