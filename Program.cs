@@ -5,19 +5,16 @@ using GalaxyControl.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
-builder.Services.AddAuthorizationCore();
-
-var connectionString = builder.Configuration.GetConnectionString("DataBase");
-builder.Services.AddDbContext<DataBaseContext>(opts => opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+builder.Services.AddDbContext<GalaxyControlContext>(options => options.UseMySql(builder.Configuration["DataBase"], ServerVersion.AutoDetect(builder.Configuration["DataBase"])));
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-#region Configure Interface and Repository
 builder.Services.AddScoped<GalaxyControl.Helpers.ISession, Session>();
 builder.Services.AddScoped<IEmail, Email>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-#endregion
+builder.Services.AddScoped<INaveRepository, NaveRepository>();
+
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddMemoryCache();
 builder.Services.AddSession(o =>

@@ -3,9 +3,9 @@ using GalaxyControl.Models;
 
 namespace GalaxyControl.Repositories;
 
-public class UsuarioRepository(DataBaseContext dataBaseContext) : IUsuarioRepository
+public class UsuarioRepository(GalaxyControlContext dataBaseContext) : IUsuarioRepository
 {
-    private readonly DataBaseContext _dataBaseContext = dataBaseContext;
+    private readonly GalaxyControlContext _dataBaseContext = dataBaseContext;
 
     public Usuario Create(Usuario User)
     {

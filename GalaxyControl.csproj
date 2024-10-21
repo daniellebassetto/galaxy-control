@@ -21,7 +21,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Models\Nave\" />
+	  <Folder Include="Controllers\Nave\" />
+	  <Folder Include="Views\Nave\" />
 	</ItemGroup>
 
 </Project>

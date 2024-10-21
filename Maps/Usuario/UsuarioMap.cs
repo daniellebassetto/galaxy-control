@@ -12,35 +12,18 @@ public class UsuarioMap : IEntityTypeConfiguration<Usuario>
 
         builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.Id).HasColumnName("id");
-        builder.Property(x => x.Id).IsRequired();
-        builder.Property(x => x.Id).ValueGeneratedOnAdd();
+        builder.Property(x => x.Id).HasColumnName("id").IsRequired().ValueGeneratedOnAdd();
 
-        builder.Property(x => x.Nome).HasColumnName("nome");
-        builder.Property(x => x.Nome).IsRequired();
-        builder.Property(x => x.Nome).HasMaxLength(50);
-        builder.Property(x => x.Nome).ValueGeneratedNever();
+        builder.Property(x => x.Nome).HasColumnName("nome").IsRequired().HasMaxLength(50).ValueGeneratedNever();
 
-        builder.Property(x => x.Email).HasColumnName("email");
-        builder.Property(x => x.Email).IsRequired();
-        builder.Property(x => x.Email).HasMaxLength(256);
-        builder.Property(x => x.Email).ValueGeneratedNever();
+        builder.Property(x => x.Email).HasColumnName("email").IsRequired().HasMaxLength(256).ValueGeneratedNever();
 
-        builder.Property(x => x.Login).HasColumnName("login");
-        builder.Property(x => x.Login).IsRequired();
-        builder.Property(x => x.Login).HasMaxLength(256);
-        builder.Property(x => x.Login).ValueGeneratedNever();
+        builder.Property(x => x.Login).HasColumnName("login").IsRequired().HasMaxLength(256).ValueGeneratedNever();
 
-        builder.Property(x => x.Senha).HasColumnName("senha");
-        builder.Property(x => x.Senha).IsRequired();
-        builder.Property(x => x.Senha).HasMaxLength(100);
-        builder.Property(x => x.Senha).ValueGeneratedNever();
+        builder.Property(x => x.Senha).HasColumnName("senha").IsRequired().HasMaxLength(100).ValueGeneratedNever();
 
-        builder.Property(x => x.DataCadastro).HasColumnName("data_cadastro");
-        builder.Property(x => x.DataCadastro).IsRequired();
-        builder.Property(x => x.DataCadastro).ValueGeneratedNever();
+        builder.Property(x => x.DataCadastro).HasColumnName("data_cadastro").IsRequired().ValueGeneratedNever();
 
-        builder.Property(x => x.DataAlteracao).HasColumnName("data_alteracao");
-        builder.Property(x => x.DataAlteracao).ValueGeneratedNever();
+        builder.Property(x => x.DataAlteracao).HasColumnName("data_alteracao").ValueGeneratedNever();
     }
 }
