@@ -86,7 +86,7 @@ public class LoginController(IUsuarioService usuarioService) : Controller
         catch (Exception ex)
         {
             TempData["ErrorMessage"] = $"Erro: {ex.Message}";
-            return RedirectToAction("Index");
+            return View(usuarioRegisterViewModel);
         }
     }
 

@@ -25,7 +25,11 @@ body {
     background-image: url(../img/background-register.jpg);
     background-size: cover;
     display: flex;
-    width: 55%
+    width: 55%;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 55%;
+    padding: 20px;
 }
 
 .register-left {
@@ -173,10 +177,16 @@ h2 {
 .close-alert-error {
     background-color: red;
 }
+    .close-alert-error:hover {
+        background-color: #d71e1e;
+    }
 
 .close-alert-success {
     background-color: green;
 }
+    .close-alert-success:hover {
+        background-color: #28a828;
+    }
 
 @media (max-width: 768px) {
     .register-wrapper {

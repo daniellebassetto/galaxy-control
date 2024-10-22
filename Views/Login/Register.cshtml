@@ -9,22 +9,7 @@
 <body>
     <div class="register-wrapper">
         <div class="register-left">
-            <h1 class="register-left-titulo">GalaxyControl</h1>
-            @if (TempData["SuccessMessage"] != null)
-            {
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="btn btn-success btn-sm close-alert-success" data-bs-dismiss="alert" arial-label="Close">X</button>
-                    @TempData["SuccessMessage"]
-                </div>
-            }
-
-            @if (TempData["ErrorMessage"] != null)
-            {
-                <div class="alert alert-danger" role="alert">
-                    <button type="button" class="btn btn-danger btn-sm close-alert-error" data-bs-dismiss="alert" aria-label="Close">X</button>
-                    @TempData["ErrorMessage"]
-                </div>
-            }
+            <h1 class="register-left-titulo">GalaxyControl</h1>            
             <div class="register-card">
                 <h2>Registro</h2>
                 <form asp-controller="Login" class="form-container" asp-action="Register" method="post">
@@ -71,6 +56,21 @@
             </div>
         </div>
         <div class="register-right">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    <button type="button" class="btn btn-success btn-sm close-alert-success" data-bs-dismiss="alert" arial-label="Close">X</button>
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <button type="button" class="btn btn-danger btn-sm close-alert-error" data-bs-dismiss="alert" aria-label="Close">X</button>
+                    @TempData["ErrorMessage"]
+                </div>
+            }
         </div>
     </div>
 </body>
