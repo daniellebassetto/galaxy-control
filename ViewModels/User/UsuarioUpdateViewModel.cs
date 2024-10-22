@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GalaxyControl.Models;
+namespace GalaxyControl.ViewModels;
 
 public class UsuarioUpdateViewModel
 {

@@ -49,8 +49,6 @@ namespace GalaxyControl.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     nome = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    login = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     senha = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     email = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
@@ -89,8 +87,8 @@ namespace GalaxyControl.Migrations
 
             migrationBuilder.InsertData(
                 table: "usuario",
-                columns: new[] { "id", "data_alteracao", "data_cadastro", "email", "login", "nome", "senha" },
-                values: new object[] { 1, null, new DateTime(2024, 10, 21, 11, 36, 17, 12, DateTimeKind.Local).AddTicks(9014), "galaxycontrol@outlook.com", "admin", "Admin", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220" });
+                columns: new[] { "id", "data_alteracao", "data_cadastro", "email", "nome", "senha" },
+                values: new object[] { 1, null, new DateTime(2024, 10, 21, 22, 34, 8, 244, DateTimeKind.Local).AddTicks(4838), "galaxycontrol@outlook.com", "Admin", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_tripulante_id_nave",

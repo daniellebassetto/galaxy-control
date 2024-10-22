@@ -1,19 +1,15 @@
-﻿<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    @model InputCreateUser
+﻿<head>
+    @model UsuarioRegisterViewModel
     @{
         Layout = "_LayoutLoggedOut";
         ViewData["Title"] = "Cadastro";
     }
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/register.css">
 </head>
 <body>
     <div class="register-wrapper">
         <div class="register-left">
-            <h1 class="register-left-titulo">Cabeleleila Leila</h1>
+            <h1 class="register-left-titulo">GalaxyControl</h1>
             @if (TempData["SuccessMessage"] != null)
             {
                 <div class="alert alert-success" role="alert">
@@ -33,9 +29,9 @@
                 <h2>Registro</h2>
                 <form asp-controller="Login" class="form-container" asp-action="Register" method="post">
                     <div class="input-group">
-                        <label for="name" name="name">Nome</label>
-                        <input type="text" asp-for="Name" id="name" placeholder="Informe o nome completo" required>
-                        @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+                        <label for="nome" name="nome">Nome</label>
+                        <input type="text" asp-for="Nome" id="nome" placeholder="Informe o nome completo" required>
+                        @Html.ValidationMessageFor(x => x.Nome, "", new { @class = "text-danger" })
                     </div>
                     <div class="input-group-wraper">
                         <div class="input-group">
@@ -43,27 +39,22 @@
                             <input type="email" asp-for="Email" id="email" placeholder="Informe seu email" required>
                             @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
                         </div>
-                        <div class="input-group">
-                            <label for="mobilePhone" name="mobilePhone">Celular</label>
-                            <input type="tel" asp-for="MobilePhone" id="mobilePhone" placeholder="Informe o telefone Ex: 5514991234567" required>
-                            @Html.ValidationMessageFor(x => x.MobilePhone, "", new { @class = "text-danger" })
-                        </div>
                     </div>
                     <div class="input-group-wraper">
                         <div class="input-group">
-                            <label for="password" name="password">Senha</label>
+                            <label for="senha" name="senha">Senha</label>
                             <div class="input-group">
-                                <input type="password" asp-for="Password" class="form-control" id="password" placeholder="Informe a senha" required>
+                                <input type="password" asp-for="Senha" class="form-control" id="senha" placeholder="Informe a senha" required>
                                 <button class="input-group-showPassword" type="button" id="showHidePassword">
                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                 </button>
                             </div>
-                            @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(x => x.Senha, "", new { @class = "text-danger" })
                         </div>
                         <div class="input-group">
-                            <label for="confirmPassword" name="confirmPassword">Confirmação de senha</label>
-                            <input type="password" asp-for="ConfirmPassword" id="confirmPassword" placeholder="Informe a senha" required>
-                            @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "text-danger" })
+                            <label for="confirmacaoSenha" name="confirmacaoSenha">Confirmação de senha</label>
+                            <input type="password" asp-for="ConfirmacaoSenha" id="confirmacaoSenha" placeholder="Informe a senha" required>
+                            @Html.ValidationMessageFor(x => x.ConfirmacaoSenha, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="button-group">
@@ -74,8 +65,6 @@
             </div>
         </div>
         <div class="register-right">
-            <img src="~/img/imagem-cadastro.png" alt="Imagem cadastro" class="logo">
         </div>
     </div>
 </body>
-</html>

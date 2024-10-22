@@ -1,25 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using GalaxyControl.Models;
-using GalaxyControl.Repositories;
+﻿using GalaxyControl.Service;
+using GalaxyControl.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GalaxyControl.Controllers;
 
-public class UsuarioController(IUsuarioRepository usuarioRepository) : Controller
+public class UsuarioController(IUsuarioService usuarioService) : Controller
 {
-    private readonly IUsuarioRepository _usuarioRepository = usuarioRepository;
+    private readonly IUsuarioService _usuarioService = usuarioService;
 
     public IActionResult Index()
     {
-        List<Usuario>? usuarios = _usuarioRepository.GetAll()?.Where(x => x.Email != "galaxycontrol@outlook.com").ToList();
-
-        var usuariosViewModel = usuarios?.Select(x => new UsuarioViewModel()
-        {
-            Id = x.Id,
-            Nome = x.Nome,
-            Email = x.Email
-        }).ToList();
-
-        return View(usuariosViewModel);
+        var usuarios = _usuarioService.GetAll();
+        return View(usuarios);
     }
 
     public IActionResult Create()
@@ -29,23 +21,23 @@ public class UsuarioController(IUsuarioRepository usuarioRepository) : Controlle
 
     public IActionResult Update(int id)
     {
-        Usuario? usuario = _usuarioRepository.Get(id);
+        UsuarioViewModel? usuario = _usuarioService.GetById(id);
         return View(usuario);
     }
 
     [HttpPost]
-    public IActionResult Create(UsuarioViewModel usuario)
+    public IActionResult Create(UsuarioRegisterViewModel usuarioRegisterViewModel)
     {
         try
         {
             if (ModelState.IsValid)
             {
-                _usuarioRepository.Create(new Usuario() { Email = usuario.Email, Nome = usuario.Nome, Senha = usuario.Senha, DataCadastro = usuario.DataCadastro });
+                _usuarioService.Create(usuarioRegisterViewModel);
                 TempData["SuccessMessage"] = "Usuário cadastrado com sucesso";
                 return RedirectToAction("Index");
             }
 
-            return View(usuario);
+            return View(usuarioRegisterViewModel);
         }
         catch (Exception ex)
         {
@@ -61,13 +53,7 @@ public class UsuarioController(IUsuarioRepository usuarioRepository) : Controlle
         {
             if (ModelState.IsValid)
             {
-                Usuario usuario = _usuarioRepository.Get(usuarioUpdateViewModel.Id) ?? throw new Exception("Usuário inválido ou inexistente");
-
-                usuario.Nome = usuarioUpdateViewModel.Nome;
-                usuario.Email = usuarioUpdateViewModel.Email;
-                usuario.DataAlteracao = DateTime.Now;
-
-                _usuarioRepository.Update(usuario);
+                _usuarioService.Update(usuarioUpdateViewModel);
                 TempData["SuccessMessage"] = "Usuário alterado com sucesso";
                 return RedirectToAction("Index");
             }

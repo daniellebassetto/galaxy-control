@@ -2,8 +2,8 @@
 
 public enum EnumTipoCombustivelNave
 {
-    Nenhum,             
-    Convencional,       
-    Alternativo,        
-    Experimental        
+    Nenhum,
+    Convencional,
+    Alternativo,
+    Experimental
 }

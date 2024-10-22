@@ -1,4 +1,4 @@
-﻿using GalaxyControl.Models;
+﻿using GalaxyControl.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 

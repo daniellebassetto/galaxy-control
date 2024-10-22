@@ -1,7 +1,8 @@
-using Microsoft.EntityFrameworkCore;
 using GalaxyControl.Data;
 using GalaxyControl.Helpers;
 using GalaxyControl.Repositories;
+using GalaxyControl.Service;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<GalaxyControl.Helpers.ISession, Session>();
 builder.Services.AddScoped<IEmail, Email>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<INaveRepository, NaveRepository>();
 
 builder.Services.AddControllersWithViews();

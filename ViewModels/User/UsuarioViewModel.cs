@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GalaxyControl.Models;
+namespace GalaxyControl.ViewModels;
 
 public class UsuarioViewModel
 {
@@ -11,7 +11,7 @@ public class UsuarioViewModel
     public string? Senha { get; set; }
     [Required(ErrorMessage = "Informe o e-mail")]
     [EmailAddress(ErrorMessage = "E-mail inválido")]
-    public string? Email { get; set; }       
+    public string? Email { get; set; }
     public DateTime DataCadastro { get; set; }
     public DateTime? DataAlteracao { get; set; }
 }

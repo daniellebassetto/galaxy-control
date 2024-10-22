@@ -8,13 +8,13 @@ public class UsuarioRepository(GalaxyControlContext dataBaseContext) : IUsuarioR
     private readonly GalaxyControlContext _dataBaseContext = dataBaseContext;
 
     public Usuario Create(Usuario user)
-    {        
+    {
         _dataBaseContext.Usuarios.Add(user);
         _dataBaseContext.SaveChanges();
         return user;
     }
 
-    public Usuario? Get(long id)
+    public Usuario? GetById(int id)
     {
         return _dataBaseContext.Usuarios.FirstOrDefault(x => x.Id == id);
     }
@@ -26,7 +26,7 @@ public class UsuarioRepository(GalaxyControlContext dataBaseContext) : IUsuarioR
 
     public Usuario? GetByEmail(string email)
     {
-        return _dataBaseContext.Usuarios.FirstOrDefault(x => x.Email!.Equals(email, StringComparison.CurrentCultureIgnoreCase));
+        return _dataBaseContext.Usuarios.FirstOrDefault(x => x.Email!.ToUpper() == email.ToUpper());
     }
 
     public Usuario Update(Usuario usuario)

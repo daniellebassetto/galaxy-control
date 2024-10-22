@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GalaxyControl.Migrations
 {
     [DbContext(typeof(GalaxyControlContext))]
-    [Migration("20241021143618_Initial")]
+    [Migration("20241022013408_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -140,12 +140,6 @@ namespace GalaxyControl.Migrations
                         .HasColumnType("varchar(256)")
                         .HasColumnName("email");
 
-                    b.Property<string>("Login")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)")
-                        .HasColumnName("login");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -166,9 +160,8 @@ namespace GalaxyControl.Migrations
                         new
                         {
                             Id = 1,
-                            DataCadastro = new DateTime(2024, 10, 21, 11, 36, 17, 12, DateTimeKind.Local).AddTicks(9014),
+                            DataCadastro = new DateTime(2024, 10, 21, 22, 34, 8, 244, DateTimeKind.Local).AddTicks(4838),
                             Email = "galaxycontrol@outlook.com",
-                            Login = "admin",
                             Nome = "Admin",
                             Senha = "7110eda4d09e062aa5e4a390b0a572ac0d2c0220"
                         });
