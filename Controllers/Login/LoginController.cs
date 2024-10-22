@@ -1,62 +1,30 @@
-﻿using GalaxyControl.Helpers;
-using GalaxyControl.Models;
-using GalaxyControl.Repositories;
+﻿using GalaxyControl.Service;
+using GalaxyControl.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace GalaxyControl.Controllers;
 
-public class LoginController(IUsuarioRepository usuarioRepository, Helpers.ISession session, IEmail email) : Controller
+public class LoginController(IUsuarioService usuarioService) : Controller
 {
-    private readonly IUsuarioRepository _usuarioRepository = usuarioRepository;
-    private readonly Helpers.ISession _session = session;
-    private readonly IEmail _email = email;
+    private readonly IUsuarioService _usuarioService = usuarioService;
 
     public IActionResult Index()
     {
-        if(_session.GetUserSession() != null) 
+        if (_usuarioService.CheckActiveSession())
             return RedirectToAction("Index", "Home");
         return View();
     }
 
-    public IActionResult RedefinirSenha()
-    {
-        return View();
-    }
-
     [HttpPost]
-    public IActionResult Enter(LoginViewModel loginViewModel)
+    public IActionResult Login(LoginViewModel loginViewModel)
     {
         try
         {
             if (ModelState.IsValid)
             {
-                Usuario usuario = _usuarioRepository.GetLogin(loginViewModel.Login!);
-
-                if (usuario != null)
-                {
-                    if (usuario.IsValidPassword(loginViewModel.Senha!))
-                    {
-                        _session.CreateUserSession(JsonConvert.SerializeObject(new UsuarioViewModel() 
-                        { 
-                            Id = usuario.Id, 
-                            Email = usuario.Email,
-                            Nome = usuario.Nome,
-                            Login = usuario.Login,
-                            DataCadastro = usuario.DataCadastro,
-                            Senha = usuario.Senha,
-                            DataAlteracao = usuario.DataAlteracao
-                        }));
-                        return RedirectToAction("Index", "Home");
-                    }                            
-
-                    TempData["ErrorMessage"] = $"Senha incorreta. Tente novamente.";
-                    return View("Index");
-                }
-
-                TempData["ErrorMessage"] = $"Usuário e/ou senha inválido(s). Tente novamente.";
+                _usuarioService.Login(loginViewModel);
+                return RedirectToAction("Index", "Home");
             }
-
             return View("Index");
         }
         catch (Exception ex)
@@ -68,8 +36,13 @@ public class LoginController(IUsuarioRepository usuarioRepository, Helpers.ISess
 
     public IActionResult Exit()
     {
-        _session.RemoveUserSession();
+        _usuarioService.ExitSession();
         return RedirectToAction("Index", "Login");
+    }
+
+    public IActionResult SendLinkToRedefinePassword()
+    {
+        return View();
     }
 
     [HttpPost]
@@ -79,34 +52,65 @@ public class LoginController(IUsuarioRepository usuarioRepository, Helpers.ISess
         {
             if (ModelState.IsValid)
             {
-                Usuario usuario = _usuarioRepository.GetLoginAndEmail(redefinirSenhaPeloLoginViewModel.Login, redefinirSenhaPeloLoginViewModel.Email);
-
-                if (usuario != null)
-                {
-                    string newPassword = usuario.GenerateNewPassword();                        
-                    string message = $"Sua nova senha é: {newPassword}";
-                    bool emailSent = _email.Send(usuario.Email!, "GalaxyControl - Nova Senha", message);
-
-                    if(emailSent)
-                    {
-                        _usuarioRepository.Update(usuario);
-                        TempData["SuccessMessage"] = $"Enviamos para seu e-mail cadastrado uma nova senha.";
-                    }
-                    else
-                        TempData["ErrorMessage"] = $"Ocorreu um erro ao enviar o e-mail. Tente novamente.";
-
-                    return RedirectToAction("Index", "Login");
-                }
-
-                TempData["ErrorMessage"] = $"Não foi possível redefinir sua senha. Verifique os dados informados.";
+                _usuarioService.SendLinkToRedefinePassword(redefinirSenhaPeloLoginViewModel);
+                TempData["SuccessMessage"] = $"Enviamos para seu e-mail cadastrado uma nova senha.";
+                return RedirectToAction("Index", "Login");
             }
-
             return View("Index");
         }
         catch (Exception ex)
         {
             TempData["ErrorMessage"] = $"Erro: {ex.Message}";
             return RedirectToAction("Index");
+        }
+    }
+
+    public IActionResult Register()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Register(UsuarioRegisterViewModel usuarioRegisterViewModel)
+    {
+        try
+        {
+            if (ModelState.IsValid)
+            {
+                _usuarioService.Create(usuarioRegisterViewModel);
+                TempData["SuccessMessage"] = "Cadastro realizado com sucesso. Realize o login.";
+                return RedirectToAction("Index");
+            }
+            return View(usuarioRegisterViewModel);
+        }
+        catch (Exception ex)
+        {
+            TempData["ErrorMessage"] = $"Erro: {ex.Message}";
+            return RedirectToAction("Index");
+        }
+    }
+
+    public IActionResult RedefinePassword()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult RedefinePassword(RedefinirSenhaViewModel redefinirSenhaViewModel)
+    {
+        try
+        {
+            if (ModelState.IsValid)
+            {
+                _usuarioService.RedefinePassword(redefinirSenhaViewModel);
+                TempData["SuccessMessage"] = "Senha atualizada com sucesso";
+            }
+            return View(redefinirSenhaViewModel);
+        }
+        catch (Exception ex)
+        {
+            TempData["ErrorMessage"] = $"Erro: {ex.Message}";
+            return RedirectToAction("Index", "Home");
         }
     }
 }

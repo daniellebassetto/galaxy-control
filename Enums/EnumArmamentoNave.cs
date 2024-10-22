@@ -2,8 +2,8 @@
 
 public enum EnumArmamentoNave
 {
-    Nenhum,              
-    Leve,                
-    Moderado,            
-    Pesado               
+    Nenhum,
+    Leve,
+    Moderado,
+    Pesado
 }

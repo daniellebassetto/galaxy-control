@@ -39,7 +39,7 @@ $('.close-alert').click(function () {
 
 $(document).ready(function () {
     $("#showHidePassword").on('click', function () {
-        var passwordField = $("#password");
+        var passwordField = $("#senha");
         var passwordFieldType = passwordField.attr('type');
         if (passwordFieldType === 'password') {
             passwordField.attr('type', 'text');

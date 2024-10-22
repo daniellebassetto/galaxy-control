@@ -1,4 +1,4 @@
-namespace GalaxyControl.Models;
+namespace GalaxyControl.ViewModels;
 
 public class ErroViewModel
 {

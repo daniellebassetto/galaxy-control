@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    @model UsuarioViewModel
+    @model UsuarioRegisterViewModel
     @{
         ViewData["Title"] = "Criar usuário";
     }
@@ -25,13 +25,13 @@
         <br />
         <div class="form-row d-flex">
             <div class="col-md-6 me-2">
-                <label for="login">Login</label> @Html.ValidationMessageFor(x => x.Login)
-                <input type="text" asp-for="Login" class="form-control" placeholder="Informe o login">
+                <label for="senha">Senha</label> @Html.ValidationMessageFor(x => x.Senha)
+                <input type="password" asp-for="Senha" class="form-control" placeholder="Informe a senha">
             </div>
             <div class="col-md-6 me-2">
-                <label for="senha">Senha</label> @Html.ValidationMessageFor(x => x.Senha)
-                <input type="senha" asp-for="Senha" class="form-control" placeholder="Informe a senha">
-            </div>            
+                <label for="confirmacaoSenha">Confirme a senha</label> @Html.ValidationMessageFor(x => x.ConfirmacaoSenha)
+                <input type="password" asp-for="Senha" class="form-control" placeholder="Informe a senha">
+            </div>
         </div>
         <br />
 
