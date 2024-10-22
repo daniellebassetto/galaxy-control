@@ -1,13 +1,11 @@
-﻿using GalaxyControl.ViewModels;
+﻿using GalaxyControl.Models;
+using GalaxyControl.ViewModels;
 
-namespace GalaxyControl.Service;
+namespace GalaxyControl.Services;
 
 public interface IUsuarioService
 {
-    List<UsuarioViewModel>? GetAll();
-    UsuarioViewModel? GetById(int id);
     bool Create(UsuarioRegisterViewModel usuarioRegisterViewModel);
-    bool Update(UsuarioUpdateViewModel usuarioUpdateViewModel);
     bool Login(LoginViewModel loginViewModel);
     bool ExitSession();
     bool CheckActiveSession();

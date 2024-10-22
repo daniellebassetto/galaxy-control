@@ -1,4 +1,4 @@
-﻿using GalaxyControl.Service;
+﻿using GalaxyControl.Services;
 using GalaxyControl.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 

@@ -4,7 +4,7 @@ using GalaxyControl.Repositories;
 using GalaxyControl.ViewModels;
 using Newtonsoft.Json;
 
-namespace GalaxyControl.Service;
+namespace GalaxyControl.Services;
 
 public class UsuarioService(IUsuarioRepository repository, Helpers.ISession session, IEmail email) : IUsuarioService
 {
@@ -35,43 +35,6 @@ public class UsuarioService(IUsuarioRepository repository, Helpers.ISession sess
         }
         else
             throw new Exception("As senhas não coincidem");
-    }
-
-    public List<UsuarioViewModel>? GetAll()
-    {
-        List<Usuario>? usuarios = _repository.GetAll()?.Where(x => x.Email != "galaxycontrol@outlook.com").ToList();
-
-        return usuarios?.Select(x => new UsuarioViewModel()
-        {
-            Id = x.Id,
-            Nome = x.Nome,
-            Email = x.Email
-        }).ToList();
-    }
-
-    public UsuarioViewModel? GetById(int id)
-    {
-        Usuario? usuario = _repository.GetById(id);
-        return usuario is not null ? new UsuarioViewModel()
-        {
-            Id = usuario.Id,
-            DataCadastro = usuario.DataCadastro,
-            Email = usuario.Email,
-            DataAlteracao = usuario.DataAlteracao,
-            Nome = usuario.Nome,
-            Senha = usuario.Senha
-        } : null;
-    }
-
-    public bool Update(UsuarioUpdateViewModel usuarioUpdateViewModel)
-    {
-        Usuario usuario = _repository.GetById(usuarioUpdateViewModel.Id) ?? throw new Exception("Usuário inválido ou inexistente");
-
-        usuario.Nome = usuarioUpdateViewModel.Nome;
-        usuario.Email = usuarioUpdateViewModel.Email;
-        usuario.DataAlteracao = DateTime.Now;
-
-        return true;
     }
 
     public bool Login(LoginViewModel loginViewModel)

@@ -1,7 +1,7 @@
 using GalaxyControl.Data;
 using GalaxyControl.Helpers;
 using GalaxyControl.Repositories;
-using GalaxyControl.Service;
+using GalaxyControl.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
