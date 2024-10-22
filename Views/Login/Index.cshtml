@@ -36,7 +36,9 @@
                 <form asp-controller="Login" class="form-container" asp-action="Login" method="post">
                     <div class="input-group">
                         <label for="email" name="email">Email</label>
-                        <input type="email" asp-for="Email" id="email" placeholder="Informe seu e-mail">
+                        <div class="input-group">
+                            <input type="email" asp-for="Email" id="email" placeholder="Informe seu e-mail">
+                        </div>
                         @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
                     </div>
                     <div class="input-group">

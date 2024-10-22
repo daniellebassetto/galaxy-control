@@ -30,13 +30,17 @@
                 <form asp-controller="Login" class="form-container" asp-action="Register" method="post">
                     <div class="input-group">
                         <label for="nome" name="nome">Nome</label>
-                        <input type="text" asp-for="Nome" id="nome" placeholder="Informe o nome completo" required>
+                        <div class="input-group">
+                            <input type="text" asp-for="Nome" id="nome" placeholder="Informe o nome completo" required>
+                        </div>
                         @Html.ValidationMessageFor(x => x.Nome, "", new { @class = "text-danger" })
                     </div>
                     <div class="input-group-wraper">
                         <div class="input-group">
                             <label for="email" name="email">Email</label>
-                            <input type="email" asp-for="Email" id="email" placeholder="Informe seu email" required>
+                            <div class="input-group">
+                                <input type="email" asp-for="Email" id="email" placeholder="Informe seu email" required>
+                            </div>
                             @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -53,13 +57,15 @@
                         </div>
                         <div class="input-group">
                             <label for="confirmacaoSenha" name="confirmacaoSenha">Confirmação de senha</label>
-                            <input type="password" asp-for="ConfirmacaoSenha" id="confirmacaoSenha" placeholder="Informe a senha" required>
+                            <div class="input-group">
+                                <input type="password" asp-for="ConfirmacaoSenha" id="confirmacaoSenha" placeholder="Informe a senha" required>
+                            </div>
                             @Html.ValidationMessageFor(x => x.ConfirmacaoSenha, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="button-group">
                         <button type="submit" class="btn">Cadastrar</button>
-                        <a asp-action="Index" asp-controller="Login" class="btn register-btn">Voltar ao Login</a>
+                        <a asp-action="Index" asp-controller="Login" class="btn login-btn">Voltar ao Login</a>
                     </div>
                 </form>
             </div>
