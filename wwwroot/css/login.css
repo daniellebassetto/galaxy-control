@@ -121,6 +121,11 @@ h2 {
         background-color: #0094ff;
     }
 
+.link-redefinir-senha {
+    text-decoration: none;
+    color: #00FFFF;
+}
+
 .button-group {
     display: flex;
     justify-content: space-between;

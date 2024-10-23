@@ -34,6 +34,10 @@
     background-color: red;
 }
 
+    .close-alert-error:hover {
+        background-color: #d71e1e;
+    }
+
 .close-alert-success {
     position: absolute;
     right: -10px;
@@ -49,3 +53,7 @@
     border: none;
     background-color: green;
 }
+
+    .close-alert-success:hover {
+        background-color: #28a828;
+    }
