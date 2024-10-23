@@ -45,9 +45,15 @@ namespace GalaxyControl.Migrations
                         .HasColumnType("int")
                         .HasColumnName("cor");
 
-                    b.Property<DateTime>("DataQueda")
+                    b.Property<DateTime?>("DataAlteracao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataEncontro")
                         .HasColumnType("datetime(6)")
-                        .HasColumnName("data_queda");
+                        .HasColumnName("data_encontro");
 
                     b.Property<int>("GrauAvaria")
                         .HasColumnType("int")
@@ -157,7 +163,7 @@ namespace GalaxyControl.Migrations
                         new
                         {
                             Id = 1,
-                            DataCadastro = new DateTime(2024, 10, 21, 22, 34, 8, 244, DateTimeKind.Local).AddTicks(4838),
+                            DataCadastro = new DateTime(2024, 10, 23, 12, 43, 41, 526, DateTimeKind.Local).AddTicks(1405),
                             Email = "galaxycontrol@outlook.com",
                             Nome = "Admin",
                             Senha = "7110eda4d09e062aa5e4a390b0a572ac0d2c0220"

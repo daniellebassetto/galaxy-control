@@ -1,6 +1,5 @@
 ﻿using GalaxyControl.Services;
 using GalaxyControl.ViewModels;
-using GalaxyControl.ViewModels.Nave;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GalaxyControl.Controllers;

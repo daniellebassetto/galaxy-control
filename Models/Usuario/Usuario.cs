@@ -1,5 +1,4 @@
 ﻿using GalaxyControl.Helpers;
-using System.ComponentModel.DataAnnotations;
 
 namespace GalaxyControl.Models;
 

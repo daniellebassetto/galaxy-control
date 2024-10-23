@@ -16,7 +16,7 @@ public class NaveMap : IEntityTypeConfiguration<Nave>
 
         builder.Property(x => x.CodigoRastreio).HasColumnName("codigo_rastreio").IsRequired().HasMaxLength(50);
 
-        builder.Property(x => x.DataQueda).HasColumnName("data_queda").IsRequired();
+        builder.Property(x => x.DataEncontro).HasColumnName("data_encontro").IsRequired();
 
         builder.Property(x => x.Tamanho).HasColumnName("tamanho").IsRequired();
 

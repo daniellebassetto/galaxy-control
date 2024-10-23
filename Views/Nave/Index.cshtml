@@ -1,0 +1,113 @@
+﻿@using System.ComponentModel.DataAnnotations;
+@using System;
+
+@model List<NaveViewModel>
+@{
+    ViewData["Title"] = "Listagem de Naves";
+}
+<div class="container text-center">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-success btn-sm close-alert-success" data-bs-dismiss="alert" arial-label="Close">X</button>
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert-error" data-bs-dismiss="alert" aria-label="Close">X</button>
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-1">
+        <a class="btn btn-success" role="button" asp-controller="Nave" asp-action="Create">Adicionar</a>
+    </div>
+
+    <h1 class="display-4">Listagem de Naves</h1>
+
+    <table class="table" id="nave-table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Codigo Rastreio</th>
+                <th scope="col">Data Encontro</th>
+                <th scope="col">Tamanho</th>
+                <th scope="col">Cor</th>
+                <th scope="col">Tipo Local Queda</th>
+                <th scope="col">Local Queda</th>
+                <th scope="col">Armamento</th>
+                <th scope="col">Tipo Combustivel</th>
+                <th scope="col">Tripulante</th>
+                <th scope="col">Grau de Avaria</th>
+                <th scope="col">Potencial Prospecção Tecnologica</th>
+                <th scope="col">Grau Periculosidade</th>
+                <th scope="col">Data Cadastro</th>
+                <th scope="col">Data Alteracao</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (NaveViewModel nave in Model)
+                {
+                    <tr>
+                        <td>@(Model.IndexOf(nave) + 1)</td>
+                        <td>@nave.CodigoRastreio</td>
+                        <td>@nave.DataEncontro</td>
+                        <td>@(((DisplayAttribute)nave.Tamanho.GetType().GetMember(nave.Tamanho.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
+                        <td>@(((DisplayAttribute)nave.Cor.GetType().GetMember(nave.Cor.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
+                        <td>@(((DisplayAttribute)nave.TipoLocalQueda.GetType().GetMember(nave.Cor.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
+                        <td>@nave.LocalQueda</td>
+                        <td>@(((DisplayAttribute)nave.Armamento.GetType().GetMember(nave.Cor.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
+                        @* tripulante *@
+                        <td>@(((DisplayAttribute)nave.GrauAvaria.GetType().GetMember(nave.Cor.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
+                        <td>@(((DisplayAttribute)nave.PotencialProspeccaoTecnologica.GetType().GetMember(nave.Cor.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
+                        <td>@(((DisplayAttribute)nave.GrauPericulosidade.GetType().GetMember(nave.Cor.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
+                        <td>@nave.DataCadastro</td>
+                        <td>@nave.DataAlteracao</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-list"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li>
+                                        <a class="dropdown-item" asp-route-id="@nave.Id" asp-controller="Nave" asp-action="Update">Editar</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-route-id="@nave.Id" asp-controller="Nave" asp-action="View">Exibir detalhes</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr class="odd">
+                    <td scope="col"></td>
+                    <td scope="col"></td>
+                    <td scope="col"></td>
+                    <td scope="col"></td>
+                    <td scope="col"></td>
+                    <td scope="col"></td>
+                    <td scope="col"></td>
+                    <td scope="col">Nenhuma nave adicionada</td>
+                    <td scope="col"></td>
+                    <td scope="col"></td>
+                    <td scope="col"></td>
+                    <td scope="col"></td>
+                    <td scope="col"></td>
+                    <td scope="col"></td>
+                    <td scope="col"></td>
+                    <td scope="col"></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

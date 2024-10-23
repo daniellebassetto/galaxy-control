@@ -1,5 +1,4 @@
 ﻿using GalaxyControl.ViewModels;
-using GalaxyControl.ViewModels.Nave;
 
 namespace GalaxyControl.Services;
 

@@ -1,7 +1,6 @@
 ﻿using GalaxyControl.Models;
 using GalaxyControl.Repositories;
 using GalaxyControl.ViewModels;
-using GalaxyControl.ViewModels.Nave;
 
 namespace GalaxyControl.Services;
 
@@ -20,7 +19,7 @@ public class NaveService(INaveRepository repository) : INaveService
         {
             DataCadastro = DateTime.Now,
             CodigoRastreio = criarNaveViewModel.CodigoRastreio,
-            DataQueda = criarNaveViewModel.DataQueda,
+            DataEncontro = criarNaveViewModel.DataEncontro,
             Tamanho = criarNaveViewModel.Tamanho,
             Cor = criarNaveViewModel.Cor,
             TipoLocalQueda = criarNaveViewModel.TipoLocalQueda,
@@ -52,7 +51,7 @@ public class NaveService(INaveRepository repository) : INaveService
             DataCadastro = x.DataCadastro,
             DataAlteracao = x.DataAlteracao,
             CodigoRastreio = x.CodigoRastreio,
-            DataQueda = x.DataQueda,
+            DataEncontro = x.DataEncontro,
             Tamanho = x.Tamanho,
             Cor = x.Cor,
             TipoLocalQueda = x.TipoLocalQueda,
@@ -75,7 +74,7 @@ public class NaveService(INaveRepository repository) : INaveService
             DataCadastro = nave.DataCadastro,
             DataAlteracao = nave.DataAlteracao,
             CodigoRastreio = nave.CodigoRastreio,
-            DataQueda = nave.DataQueda,
+            DataEncontro = nave.DataEncontro,
             Tamanho = nave.Tamanho,
             Cor = nave.Cor,
             TipoLocalQueda = nave.TipoLocalQueda,
@@ -94,7 +93,7 @@ public class NaveService(INaveRepository repository) : INaveService
         Nave? nave = _repository.GetById(atualizarNaveViewModel.Id!) ?? throw new Exception("Nave não encontrada");
 
         nave.DataAlteracao = DateTime.Now;
-        nave.DataQueda = atualizarNaveViewModel.DataQueda;
+        nave.DataEncontro = atualizarNaveViewModel.DataEncontro;
         nave.Tamanho = atualizarNaveViewModel.Tamanho;
         nave.Cor = atualizarNaveViewModel.Cor;
         nave.TipoLocalQueda = atualizarNaveViewModel.TipoLocalQueda;

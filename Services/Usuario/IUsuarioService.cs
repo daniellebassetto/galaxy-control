@@ -1,5 +1,4 @@
-﻿using GalaxyControl.Models;
-using GalaxyControl.ViewModels;
+﻿using GalaxyControl.ViewModels;
 
 namespace GalaxyControl.Services;
 
