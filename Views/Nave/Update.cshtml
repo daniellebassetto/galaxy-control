@@ -26,12 +26,12 @@
         <h1 class="display-4">Atualizar Nave</h1>
     </div>
 
-    <div class="p-4 rounded-3 shadow-sm mx-auto" style="max-width: 800px; background-color: #ECA02D;">
+    <div class="p-4 rounded-3 shadow-sm mx-auto">
         <form asp-controller="Nave" asp-action="Update" method="post">
             <div class="row mb-4">
                 <div class="col-md-3">
                     <label for="dataEncontro" class="form-label">Data de Encontro</label>
-                    <input type="date" asp-for="DataEncontro" class="form-control" id="dataEncontro" placeholder="Informe a data de encontro">
+                    <input type="date" asp-for="DataEncontro" max="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" id="dataEncontro" placeholder="Informe a data de encontro">
                     @Html.ValidationMessageFor(x => x.DataEncontro, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-4">
@@ -108,8 +108,24 @@
                 </div>
             </div>
             <div class="row mb-3">
-                @* Tripulante *@
-                <div class="col-md-3">
+                <div class="col-md-4">
+                    <label for="tripulanteSaudavel" class="form-label">Total Tripulantes Saudáveis</label>
+                    <input type="number" asp-for="TripulantesSaudaveis" class="form-control" id="tripulanteSaudavel" />
+                    @Html.ValidationMessageFor(x => x.TripulantesSaudaveis, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    <label for="tripulanteFerido" class="form-label">Total Tripulantes Feridos</label>
+                    <input type="number" asp-for="TripulantesFeridos" class="form-control" id="tripulanteFerido" />
+                    @Html.ValidationMessageFor(x => x.TripulantesFeridos, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    <label for="tripulanteSemVida" class="form-label">Total Tripulantes Sem Vida</label>
+                    <input type="number" asp-for="TripulantesSemVida" class="form-control" id="tripulanteSemVida" />
+                    @Html.ValidationMessageFor(x => x.TripulantesSemVida, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
                     <label for="grauAvaria" class="form-label">Grau de Avaria</label>
                     <select asp-for="GrauAvaria" class="form-select" id="grauAvaria">
                         <option value="">Selecione</option>
@@ -122,7 +138,7 @@
                     </select>
                     @Html.ValidationMessageFor(x => x.GrauAvaria, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="potencialTecnologico" class="form-label">Potencial de Prospecção Tecnologica</label>
                     <select asp-for="PotencialProspeccaoTecnologica" class="form-select" id="potencialTecnologico">
                         <option value="">Selecione</option>
@@ -135,7 +151,7 @@
                     </select>
                     @Html.ValidationMessageFor(x => x.PotencialProspeccaoTecnologica, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="grauPericulosidade" class="form-label">Grau de Periculosidade</label>
                     <select asp-for="GrauPericulosidade" class="form-select" id="grauPericulosidade">
                         <option value="">Selecione</option>

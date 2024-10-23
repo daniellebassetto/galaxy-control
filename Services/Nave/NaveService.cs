@@ -1,4 +1,5 @@
-﻿using GalaxyControl.Models;
+﻿using GalaxyControl.Enums;
+using GalaxyControl.Models;
 using GalaxyControl.Repositories;
 using GalaxyControl.ViewModels;
 
@@ -26,7 +27,9 @@ public class NaveService(INaveRepository repository) : INaveService
             LocalQueda = criarNaveViewModel.LocalQueda,
             Armamento = criarNaveViewModel.Armamento,
             TipoCombustivel = criarNaveViewModel.TipoCombustivel,
-            Tripulante = criarNaveViewModel.Tripulante,
+            TripulantesFeridos = criarNaveViewModel.TripulantesFeridos,
+            TripulantesSaudaveis = criarNaveViewModel.TripulantesSaudaveis,
+            TripulantesSemVida = criarNaveViewModel.TripulantesSemVida,
             GrauAvaria = criarNaveViewModel.GrauAvaria,
             PotencialProspeccaoTecnologica = criarNaveViewModel.PotencialProspeccaoTecnologica,
             GrauPericulosidade = criarNaveViewModel.GrauPericulosidade
@@ -58,7 +61,9 @@ public class NaveService(INaveRepository repository) : INaveService
             LocalQueda = x.LocalQueda,
             Armamento = x.Armamento,
             TipoCombustivel = x.TipoCombustivel,
-            Tripulante = x.Tripulante,
+            TripulantesFeridos = x.TripulantesFeridos,
+            TripulantesSaudaveis = x.TripulantesSaudaveis,
+            TripulantesSemVida = x.TripulantesSemVida,
             GrauAvaria = x.GrauAvaria,
             PotencialProspeccaoTecnologica = x.PotencialProspeccaoTecnologica,
             GrauPericulosidade = x.GrauPericulosidade
@@ -81,7 +86,9 @@ public class NaveService(INaveRepository repository) : INaveService
             LocalQueda = nave.LocalQueda,
             Armamento = nave.Armamento,
             TipoCombustivel = nave.TipoCombustivel,
-            Tripulante = nave.Tripulante,
+            TripulantesFeridos = nave.TripulantesFeridos,
+            TripulantesSaudaveis = nave.TripulantesSaudaveis,
+            TripulantesSemVida = nave.TripulantesSemVida,
             GrauAvaria = nave.GrauAvaria,
             PotencialProspeccaoTecnologica = nave.PotencialProspeccaoTecnologica,
             GrauPericulosidade = nave.GrauPericulosidade
@@ -100,7 +107,9 @@ public class NaveService(INaveRepository repository) : INaveService
         nave.LocalQueda = atualizarNaveViewModel.LocalQueda;
         nave.Armamento = atualizarNaveViewModel.Armamento;
         nave.TipoCombustivel = atualizarNaveViewModel.TipoCombustivel;
-        nave.Tripulante = atualizarNaveViewModel.Tripulante;
+        nave.TripulantesFeridos = atualizarNaveViewModel.TripulantesFeridos;
+        nave.TripulantesSaudaveis = atualizarNaveViewModel.TripulantesSaudaveis;
+        nave.TripulantesSemVida = atualizarNaveViewModel.TripulantesSemVida;
         nave.GrauAvaria = atualizarNaveViewModel.GrauAvaria;
         nave.PotencialProspeccaoTecnologica = atualizarNaveViewModel.PotencialProspeccaoTecnologica;
         nave.GrauPericulosidade = atualizarNaveViewModel.GrauPericulosidade;
@@ -108,4 +117,36 @@ public class NaveService(INaveRepository repository) : INaveService
         _repository.Update(nave);
         return true;
     }
+
+    //public List<EnumClassificacaoNave> ClassificarNave()
+    //{
+    //    var classificacoes = new List<EnumClassificacaoNave>();
+
+    //    // Critério 1: Se a nave está muito destruída ou com perda total e possui pouco ou nenhum valor tecnológico, é Sucata Espacial
+    //    if ((GrauAvaria == EnumGrauAvariaNave.MuitoDestruida || GrauAvaria == EnumGrauAvariaNave.PerdaTotal) &&
+    //        (PotencialProspeccaoTecnologica == EnumPotencialProspeccaoTecnologicaNave.Inexistente || PotencialProspeccaoTecnologica == EnumPotencialProspeccaoTecnologicaNave.Baixo))
+    //        classificacoes.Add(EnumClassificacaoNave.SucataEspacial);
+
+    //    // Critério 2: Se o potencial de prospecção tecnológica é alto, é uma Joia Tecnológica
+    //    if (PotencialProspeccaoTecnologica == EnumPotencialProspeccaoTecnologicaNave.Alto)
+    //        classificacoes.Add(EnumClassificacaoNave.JoiaTecnologica);
+
+    //    // Critério 3: Se a nave possui armamento pesado, é um Arsenal Alienígena
+    //    if (Armamento == EnumArmamentoNave.Pesado)
+    //        classificacoes.Add(EnumClassificacaoNave.ArsenalAlienigena);
+
+    //    // Critério 4: Se o grau de periculosidade é alto, é uma Ameaça em Potencial
+    //    if (GrauPericulosidade == EnumGrauPericulosidadeNave.Alto)
+    //        classificacoes.Add(EnumClassificacaoNave.AmeacaEmPotencial);
+
+    //    // Critério 5: Se o combustível é de uma tecnologia única ou incomum, pode ser uma Fonte de Energia Alternativa
+    //    if (TipoCombustivel == EnumTipoCombustivelNave.Alternativo)
+    //        classificacoes.Add(EnumClassificacaoNave.FonteDeEnergiaAlternativa);
+
+    //    // Se nenhuma classificação for encontrada, adicionar "Mistureba"
+    //    if (classificacoes.Count == 0)
+    //        classificacoes.Add(EnumClassificacaoNave.MisturebaInconclusiva);
+
+    //    return classificacoes;
+    //}
 }

@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+body {
+    font-family: 'Orbitron', sans-serif;
+}
+
+input {
+
+}
+
 .field-validation-error {
     color: red;
     font-size: 12px;

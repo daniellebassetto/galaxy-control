@@ -40,7 +40,9 @@
                 <th scope="col">Local Queda</th>
                 <th scope="col">Armamento</th>
                 <th scope="col">Tipo Combustivel</th>
-                <th scope="col">Tripulante</th>
+                <th scope="col">Tripulantes Saudáveis</th>
+                <th scope="col">Tripulantes Feridos</th>
+                <th scope="col">Tripulantes Sem Vida</th>
                 <th scope="col">Grau de Avaria</th>
                 <th scope="col">Potencial Prospecção Tecnologica</th>
                 <th scope="col">Grau Periculosidade</th>
@@ -63,7 +65,9 @@
                         <td>@(((DisplayAttribute)nave.TipoLocalQueda.GetType().GetMember(nave.Cor.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
                         <td>@nave.LocalQueda</td>
                         <td>@(((DisplayAttribute)nave.Armamento.GetType().GetMember(nave.Cor.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
-                        @* tripulante *@
+                        <td>@nave.TripulantesSaudaveis</td>
+                        <td>@nave.TripulantesFeridos</td>
+                        <td>@nave.TripulantesSemVida</td>
                         <td>@(((DisplayAttribute)nave.GrauAvaria.GetType().GetMember(nave.Cor.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
                         <td>@(((DisplayAttribute)nave.PotencialProspeccaoTecnologica.GetType().GetMember(nave.Cor.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
                         <td>@(((DisplayAttribute)nave.GrauPericulosidade.GetType().GetMember(nave.Cor.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
@@ -77,6 +81,9 @@
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <li>
                                         <a class="dropdown-item" asp-route-id="@nave.Id" asp-controller="Nave" asp-action="Update">Editar</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-route-id="@nave.Id" asp-controller="Nave" asp-action="DeleteConfirmation">Excluir</a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" asp-route-id="@nave.Id" asp-controller="Nave" asp-action="View">Exibir detalhes</a>
@@ -97,7 +104,9 @@
                     <td scope="col"></td>
                     <td scope="col"></td>
                     <td scope="col"></td>
+                    <td scope="col"></td>
                     <td scope="col">Nenhuma nave adicionada</td>
+                    <td scope="col"></td>
                     <td scope="col"></td>
                     <td scope="col"></td>
                     <td scope="col"></td>

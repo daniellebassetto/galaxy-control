@@ -30,12 +30,18 @@ public class NaveMap : IEntityTypeConfiguration<Nave>
 
         builder.Property(x => x.TipoCombustivel).HasColumnName("tipo_combustivel").IsRequired();
 
-        builder.HasMany(x => x.Tripulante).WithOne(x => x.Nave).HasForeignKey(x => x.NaveId).OnDelete(DeleteBehavior.Cascade);
+        builder.Property(x => x.TripulantesSaudaveis).HasColumnName("tripulantes_saudaveis").IsRequired();
+
+        builder.Property(x => x.TripulantesFeridos).HasColumnName("tripulantes_feridos").IsRequired();
+        
+        builder.Property(x => x.TripulantesSemVida).HasColumnName("tripulantes_sem_vida").IsRequired();
 
         builder.Property(x => x.GrauAvaria).HasColumnName("grau_avaria").IsRequired();
 
         builder.Property(x => x.PotencialProspeccaoTecnologica).HasColumnName("potencial_prospeccao_tecnologica").IsRequired();
 
         builder.Property(x => x.GrauPericulosidade).HasColumnName("grau_periculosidade").IsRequired();
+
+        builder.Property(x => x.Classificacao).HasColumnName("classificacao").IsRequired();
     }
 }

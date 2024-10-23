@@ -30,8 +30,14 @@ public class CriarNaveViewModel
     [Required(ErrorMessage = "Informe o tipo de combustível")]
     public EnumTipoCombustivelNave TipoCombustivel { get; set; }
 
-    [Required(ErrorMessage = "Informe a tripulação")]
-    public List<Tripulante>? Tripulante { get; set; }
+    [Required(ErrorMessage = "Informe o total de tripulantes feridos")]
+    public int TripulantesFeridos { get; set; }
+
+    [Required(ErrorMessage = "Informe o total de tripulantes saudaveis")]
+    public int TripulantesSaudaveis { get; set; }
+
+    [Required(ErrorMessage = "Informe o total de tripulantes sem vida")]
+    public int TripulantesSemVida { get; set; }
 
     [Required(ErrorMessage = "Informe o grau de avaria")]
     public EnumGrauAvariaNave GrauAvaria { get; set; }
@@ -41,4 +47,5 @@ public class CriarNaveViewModel
 
     [Required(ErrorMessage = "Informe o grau de periculosidade")]
     public EnumGrauPericulosidadeNave GrauPericulosidade { get; set; }
+    public EnumClassificacaoNave Classificacao { get; set; }
 }

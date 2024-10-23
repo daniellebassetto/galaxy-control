@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -32,6 +33,9 @@ namespace GalaxyControl.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     armamento = table.Column<int>(type: "int", nullable: false),
                     tipo_combustivel = table.Column<int>(type: "int", nullable: false),
+                    tripulantes_feridos = table.Column<int>(type: "int", nullable: false),
+                    tripulantes_saudaveis = table.Column<int>(type: "int", nullable: false),
+                    tripulantes_sem_vida = table.Column<int>(type: "int", nullable: false),
                     grau_avaria = table.Column<int>(type: "int", nullable: false),
                     potencial_prospeccao_tecnologica = table.Column<int>(type: "int", nullable: false),
                     grau_periculosidade = table.Column<int>(type: "int", nullable: false)
@@ -63,51 +67,20 @@ namespace GalaxyControl.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
-                name: "tripulante",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    nome = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    estado = table.Column<int>(type: "int", nullable: false),
-                    id_nave = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tripulante", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_tripulante_nave_id_nave",
-                        column: x => x.id_nave,
-                        principalTable: "nave",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
             migrationBuilder.InsertData(
                 table: "usuario",
                 columns: new[] { "id", "data_alteracao", "data_cadastro", "email", "nome", "senha" },
-                values: new object[] { 1, null, new DateTime(2024, 10, 23, 12, 43, 41, 526, DateTimeKind.Local).AddTicks(1405), "galaxycontrol@outlook.com", "Admin", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_tripulante_id_nave",
-                table: "tripulante",
-                column: "id_nave");
+                values: new object[] { 1, null, new DateTime(2024, 10, 23, 16, 54, 14, 106, DateTimeKind.Local).AddTicks(3316), "galaxycontrol@outlook.com", "Admin", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220" });
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "tripulante");
+                name: "nave");
 
             migrationBuilder.DropTable(
                 name: "usuario");
-
-            migrationBuilder.DropTable(
-                name: "nave");
         }
     }
 }

@@ -10,6 +10,4 @@ public interface INaveRepository
     Nave Create(Nave nave);
     Nave Update(Nave nave);
     bool Delete(Nave nave);
-    bool AddTripulante(int id, Tripulante tripulante);
-    bool RemoveTripulante(int id, int tripulanteId);
 }
