@@ -1,59 +1,38 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    @model UsuarioViewModel
+﻿<head>
+    <link rel="stylesheet" href="~/css/menu.css">
 </head>
-<body>
-    <div style="background-color: #19332A; width: 250px;" class="offcanvas offcanvas-start" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
-        <div class="offcanvas-header">
-            <h4 class="offcanvas-title d-none d-sm-block" style="color: #2BFDBE; font-weight: 800;" id="offcanvas"> Galaxy Control</h4>
-            <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <nav class="offcanvas-body px-0">
-            <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
-                <li class="nav-item">
-                    <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link text-truncate" style="color: white; font-size: 20px;">
-                        <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Home</span>
-                    </a>
+
+<div class="row">
+    <div class="col-sm-auto min-vh-100 d-flex flex-column p-3 sidebar">
+        <img class="logo" src="~/img/logo_sem_fundo.png" alt="logo" />
+        <h6 class="titulo">Galaxy<br>Control</h6><br><br>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+                    <i class="bi-house fs-1"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="" asp-controller="Nave" asp-action="Index" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+                    <i class="bi-rocket-takeoff-fill fs-1"></i>
+                </a>
+            </li>
+        </ul>
+        <div class="mt-auto dropdown">
+            <a href="#" class="d-flex align-items-center justify-content-center p-3 link-light text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi-person-circle fs-1"></i>
+            </a>
+            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+                <li>
+                    <a asp-area="" asp-controller="Login" asp-action="RedefinePassword" class="dropdown-item">Redefinir Senha</a>
                 </li>
-                <li class="nav-item">
-                    <a asp-area="" asp-controller="Home" asp-action="Info" class="nav-link text-truncate" style="color: white; font-size: 20px;">
-                        <i class="fs-5 bi-info-circle"></i><span class="ms-1 d-none d-sm-inline">Sobre</span>
-                    </a>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Login" asp-action="Exit" class="dropdown-item">Sair</a>
                 </li>
             </ul>
-            <hr style="color: wheat;">
-            <div class="dropdown pb-4">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUsuario1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="d-none d-sm-inline mx-3" style="color: white; font-size: 20px;">Olá, @Model.Nome! </span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark text-small shadow dropdown-menu-md-end">
-                    <li>
-                        <a class="dropdown-item" asp-area="" asp-controller="Usuario" asp-action="Index" style="color: white;">
-                            <span class="ms-1 d-none d-sm-inline">Usuário</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-area="" asp-controller="RedefinirSenha" asp-action="Index" class="dropdown-item" style="color: white;">Redefinir Senha</a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <a asp-area="" asp-controller="Login" asp-action="Exit" class="dropdown-item" style="color: white;">Sair</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col p-4">
-                <button class="btn float" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button" style="background-color: #19332A;">
-                    <i class="bi bi-list fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" style="color: #2BFDBE;"></i>
-                </button>
-            </div>
         </div>
     </div>
-</body>
-</html>
+</div>

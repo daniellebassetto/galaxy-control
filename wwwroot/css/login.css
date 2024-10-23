@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +7,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     background-color: #f0f0f0;
     height: 100vh;
     display: flex;
@@ -20,76 +22,109 @@ body {
 }
 
 .login-left {
-    background-image: url(../img/background-login.jpg);
+    background-image: url(../img/background-login2.jpg);
+    background-size: cover;
     display: flex;
-    width: 50%
+    width: 55%;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 55%;
+    padding: 20px;
 }
 
 .login-right {
     color: #fff;
     flex: 1;
     padding: 60px;
-    background-color: #000;
+    background-color: #111;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .login-right-titulo {
-    margin-bottom: 50px;
+    margin-bottom: 15px;
     text-align: center;
     font-size: 40px;
 }
 
 .login-card {
-    background-color: #000;
+    background-color: #222;
     padding: 1.5rem;
-    border-radius: 10px;
-    border: 1px solid blue;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     transition: box-shadow 0.3s ease;
 }
 
+    .login-card:hover {
+        box-shadow: 0 8px 30px rgba(0, 204, 255, 0.7);
+    }
+
 h2 {
-    margin-bottom: 20px;
     text-align: center;
+    font-size: 32px;
+    margin-bottom: 0px;
 }
 
 .input-group {
     display: flex;
-    margin-bottom: 15px;
     text-align: left;
     box-sizing: border-box;
+    margin-bottom: 5px;
 }
 
-.input-group label {
-    display: block;
-    font-size: 14px;
-    color: #555;
-}
+    .input-group label {
+        display: block;
+        font-size: 14px;
+        color: #00FFFF;
+        margin-bottom: 3px;
+    }
 
-.input-group input {
-    width: 100%;
-    padding: 15px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    outline: none;
-}
+    .input-group input {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+        border: 1px solid #00FFFF;
+        border-radius: 10px;
+        color: #000;
+        outline: none;
+        transition: border-color 0.3s ease;
+    }
 
-.input-group input:focus {
-    border-color: #007bff;
-}
+        .input-group input:focus {
+            border-color: #007bff;
+        }
+
 
 .input-group-showPassword {
     width: 10%;
-    background-color: #ECA02D;
+    background-color: #00FFFF;
     border: none;
 }
 
-    .input-group-showPassword:hover {
-        background-color: orange;
+    .input-group-showPassword input {
+        flex: 1;
+        margin-right: 10px;
     }
+
+    .input-group-showPassword button {
+        background-color: #00FFFF;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 14px;
+    }
+
+    .input-group-showPassword:hover {
+        background-color: #0094ff;
+    }
+
+.link-redefinir-senha {
+    text-decoration: none;
+    color: #00FFFF;
+}
 
 .button-group {
     display: flex;
@@ -103,47 +138,33 @@ h2 {
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 10px;
     font-size: 16px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.btn:hover {
-    background-color: #0056b3;
-}
+    .btn:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+    }
 
 .register-btn {
     background-color: #28a745;
 }
 
-.register-btn:hover {
-    background-color: #218838;
-}
+    .register-btn:hover {
+        background-color: #218838;
+    }
 
 .field-validation-error {
     color: red;
     font-size: 12px;
 }
 
-.close-alert-error {
-    position: absolute;
-    right: -10px;
-    top: -10px;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    padding: 0;
-    border: none;
-    background-color: red;
-}
-
+.close-alert-error,
 .close-alert-success {
     position: absolute;
     right: -10px;
@@ -156,9 +177,23 @@ h2 {
     justify-content: center;
     font-size: 16px;
     padding: 0;
-    border: none;
+}
+
+.close-alert-error {
+    background-color: red;
+}
+
+    .close-alert-error:hover {
+        background-color: #d71e1e;
+    }
+
+.close-alert-success {
     background-color: green;
 }
+
+    .close-alert-success:hover {
+        background-color: #28a828;
+    }
 
 @media (max-width: 768px) {
     .login-wrapper {

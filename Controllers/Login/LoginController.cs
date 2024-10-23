@@ -1,4 +1,4 @@
-﻿using GalaxyControl.Service;
+﻿using GalaxyControl.Services;
 using GalaxyControl.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -86,7 +86,7 @@ public class LoginController(IUsuarioService usuarioService) : Controller
         catch (Exception ex)
         {
             TempData["ErrorMessage"] = $"Erro: {ex.Message}";
-            return RedirectToAction("Index");
+            return View(usuarioRegisterViewModel);
         }
     }
 

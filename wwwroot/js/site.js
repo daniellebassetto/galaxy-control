@@ -2,6 +2,14 @@
     getDataTable('#user-table')
 });
 
+$('.close-alert-sucess').click(function () {
+    $('.alert').hide('hide');
+});
+
+$('.close-alert-error').click(function () {
+    $('.alert').hide('hide');
+});
+
 function getDataTable(id) {
     $(id).DataTable({
         "ordering": true,
@@ -32,10 +40,6 @@ function getDataTable(id) {
         }
     });
 }
-
-$('.close-alert').click(function () {
-    $('.alert').hide('hide');
-});
 
 $(document).ready(function () {
     $("#showHidePassword").on('click', function () {

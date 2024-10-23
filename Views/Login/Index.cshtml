@@ -1,21 +1,14 @@
-﻿<!DOCTYPE html>
-<html lang="pt-br">
-<head>
+﻿<head>
     @model LoginViewModel
     @{
         Layout = "_LayoutLoggedOut";
         ViewData["Title"] = "Login";
     }
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/login.css">
 </head>
 <body>
     <main class="login-wrapper">
         <section class="login-left">
-        </section>
-        <section class="login-right">
-            <h1 class="login-right-titulo">GalaxyControl</h1>
             @if (TempData["SuccessMessage"] != null)
             {
                 <div class="alert alert-success" role="alert">
@@ -31,12 +24,17 @@
                     @TempData["ErrorMessage"]
                 </div>
             }
+        </section>
+        <section class="login-right">
+            <h1 class="login-right-titulo">GalaxyControl</h1>
             <div class="login-card">
                 <h2>Login</h2>
                 <form asp-controller="Login" class="form-container" asp-action="Login" method="post">
                     <div class="input-group">
                         <label for="email" name="email">Email</label>
-                        <input type="email" asp-for="Email" id="email" placeholder="Informe seu e-mail">
+                        <div class="input-group">
+                            <input type="email" asp-for="Email" id="email" placeholder="Informe seu e-mail">
+                        </div>
                         @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
                     </div>
                     <div class="input-group">
@@ -51,7 +49,7 @@
                     </div>
                     <p>
                         Esqueceu sua senha?
-                        <a asp-action="SendLinkToRedefinePassword" asp-controller="Login">Redefinir senha</a>
+                        <a asp-action="SendLinkToRedefinePassword" asp-controller="Login" class="link-redefinir-senha">Redefinir senha</a>
                     </p>
 
                     <div class="button-group">
