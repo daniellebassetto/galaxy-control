@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     getDataTable('#user-table')
+    getDataTable('#nave-table')
 });
 
 $('.close-alert-sucess').click(function () {

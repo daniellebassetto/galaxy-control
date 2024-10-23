@@ -13,6 +13,11 @@ public class NaveRepository(GalaxyControlContext context) : INaveRepository
         return _context.Naves.AsNoTracking().Include(n => n.Tripulante).FirstOrDefault(n => n.Id == id);
     }
 
+    public Nave? GetByCodigoRastreio(string codigoRastreio)
+    {
+        return _context.Naves.AsNoTracking().Include(n => n.Tripulante).FirstOrDefault(n => n.CodigoRastreio == codigoRastreio);
+    }
+
     public IEnumerable<Nave> GetAll()
     {
         return _context.Naves.AsNoTracking().Include(n => n.Tripulante).ToList();
@@ -32,16 +37,11 @@ public class NaveRepository(GalaxyControlContext context) : INaveRepository
         return nave;
     }
 
-    public bool Delete(int id)
+    public bool Delete(Nave nave)
     {
-        var nave = GetById(id);
-        if (nave != null)
-        {
-            _context.Naves.Remove(nave);
-            _context.SaveChanges();
-            return true;
-        }
-        return false;
+        _context.Naves.Remove(nave);
+        _context.SaveChanges();
+        return true;
     }
 
     public bool AddTripulante(int naveId, Tripulante tripulante)

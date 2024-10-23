@@ -71,22 +71,22 @@ public class LoginController(IUsuarioService usuarioService) : Controller
     }
 
     [HttpPost]
-    public IActionResult Register(UsuarioRegisterViewModel usuarioRegisterViewModel)
+    public IActionResult Register(RegistrarUsuarioViewModel registrarUsuarioViewModel)
     {
         try
         {
             if (ModelState.IsValid)
             {
-                _usuarioService.Create(usuarioRegisterViewModel);
+                _usuarioService.Create(registrarUsuarioViewModel);
                 TempData["SuccessMessage"] = "Cadastro realizado com sucesso. Realize o login.";
                 return RedirectToAction("Index");
             }
-            return View(usuarioRegisterViewModel);
+            return View(registrarUsuarioViewModel);
         }
         catch (Exception ex)
         {
             TempData["ErrorMessage"] = $"Erro: {ex.Message}";
-            return View(usuarioRegisterViewModel);
+            return RedirectToAction("Index");
         }
     }
 

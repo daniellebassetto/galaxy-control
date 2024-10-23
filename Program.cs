@@ -16,6 +16,7 @@ builder.Services.AddScoped<IEmail, Email>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<INaveRepository, NaveRepository>();
+builder.Services.AddScoped<INaveService, NaveService>();
 
 builder.Services.AddControllersWithViews();
 

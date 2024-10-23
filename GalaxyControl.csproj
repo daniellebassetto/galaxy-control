@@ -21,8 +21,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Controllers\Nave\" />
-	  <Folder Include="Services\Nave\" />
 	  <Folder Include="Views\Nave\" />
 	</ItemGroup>
 
