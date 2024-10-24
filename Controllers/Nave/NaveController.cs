@@ -86,10 +86,29 @@ public class NaveController(INaveService service) : Controller
         }
     }
 
-    //[HttpGet]
-    //public IActionResult ShowAttributes(int id)
-    //{
-    //    NaveViewModel nave = _service.GetById(id)!;
-    //    return PartialView("_ShowAttributes", nave);
-    //}
+    [HttpPost]
+    public IActionResult ClassificarNave(CriarNaveViewModel model)
+    {
+        try
+        {
+            if (ModelState.IsValid)
+            {
+                var classificacoes = _service.ClassificarNave(
+                           model.GrauAvaria,
+                           model.PotencialProspeccaoTecnologica,
+                           model.Armamento,
+                           model.GrauPericulosidade,
+                           model.TipoCombustivel
+                           );
+
+                return PartialView("_ClassificacaoPartial", classificacoes);
+            }
+            return View(model);
+        }
+        catch (Exception ex) 
+        {
+            TempData["ErrorMessage"] = $"Erro: {ex.Message}";
+            return RedirectToAction("Index");
+        }
+    }
 }

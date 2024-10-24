@@ -1,0 +1,15 @@
+﻿@model List<EnumClassificacaoNave>
+
+<div>
+    <p>Escolha a classificação apropriada para a nave:</p>
+    <ul class="list-group">
+        @foreach (var classificacao in Model)
+        {
+            <li class="list-group-item">
+                <input type="radio" name="classificacao" value="@classificacao" id="classificacao_@classificacao" />
+                <label for="classificacao_@classificacao">@classificacao</label>
+            </li>
+        }
+    </ul>
+    <button type="button" class="btn btn-primary mt-3" onclick="selecionarClassificacao()">Confirmar</button>
+</div>

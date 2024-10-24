@@ -28,7 +28,7 @@
         </div>
 
         <div class="p-4 rounded-3 shadow-sm mx-auto">
-            <form asp-controller="Nave" asp-action="Create" method="post">
+            <form asp-controller="Nave" asp-action="Create" method="post" id="naveForm">
                 <div class="row mb-3">
                     <div class="col-md-3">
                         <label for="codigoRastreio" class="form-label">Codigo de Rastreio</label>
@@ -172,12 +172,30 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary" id="escolherUsoFuturo" onclick="openClassificacaoModal()">
+                        <i class="bi bi-box-arrow-in-right" style="color: white;"></i> Escolher uso futuro
+                    </button>
                     <button type="submit" class="btn btn-primary">
                         <i class="bi bi-save" style="color: white;"></i> Salvar
                     </button>
                     <a class="btn btn-danger" role="button" asp-controller="Nave" asp-action="Index">
                         <i class="bi bi-arrow-left-circle" style="color: white;"></i> Voltar
                     </a>
+                </div>
+
+                <div id="classificacaoModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Escolher Classificação</h5>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" id="classificacaoContent">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>

@@ -32,7 +32,8 @@ public class NaveService(INaveRepository repository) : INaveService
             TripulantesSemVida = criarNaveViewModel.TripulantesSemVida,
             GrauAvaria = criarNaveViewModel.GrauAvaria,
             PotencialProspeccaoTecnologica = criarNaveViewModel.PotencialProspeccaoTecnologica,
-            GrauPericulosidade = criarNaveViewModel.GrauPericulosidade
+            GrauPericulosidade = criarNaveViewModel.GrauPericulosidade,
+            Classificacao = criarNaveViewModel.Classificacao!.Value
         };
 
         _repository.Create(novaNave);
@@ -66,7 +67,8 @@ public class NaveService(INaveRepository repository) : INaveService
             TripulantesSemVida = x.TripulantesSemVida,
             GrauAvaria = x.GrauAvaria,
             PotencialProspeccaoTecnologica = x.PotencialProspeccaoTecnologica,
-            GrauPericulosidade = x.GrauPericulosidade
+            GrauPericulosidade = x.GrauPericulosidade,
+            Classificacao = x.Classificacao
         }).ToList();
     }
 
@@ -91,7 +93,8 @@ public class NaveService(INaveRepository repository) : INaveService
             TripulantesSemVida = nave.TripulantesSemVida,
             GrauAvaria = nave.GrauAvaria,
             PotencialProspeccaoTecnologica = nave.PotencialProspeccaoTecnologica,
-            GrauPericulosidade = nave.GrauPericulosidade
+            GrauPericulosidade = nave.GrauPericulosidade,
+            Classificacao = nave.Classificacao
         } : null;
     }
 
@@ -113,40 +116,42 @@ public class NaveService(INaveRepository repository) : INaveService
         nave.GrauAvaria = atualizarNaveViewModel.GrauAvaria;
         nave.PotencialProspeccaoTecnologica = atualizarNaveViewModel.PotencialProspeccaoTecnologica;
         nave.GrauPericulosidade = atualizarNaveViewModel.GrauPericulosidade;
+        nave.Classificacao = atualizarNaveViewModel.Classificacao;
 
         _repository.Update(nave);
         return true;
     }
 
-    //public List<EnumClassificacaoNave> ClassificarNave()
-    //{
-    //    var classificacoes = new List<EnumClassificacaoNave>();
+    public List<EnumClassificacaoNave> ClassificarNave(EnumGrauAvariaNave grauAvaria, EnumPotencialProspeccaoTecnologicaNave potencialTecnologico, EnumArmamentoNave armamento, 
+        EnumGrauPericulosidadeNave periculosidade, EnumTipoCombustivelNave combustivel)
+    {
+        var classificacoes = new List<EnumClassificacaoNave>();
 
-    //    // Critério 1: Se a nave está muito destruída ou com perda total e possui pouco ou nenhum valor tecnológico, é Sucata Espacial
-    //    if ((GrauAvaria == EnumGrauAvariaNave.MuitoDestruida || GrauAvaria == EnumGrauAvariaNave.PerdaTotal) &&
-    //        (PotencialProspeccaoTecnologica == EnumPotencialProspeccaoTecnologicaNave.Inexistente || PotencialProspeccaoTecnologica == EnumPotencialProspeccaoTecnologicaNave.Baixo))
-    //        classificacoes.Add(EnumClassificacaoNave.SucataEspacial);
+        // Critério 1: Se a nave está muito destruída ou com perda total e possui pouco ou nenhum valor tecnológico, é Sucata Espacial
+        if ((grauAvaria == EnumGrauAvariaNave.MuitoDestruida || grauAvaria == EnumGrauAvariaNave.PerdaTotal) &&
+            (potencialTecnologico == EnumPotencialProspeccaoTecnologicaNave.Inexistente || potencialTecnologico == EnumPotencialProspeccaoTecnologicaNave.Baixo))
+            classificacoes.Add(EnumClassificacaoNave.SucataEspacial);
 
-    //    // Critério 2: Se o potencial de prospecção tecnológica é alto, é uma Joia Tecnológica
-    //    if (PotencialProspeccaoTecnologica == EnumPotencialProspeccaoTecnologicaNave.Alto)
-    //        classificacoes.Add(EnumClassificacaoNave.JoiaTecnologica);
+        // Critério 2: Se o potencial de prospecção tecnológica é alto, é uma Joia Tecnológica
+        if (potencialTecnologico == EnumPotencialProspeccaoTecnologicaNave.Alto)
+            classificacoes.Add(EnumClassificacaoNave.JoiaTecnologica);
 
-    //    // Critério 3: Se a nave possui armamento pesado, é um Arsenal Alienígena
-    //    if (Armamento == EnumArmamentoNave.Pesado)
-    //        classificacoes.Add(EnumClassificacaoNave.ArsenalAlienigena);
+        // Critério 3: Se a nave possui armamento pesado, é um Arsenal Alienígena
+        if (armamento == EnumArmamentoNave.Pesado)
+            classificacoes.Add(EnumClassificacaoNave.ArsenalAlienigena);
 
-    //    // Critério 4: Se o grau de periculosidade é alto, é uma Ameaça em Potencial
-    //    if (GrauPericulosidade == EnumGrauPericulosidadeNave.Alto)
-    //        classificacoes.Add(EnumClassificacaoNave.AmeacaEmPotencial);
+        // Critério 4: Se o grau de periculosidade é alto, é uma Ameaça em Potencial
+        if (periculosidade == EnumGrauPericulosidadeNave.Alto)
+            classificacoes.Add(EnumClassificacaoNave.AmeacaEmPotencial);
 
-    //    // Critério 5: Se o combustível é de uma tecnologia única ou incomum, pode ser uma Fonte de Energia Alternativa
-    //    if (TipoCombustivel == EnumTipoCombustivelNave.Alternativo)
-    //        classificacoes.Add(EnumClassificacaoNave.FonteDeEnergiaAlternativa);
+        // Critério 5: Se o combustível é de uma tecnologia única ou incomum, pode ser uma Fonte de Energia Alternativa
+        if (combustivel == EnumTipoCombustivelNave.Alternativo)
+            classificacoes.Add(EnumClassificacaoNave.FonteDeEnergiaAlternativa);
 
-    //    // Se nenhuma classificação for encontrada, adicionar "Mistureba"
-    //    if (classificacoes.Count == 0)
-    //        classificacoes.Add(EnumClassificacaoNave.MisturebaInconclusiva);
+        // Se nenhuma classificação for encontrada, adicionar "Mistureba"
+        if (classificacoes.Count == 0)
+            classificacoes.Add(EnumClassificacaoNave.MisturebaInconclusiva);
 
-    //    return classificacoes;
-    //}
+        return classificacoes;
+    }
 }

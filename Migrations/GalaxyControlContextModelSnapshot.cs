@@ -35,6 +35,10 @@ namespace GalaxyControl.Migrations
                         .HasColumnType("int")
                         .HasColumnName("armamento");
 
+                    b.Property<int>("Classificacao")
+                        .HasColumnType("int")
+                        .HasColumnName("classificacao");
+
                     b.Property<string>("CodigoRastreio")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -145,7 +149,7 @@ namespace GalaxyControl.Migrations
                         new
                         {
                             Id = 1,
-                            DataCadastro = new DateTime(2024, 10, 23, 16, 54, 14, 106, DateTimeKind.Local).AddTicks(3316),
+                            DataCadastro = new DateTime(2024, 10, 23, 19, 54, 28, 83, DateTimeKind.Local).AddTicks(4762),
                             Email = "galaxycontrol@outlook.com",
                             Nome = "Admin",
                             Senha = "7110eda4d09e062aa5e4a390b0a572ac0d2c0220"

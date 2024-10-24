@@ -1,5 +1,4 @@
 ﻿using GalaxyControl.Enums;
-using GalaxyControl.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace GalaxyControl.ViewModels;
@@ -47,5 +46,5 @@ public class CriarNaveViewModel
 
     [Required(ErrorMessage = "Informe o grau de periculosidade")]
     public EnumGrauPericulosidadeNave GrauPericulosidade { get; set; }
-    public EnumClassificacaoNave Classificacao { get; set; }
+    public EnumClassificacaoNave? Classificacao { get; set; }
 }
