@@ -1,15 +1,67 @@
 ﻿@model List<EnumClassificacaoNave>
 
 <div>
-    <p>Escolha a classificação apropriada para a nave:</p>
+    <h4 class="mb-4 text-center">Escolha o uso futuro que deseja atribuir para esta nave:</h4>
+    <p class="text-muted text-center">Obs: Lembre-se que será possível editar este uso até que a nave seja encaminhada à oficina galáctica.</p>
+
     <ul class="list-group">
         @foreach (var classificacao in Model)
         {
-            <li class="list-group-item">
-                <input type="radio" name="classificacao" value="@classificacao" id="classificacao_@classificacao" />
-                <label for="classificacao_@classificacao">@classificacao</label>
+            <li class="list-group-item mb-4">
+                <input type="radio" name="classificacao" value="@classificacao" id="classificacao_@classificacao" class="mr-2" />
+
+                <!-- O nome da classificação com label associado -->
+                <label for="classificacao_@classificacao" class="ml-2 d-block">
+                    @classificacao.GetDisplayName()
+                </label>
+
+                <!-- A imagem, centralizada -->
+                <div class="mt-3 d-flex justify-content-center" onclick="document.getElementById('classificacao_@classificacao').click();">
+                    <img src="~/img/@GetImagemClassificacao(classificacao)" alt="@classificacao.GetDisplayName() Imagem" style="width: 180px; height:180px;" class="img-fluid" />
+                </div>
+
+                <!-- A descrição da classificação, clicável -->
+                <p class="mt-3 text-muted" style="font-size: 0.8rem; text-align: justify;" onclick="document.getElementById('classificacao_@classificacao').click();">
+                    @GetDescricaoClassificacao(classificacao)
+                </p>
             </li>
         }
     </ul>
-    <button type="button" class="btn btn-primary mt-3" onclick="selecionarClassificacao()">Confirmar</button>
+
+    <div class="d-flex justify-content-end mt-4">
+        <button type="button" class="btn btn-success" style="width: 150px;" onclick="selecionarClassificacao()">Confirmar</button>
+    </div>
 </div>
+
+@functions {
+    public string GetDescricaoClassificacao(EnumClassificacaoNave classificacao)
+    {
+        return classificacao switch
+        {
+            EnumClassificacaoNave.SucataEspacial =>
+                "Esta nave tem pouco ou nenhum valor tecnológico. No entanto, suas peças podem ser reaproveitadas para projetos menores ou reparos de emergência. Embora seja improvável extrair algo revolucionário, reciclar partes pode reduzir custos operacionais.",
+
+            EnumClassificacaoNave.JoiaTecnologica =>
+                "Com sistemas e componentes altamente avançados, esta nave é uma verdadeira mina de ouro para pesquisa e desenvolvimento. Ela pode acelerar grandes saltos na nossa própria tecnologia, mas sua complexidade extrema também representa um desafio para adaptação imediata.",
+
+            EnumClassificacaoNave.ArsenalAlienigena =>
+                "Repleta de armamentos e defesas alienígenas de ponta, esta nave é um verdadeiro cofre de poder bélico. Pode reforçar nossa segurança com armas de tecnologia superior, mas há um risco elevado: desativar ou manejar esses sistemas sem o conhecimento adequado pode levar a explosões ou autodefesas perigosas.",
+
+            EnumClassificacaoNave.AmeacaPotencial =>
+                "Esta nave contém elementos potencialmente letais, como armadilhas ocultas, sistemas autônomos hostis, ou até biocontaminantes alienígenas. Embora possa ter valor estratégico, lidar com ela exige extrema cautela para evitar catástrofes ou infecções descontroladas.",
+
+            EnumClassificacaoNave.FonteEnergiaAlternativa =>
+                "Possui sistemas de propulsão ou fontes de energia que não seguem os padrões convencionais conhecidos. Se bem compreendida, essa tecnologia pode nos levar a avanços sem precedentes no campo energético. No entanto, seu uso inadequado pode ser volátil, apresentando riscos significativos se mal administrada.",
+
+            EnumClassificacaoNave.MisturebaInconclusiva =>
+                "Uma combinação estranha de diferentes tecnologias alienígenas. Não é a melhor em nenhum aspecto específico, mas se bem explorada, pode surpreender com aplicações criativas, entretanto o risco de ineficiência ou falha é alto devido à sua natureza desconexa.",
+
+            _ => "Descrição indisponível."
+        };
+    }
+
+    public string GetImagemClassificacao(EnumClassificacaoNave classificacao)
+    {
+        return $"{classificacao.ToString()?.ToLower()}1.jpg";
+    }
+}

@@ -14,10 +14,10 @@ public enum EnumClassificacaoNave
     ArsenalAlienigena,
 
     [Display(Name = "Ameaça Em Potencial")]
-    AmeacaEmPotencial,
+    AmeacaPotencial,
 
     [Display(Name = "Fonte De Energia Alternativa")]
-    FonteDeEnergiaAlternativa,
+    FonteEnergiaAlternativa,
 
     [Display(Name = "Mistureba Inconclusiva")]
     MisturebaInconclusiva

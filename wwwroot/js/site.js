@@ -57,7 +57,6 @@ $(document).ready(function () {
 });
 
 function openClassificacaoModal() {
-    // Verifique se todos os campos foram preenchidos
     if ($("#codigoRastreio").val() && $("#dataEncontro").val() && $("#tamanho").val() && $("#cor").val()
         && $("#tipoLocal").val() && $("#local").val() && $("#armamento").val() && $("#combustivel").val()
         && $("#tripulanteSaudavel").val() && $("#tripulanteFerido").val() && $("#tripulanteSemVida").val()
@@ -83,13 +82,8 @@ function selecionarClassificacao() {
     var classificacaoSelecionada = $("input[name='classificacao']:checked").val();
 
     if (classificacaoSelecionada) {
-        // Preencher o campo de classificação no formulário principal
         $("#Classificacao").val(classificacaoSelecionada);
-
-        // Fechar o modal
         $("#classificacaoModal").modal('hide');
-
-        // Habilitar o botão Salvar
         $("#btnSalvar").prop("disabled", false);
     } else {
         alert("Por favor, selecione uma classificação.");

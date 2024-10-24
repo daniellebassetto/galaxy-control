@@ -4,9 +4,6 @@ namespace GalaxyControl.Enums;
 
 public enum EnumTipoCombustivelNave
 {
-    [Display(Name = "Nenhum")]
-    Nenhum,
-
     [Display(Name = "Convencional")]
     Convencional,
 
