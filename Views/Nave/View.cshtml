@@ -69,17 +69,17 @@
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="tripulanteSaudavel" class="form-label">Total Tripulantes Saudáveis</label>
-                    <input type="number" asp-for="TripulantesSaudaveis" class="form-control" id="tripulanteSaudavel" />
+                    <input type="number" asp-for="TripulantesSaudaveis" class="form-control" id="tripulanteSaudavel" readonly />
                     @Html.ValidationMessageFor(x => x.TripulantesSaudaveis, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-4">
                     <label for="tripulanteFerido" class="form-label">Total Tripulantes Feridos</label>
-                    <input type="number" asp-for="TripulantesFeridos" class="form-control" id="tripulanteFerido" />
+                    <input type="number" asp-for="TripulantesFeridos" class="form-control" id="tripulanteFerido" readonly />
                     @Html.ValidationMessageFor(x => x.TripulantesFeridos, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-4">
                     <label for="tripulanteSemVida" class="form-label">Total Tripulantes Sem Vida</label>
-                    <input type="number" asp-for="TripulantesSemVida" class="form-control" id="tripulanteSemVida" />
+                    <input type="number" asp-for="TripulantesSemVida" class="form-control" id="tripulanteSemVida" readonly />
                     @Html.ValidationMessageFor(x => x.TripulantesSemVida, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -129,6 +129,49 @@
                     @Html.ValidationMessageFor(x => x.TipoCombustivel, "", new { @class = "text-danger" })
                 </div>
             </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="grauAvaria" class="form-label">Grau de Avaria</label>
+                    <select asp-for="GrauAvaria" class="form-select" id="grauAvaria" disabled>
+                        <option value="">Selecione</option>
+                        @foreach (var opcao in Enum.GetValues(typeof(EnumGrauAvariaNave)))
+                        {
+                            var displayAttribute = opcao.GetType().GetMember(opcao.ToString()!).First().GetCustomAttribute<DisplayAttribute>();
+                            string? displayName = displayAttribute != null ? displayAttribute.Name : opcao.ToString();
+                            <option value="@opcao">@displayName</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.GrauAvaria, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    <label for="potencialTecnologico" class="form-label">Potencial de Prospecção Tecnologica</label>
+                    <select asp-for="PotencialProspeccaoTecnologica" class="form-select" id="potencialTecnologico" disabled>
+                        <option value="">Selecione</option>
+                        @foreach (var opcao in Enum.GetValues(typeof(EnumPotencialProspeccaoTecnologicaNave)))
+                        {
+                            var displayAttribute = opcao.GetType().GetMember(opcao.ToString()!).First().GetCustomAttribute<DisplayAttribute>();
+                            string? displayName = displayAttribute != null ? displayAttribute.Name : opcao.ToString();
+                            <option value="@opcao">@displayName</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.PotencialProspeccaoTecnologica, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    <label for="grauPericulosidade" class="form-label">Grau de Periculosidade</label>
+                    <select asp-for="GrauPericulosidade" class="form-select" id="grauPericulosidade" disabled>
+                        <option value="">Selecione</option>
+                        @foreach (var opcao in Enum.GetValues(typeof(EnumGrauPericulosidadeNave)))
+                        {
+                            var displayAttribute = opcao.GetType().GetMember(opcao.ToString()!).First().GetCustomAttribute<DisplayAttribute>();
+                            string? displayName = displayAttribute != null ? displayAttribute.Name : opcao.ToString();
+                            <option value="@opcao">@displayName</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.GrauPericulosidade, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
             <div class="row mb-3">
                 <div class="col-md-3">
                     <label for="dataCadastro" class="form-label">Data de Cadastro</label>
@@ -141,9 +184,10 @@
                     @Html.ValidationMessageFor(x => x.DataAlteracao, "", new { @class = "text-danger" })
                 </div>
             </div>
+
             <div class="d-flex justify-content-between">
                 <a class="btn btn-danger" role="button" asp-controller="Nave" asp-action="Index">
-                    <i class="bi bi-arrow-left-circle"></i> Voltar
+                    <i class="bi bi-arrow-left-circle" style="color: white;"></i> Voltar
                 </a>
             </div>
         </form>

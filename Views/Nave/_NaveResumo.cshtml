@@ -1,0 +1,15 @@
+﻿@model NaveViewModel
+
+<div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+    <img class="img-fluid" src="~/img/@GetImagemClassificacao(Model.Classificacao)" alt="Imagem da Nave" />
+    <h3>@Model.CodigoRastreio</h3>
+    <a asp-controller="Nave" asp-action="View" asp-route-id="@Model.Id">@Model.CodigoRastreio</a>
+    <p>Total de sobreviventes: @(Model.TripulantesFeridos + Model.TripulantesSaudaveis)</p>
+</div>
+
+@functions {
+    public string GetImagemClassificacao(EnumClassificacaoNave classificacao)
+    {
+        return $"{classificacao.ToString()?.ToLower()}1.jpg";
+    }
+}

@@ -1,10 +1,12 @@
 ﻿@using System.ComponentModel.DataAnnotations;
 @using System;
+@using GalaxyControl.Helpers.Pagination
 
-@model List<NaveViewModel>
+@model PaginatedList<NaveViewModel>
 @{
     ViewData["Title"] = "Listagem de Naves";
 }
+
 <div class="container text-center">
     @if (TempData["SuccessMessage"] != null)
     {
@@ -28,95 +30,32 @@
 
     <h1 class="display-4">Listagem de Naves</h1>
 
-    @* <table class="table" id="nave-table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Codigo Rastreio</th>
-                <th scope="col">Data Encontro</th>
-                <th scope="col">Tamanho</th>
-                <th scope="col">Cor</th>
-                <th scope="col">Tipo Local Queda</th>
-                <th scope="col">Local Queda</th>
-                <th scope="col">Armamento</th>
-                <th scope="col">Tipo Combustivel</th>
-                <th scope="col">Tripulantes Saudáveis</th>
-                <th scope="col">Tripulantes Feridos</th>
-                <th scope="col">Tripulantes Sem Vida</th>
-                <th scope="col">Grau de Avaria</th>
-                <th scope="col">Potencial Prospecção Tecnologica</th>
-                <th scope="col">Grau Periculosidade</th>
-                <th scope="col">Data Cadastro</th>
-                <th scope="col">Data Alteracao</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null && Model.Any())
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (NaveViewModel nave in Model)
             {
-                @foreach (NaveViewModel nave in Model)
+                <partial name="_NaveResumo" for="@nave" />
+            }
+        }
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <nav aria-label="Pagination">
+            <ul class="pagination">
+                <li class="page-item @(Model!.HasPreviousPage ? "" : "disabled")">
+                    <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)">Anterior</a>
+                </li>
+                @for (var i = 1; i <= Model.TotalPages; i++)
                 {
-                    <tr>
-                        <td>@(Model.IndexOf(nave) + 1)</td>
-                        <td>@nave.CodigoRastreio</td>
-                        <td>@nave.DataEncontro</td>
-                        <td>@(((DisplayAttribute)nave.Tamanho.GetType().GetMember(nave.Tamanho.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
-                        <td>@(((DisplayAttribute)nave.Cor.GetType().GetMember(nave.Cor.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
-                        <td>@(((DisplayAttribute)nave.TipoLocalQueda.GetType().GetMember(nave.Cor.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
-                        <td>@nave.LocalQueda</td>
-                        <td>@(((DisplayAttribute)nave.Armamento.GetType().GetMember(nave.Cor.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
-                        <td>@nave.TripulantesSaudaveis</td>
-                        <td>@nave.TripulantesFeridos</td>
-                        <td>@nave.TripulantesSemVida</td>
-                        <td>@(((DisplayAttribute)nave.GrauAvaria.GetType().GetMember(nave.Cor.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
-                        <td>@(((DisplayAttribute)nave.PotencialProspeccaoTecnologica.GetType().GetMember(nave.Cor.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
-                        <td>@(((DisplayAttribute)nave.GrauPericulosidade.GetType().GetMember(nave.Cor.ToString())[0].GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault()!).Name)</td>
-                        <td>@nave.DataCadastro</td>
-                        <td>@nave.DataAlteracao</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-list"></i>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <li>
-                                        <a class="dropdown-item" asp-route-id="@nave.Id" asp-controller="Nave" asp-action="Update">Editar</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" asp-route-id="@nave.Id" asp-controller="Nave" asp-action="DeleteConfirmation">Excluir</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" asp-route-id="@nave.Id" asp-controller="Nave" asp-action="View">Exibir detalhes</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
+                    <li class="page-item @(Model.PageIndex == i ? "active" : "")">
+                        <a class="page-link" asp-action="Index" asp-route-pageNumber="@i">@i</a>
+                    </li>
                 }
-            }
-            else
-            {
-                <tr class="odd">
-                    <td scope="col"></td>
-                    <td scope="col"></td>
-                    <td scope="col"></td>
-                    <td scope="col"></td>
-                    <td scope="col"></td>
-                    <td scope="col"></td>
-                    <td scope="col"></td>
-                    <td scope="col"></td>
-                    <td scope="col">Nenhuma nave adicionada</td>
-                    <td scope="col"></td>
-                    <td scope="col"></td>
-                    <td scope="col"></td>
-                    <td scope="col"></td>
-                    <td scope="col"></td>
-                    <td scope="col"></td>
-                    <td scope="col"></td>
-                    <td scope="col"></td>
-                    <td scope="col"></td>
-                </tr>
-            }
-        </tbody>
-    </table> *@
+                <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+                    <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)">Próximo</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </div>

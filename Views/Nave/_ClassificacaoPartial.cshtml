@@ -10,17 +10,14 @@
             <li class="list-group-item mb-4">
                 <input type="radio" name="classificacao" value="@classificacao" id="classificacao_@classificacao" class="mr-2" />
 
-                <!-- O nome da classificação com label associado -->
                 <label for="classificacao_@classificacao" class="ml-2 d-block">
                     @classificacao.GetDisplayName()
                 </label>
 
-                <!-- A imagem, centralizada -->
                 <div class="mt-3 d-flex justify-content-center" onclick="document.getElementById('classificacao_@classificacao').click();">
                     <img src="~/img/@GetImagemClassificacao(classificacao)" alt="@classificacao.GetDisplayName() Imagem" style="width: 180px; height:180px;" class="img-fluid" />
                 </div>
 
-                <!-- A descrição da classificação, clicável -->
                 <p class="mt-3 text-muted" style="font-size: 0.8rem; text-align: justify;" onclick="document.getElementById('classificacao_@classificacao').click();">
                     @GetDescricaoClassificacao(classificacao)
                 </p>

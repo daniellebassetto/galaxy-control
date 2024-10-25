@@ -1,4 +1,5 @@
-﻿using GalaxyControl.Services;
+﻿using GalaxyControl.Helpers.Pagination;
+using GalaxyControl.Services;
 using GalaxyControl.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,10 +9,12 @@ public class NaveController(INaveService service) : Controller
 {
     private readonly INaveService _service = service;
 
-    public IActionResult Index()
+    public IActionResult Index(int pageNumber = 1, int pageSize = 6)
     {
-        List<NaveViewModel>? naves = _service.GetAll();
-        return View(naves);
+        List<NaveViewModel>? naves = _service.GetAll()?.OrderByDescending(x => x.Id).ToList();
+        var paginatedList = PaginatedList<NaveViewModel>.Create(naves, pageNumber, pageSize);
+
+        return View(paginatedList);
     }
 
     public IActionResult Create()
@@ -20,6 +23,12 @@ public class NaveController(INaveService service) : Controller
     }
 
     public IActionResult Update(int id)
+    {
+        NaveViewModel nave = _service.GetById(id)!;
+        return View(nave);
+    }
+
+    public IActionResult View(int id)
     {
         NaveViewModel nave = _service.GetById(id)!;
         return View(nave);
