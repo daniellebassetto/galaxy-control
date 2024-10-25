@@ -1,10 +1,32 @@
 ﻿@model NaveViewModel
 
-<div class="col-sm-4 col-md-4 col-lg-4 mb-4">
-    <img class="img-fluid" src="~/img/@GetImagemClassificacao(Model.Classificacao)" alt="Imagem da Nave" />
-    <h3>@Model.CodigoRastreio</h3>
-    <a asp-controller="Nave" asp-action="View" asp-route-id="@Model.Id">@Model.CodigoRastreio</a>
-    <p>Total de sobreviventes: @(Model.TripulantesFeridos + Model.TripulantesSaudaveis)</p>
+@{
+    var diasEncontrada = (DateTime.Now - Model.DataEncontro).Days;
+}
+
+<div class="col-sm-6 col-md-4 mb-4">
+    <div class="card border-light shadow-sm">
+        <img class="card-img-top img-fluid" src="~/img/@GetImagemClassificacao(Model.Classificacao)" alt="Imagem da Nave" />
+        <div class="card-body">
+            <h5 class="card-title text-center"><strong>@Model.CodigoRastreio</strong> - <strong>@Model.Classificacao.GetDisplayName()</strong></h5>
+            <p class="card-text mb-0 text-start"><strong>Total de sobreviventes:</strong> @(Model.TripulantesFeridos + Model.TripulantesSaudaveis)</p>
+            <p class="card-text mb-0 text-start"><strong>Encontrada há:</strong> @diasEncontrada dias</p>
+            <p class="card-text mb-0 text-start"><strong>Tamanho:</strong> @Model.Tamanho</p>
+            <p class="card-text mb-0 text-start"><strong>Cor:</strong> @Model.Cor</p>
+            <p class="card-text mb-0 text-start"><strong>Local de Queda:</strong> @Model.LocalQueda</p>
+            <div class="d-flex justify-content-around mt-3">
+                <a asp-action="Update" asp-controller="Nave" asp-route-id="@Model.Id" class="btn btn-primary">
+                    <i class="bi bi-pencil" style="color: white;"></i>
+                </a>
+                <a asp-action="View" asp-controller="Nave" asp-route-id="@Model.Id" class="btn btn-secondary">
+                    <i class="bi bi-eye" style="color: white;"></i>
+                </a>
+                <a asp-action="DeleteConfirmation" asp-controller="Nave" asp-route-id="@Model.Id" class="btn btn-danger">
+                    <i class="bi bi-trash" style="color: white;"></i>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 
 @functions {

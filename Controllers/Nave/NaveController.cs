@@ -25,7 +25,27 @@ public class NaveController(INaveService service) : Controller
     public IActionResult Update(int id)
     {
         NaveViewModel nave = _service.GetById(id)!;
-        return View(nave);
+
+        AtualizarNaveViewModel model = new AtualizarNaveViewModel()
+        {
+            Id = id,
+            DataEncontro = nave.DataEncontro,
+            Tamanho = nave.Tamanho,
+            Cor = nave.Cor,
+            TipoLocalQueda = nave.TipoLocalQueda,
+            LocalQueda = nave.LocalQueda,
+            Armamento = nave.Armamento,
+            TipoCombustivel = nave.TipoCombustivel,
+            TripulantesFeridos = nave.TripulantesFeridos,
+            TripulantesSaudaveis = nave.TripulantesSaudaveis,
+            TripulantesSemVida = nave.TripulantesSemVida,
+            GrauAvaria = nave.GrauAvaria,
+            PotencialProspeccaoTecnologica = nave.PotencialProspeccaoTecnologica,
+            GrauPericulosidade = nave.GrauPericulosidade,
+            Classificacao = nave.Classificacao
+        };
+
+        return View(model);
     }
 
     public IActionResult View(int id)
@@ -37,7 +57,7 @@ public class NaveController(INaveService service) : Controller
     public IActionResult DeleteConfirmation(int id)
     {
         NaveViewModel nave = _service.GetById(id)!;
-        return View(nave);
+        return PartialView(nave);
     }
 
     public IActionResult Delete(int id)

@@ -27,7 +27,7 @@
     </div>
 
     <div class="p-4 rounded-3 shadow-sm mx-auto">
-        <form asp-controller="Nave" asp-action="Update" method="post">
+        <form asp-controller="Nave" asp-action="Update" method="post" id="naveForm">
             <div class="row mb-4">
                 <div class="col-md-3">
                     <label for="dataEncontro" class="form-label">Data de Encontro</label>
@@ -164,14 +164,6 @@
                     </select>
                     @Html.ValidationMessageFor(x => x.GrauPericulosidade, "", new { @class = "text-danger" })
                 </div>
-            </div>
-            <div class="d-flex justify-content-between">
-                <button type="submit" class="btn btn-primary">
-                    <i class="bi bi-save"></i> Salvar
-                </button>
-                <a class="btn btn-danger" role="button" asp-controller="Nave" asp-action="Index">
-                    <i class="bi bi-arrow-left-circle"></i> Voltar
-                </a>
             </div>
 
             <div class="d-flex justify-content-between">

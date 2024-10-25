@@ -131,7 +131,7 @@
             </div>
 
             <div class="row mb-3">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="grauAvaria" class="form-label">Grau de Avaria</label>
                     <select asp-for="GrauAvaria" class="form-select" id="grauAvaria" disabled>
                         <option value="">Selecione</option>
@@ -144,7 +144,7 @@
                     </select>
                     @Html.ValidationMessageFor(x => x.GrauAvaria, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="potencialTecnologico" class="form-label">Potencial de Prospecção Tecnologica</label>
                     <select asp-for="PotencialProspeccaoTecnologica" class="form-select" id="potencialTecnologico" disabled>
                         <option value="">Selecione</option>
@@ -157,7 +157,7 @@
                     </select>
                     @Html.ValidationMessageFor(x => x.PotencialProspeccaoTecnologica, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="grauPericulosidade" class="form-label">Grau de Periculosidade</label>
                     <select asp-for="GrauPericulosidade" class="form-select" id="grauPericulosidade" disabled>
                         <option value="">Selecione</option>
@@ -169,6 +169,11 @@
                         }
                     </select>
                     @Html.ValidationMessageFor(x => x.GrauPericulosidade, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    <label for="classificacao" class="form-label">Utilidade escolhida</label>
+                    <input type="text" asp-for="Classificacao" class="form-control" id="classificacao" readonly />
+                    @Html.ValidationMessageFor(x => x.Classificacao, "", new { @class = "text-danger" })
                 </div>
             </div>
 

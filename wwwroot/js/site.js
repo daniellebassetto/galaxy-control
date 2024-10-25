@@ -57,13 +57,12 @@ $(document).ready(function () {
 });
 
 function openClassificacaoModal() {
-    if ($("#codigoRastreio").val() && $("#dataEncontro").val() && $("#tamanho").val() && $("#cor").val()
+    if ($("#dataEncontro").val() && $("#tamanho").val() && $("#cor").val()
         && $("#tipoLocal").val() && $("#local").val() && $("#armamento").val() && $("#combustivel").val()
         && $("#tripulanteSaudavel").val() && $("#tripulanteFerido").val() && $("#tripulanteSemVida").val()
         && $("#grauAvaria").val() && $("#potencialTecnologico").val() && $("#grauPericulosidade").val()) {
         var formData = $("#naveForm").serialize();
 
-        // Fazer uma requisição para carregar a PartialView de classificação
         $.ajax({
             url: '/Nave/ClassificarNave',
             method: 'POST',
