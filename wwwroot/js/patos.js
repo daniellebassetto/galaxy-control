@@ -56,7 +56,7 @@ function criarPato() {
         <img src="${imgSrc}" alt="Pato" class="pato">
         <p class="pato-info">${distancia} parsecs</p>
     `;
-   
+
     patoDiv.onclick = () => abrirModal(distancia, isXenofago, emBando);
 
     patosContainer.appendChild(patoDiv);
@@ -69,23 +69,44 @@ function criarPato() {
 }
 
 function gerarEstrategia(distancia, emBando) {
+    let estrategia = '';
+    let arma = '';
+
     if (distancia < 20) {
-        return emBando
-            ? "Estratégia: Eles são mais rápidos juntos! Use uma rede de captura e prepare um local seguro para contenção!"
-            : "Estratégia: Ative a armadilha instantânea! O pato não terá para onde fugir.";
+        if (emBando) {
+            estrategia = "Estratégia: Eles são mais rápidos juntos! Use uma rede de captura e prepare um local seguro para contenção!";
+            arma = "Rede Galáctica de Captura";
+        } else {
+            estrategia = "Estratégia: Ative a armadilha instantânea! O pato não terá para onde fugir.";
+            arma = "Armário Dimensional de Armadilhas";
+        }
     } else if (distancia < 50) {
-        return emBando
-            ? "Estratégia: Espalhe comida para distraí-los e ative a armadilha ao mesmo tempo!"
-            : "Estratégia: Aproxime-se com cautela. Utilize um apito para atraí-lo e então lance a rede.";
+        if (emBando) {
+            estrategia = "Estratégia: Espalhe comida para distraí-los e ative a armadilha ao mesmo tempo!";
+            arma = "Sementes Espaciais Atrativas";
+        } else {
+            estrategia = "Estratégia: Aproxime-se com cautela. Utilize um apito para atraí-lo e então lance a rede.";
+            arma = "Apito Sonoro Intergaláctico";
+        }
     } else if (distancia < 75) {
-        return emBando
-            ? "Estratégia: Use um dispositivo de camuflagem para se misturar ao ambiente e esperar o momento certo para atacar!"
-            : "Estratégia: Se aproxime de forma furtiva, um pouco de comida pode atrair o pato para uma emboscada.";
+        if (emBando) {
+            estrategia = "Estratégia: Use um dispositivo de camuflagem para se misturar ao ambiente e esperar o momento certo para atacar!";
+            arma = "Dispositivo de Camuflagem Quantum";
+        } else {
+            estrategia = "Estratégia: Se aproxime de forma furtiva, um pouco de comida pode atrair o pato para uma emboscada.";
+            arma = "Isca Galáctica de Baixo Ruído";
+        }
     } else {
-        return emBando
-            ? "Estratégia: Use um drone de monitoramento para observar o grupo e planejar um ataque quando se separarem!"
-            : "Estratégia: Aguarde pacientemente, talvez ele venha até você se você deixar um pouco de comida para atraí-lo.";
+        if (emBando) {
+            estrategia = "Estratégia: Use um drone de monitoramento para observar o grupo e planejar um ataque quando se separarem!";
+            arma = "Drone de Vigilância Espacial";
+        } else {
+            estrategia = "Estratégia: Aguarde pacientemente, talvez ele venha até você se você deixar um pouco de comida para atraí-lo.";
+            arma = "Comida Espacial Irresistível";
+        }
     }
+
+    return `${estrategia} (Arma recomendada: ${arma})`;
 }
 
 function abrirModal(distancia, isXenofago, emBando) {
@@ -95,10 +116,12 @@ function abrirModal(distancia, isXenofago, emBando) {
     const estrategiaElement = document.getElementById('estrategia');
 
     tipoDePatoElement.textContent = isXenofago ? (emBando ? "VISHHH É UM BANDO DE XENÓFAGOS" : `VISHHH É UM XENÓFAGO`) : (emBando ? "UFAAA, SÃO SÓ PATOS COMUNS" : "UFAAA, É SÓ UM PATO COMUM");
-    distanciaElement.textContent = `Distância: ${distancia} parsecs`;
+    distanciaElement.innerHTML = `<strong>Distância:</strong> ${distancia} parsecs`;
 
     if (isXenofago) {
-        estrategiaElement.textContent = gerarEstrategia(distancia, emBando);
+        estrategiaElement.innerHTML = gerarEstrategia(distancia, emBando);
+    } else {
+        estrategiaElement.innerHTML = "<strong>Estratégia:</strong> Ufaaa, é só um pato galáctico comum!";
     }
 
     modal.style.display = 'block';

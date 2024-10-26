@@ -124,6 +124,7 @@
     float: right;
     font-size: 28px;
     font-weight: bold;
+    text-align:end;
 }
 
     .close:hover,
