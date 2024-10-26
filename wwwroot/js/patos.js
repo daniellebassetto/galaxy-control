@@ -1,32 +1,45 @@
 ﻿const patosContainer = document.getElementById('patos-container');
 const loadingBar = document.getElementById('loading-bar');
+const loadingMessage = document.getElementById('loading-message');
 const positions = new Set();
 
 function mostrarLoading() {
     loadingBar.style.display = 'block';
     setTimeout(() => {
         loadingBar.style.display = 'none';
+        loadingMessage.textContent = 'Óculos conectado';
         iniciarMonitoramento();
     }, 3000);
 }
 
 function iniciarMonitoramento() {
-    setInterval(criarPato, 3000);
+    criarPatoComIntervaloAleatorio();
+}
+
+function criarPatoComIntervaloAleatorio() {
+    const intervaloAleatorio = Math.random() * (10000 - 5000) + 5000;
+    setTimeout(() => {
+        criarPato();
+        criarPatoComIntervaloAleatorio(); 
+    }, intervaloAleatorio);
 }
 
 function criarPato() {
     const patoDiv = document.createElement('div');
     patoDiv.classList.add('pato-container');
 
-    const distancia = (Math.random() * 100).toFixed(2); // Distância em km
+    const distancia = (Math.random() * 100).toFixed(2); 
     const isXenofago = Math.random() < 0.5;
     const emBando = Math.random() < 0.5;
+
+    const containerWidth = patosContainer.clientWidth;
+    const containerHeight = patosContainer.clientHeight;
 
     let position;
     do {
         position = {
-            left: Math.random() * 90 + 'vw',
-            top: Math.random() * 70 + 'vh'
+            left: Math.random() * (containerWidth - 150) + 'px', 
+            top: Math.random() * (containerHeight - 150) + 'px'  
         };
     } while (positions.has(`${position.left}-${position.top}`));
 
@@ -45,8 +58,14 @@ function criarPato() {
     `;
 
     patosContainer.appendChild(patoDiv);
+
+    const tempoRemocaoAleatorio = Math.random() * (20000 - 10000) + 10000;
+    setTimeout(() => {
+        patoDiv.remove();
+        positions.delete(`${position.left}-${position.top}`); 
+    }, tempoRemocaoAleatorio);
 }
 
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function () {
     mostrarLoading();
 });

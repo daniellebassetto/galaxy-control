@@ -48,11 +48,13 @@
     text-align: center;
     margin-top: 10px;
     font-size: 1.5rem;
+    font-weight: 500;
 }
 
 .patos-container {
     position: relative;
     height: 60vh;
+    overflow: hidden;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -63,27 +65,28 @@
 }
 
 .pato-container {
-    position: relative;
+    position: absolute;
     text-align: center;
     margin: 10px;
     width: 150px;
 }
 
 .pato {
-    width: 100%;
+    width: 80px;
     height: auto;
     display: block;
-    border: 2px solid white;
-    border-radius: 10px;
 }
+    .pato:hover {
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+    }
 
 .pato-info {
     color: white;
     margin-top: 10px;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
-/* Ajustes responsivos */
 @media (max-width: 768px) {
     .pato-container {
         width: 80px;
