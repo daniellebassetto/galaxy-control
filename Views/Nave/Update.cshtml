@@ -37,7 +37,7 @@
                     <input type="date" asp-for="DataEncontro" max="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" id="dataEncontro" placeholder="Informe a data de encontro">
                     @Html.ValidationMessageFor(x => x.DataEncontro, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="tamanho" class="form-label">Tamanho</label>
                     <select asp-for="Tamanho" class="form-select" id="tamanho">
                         <option value="">Selecione</option>
@@ -50,7 +50,7 @@
                     </select>
                     @Html.ValidationMessageFor(x => x.Tamanho, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="cor" class="form-label">Cor</label>
                     <select asp-for="Cor" class="form-select" id="cor">
                         <option value="">Selecione</option>
@@ -62,6 +62,19 @@
                         }
                     </select>
                     @Html.ValidationMessageFor(x => x.Cor, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    <label for="statusReparo" class="form-label">Status do Reparo</label>
+                    <select asp-for="StatusReparo" class="form-select" id="statusReparo">
+                        <option value="">Selecione</option>
+                        @foreach (var opcao in Enum.GetValues(typeof(EnumStatusReparoNave)))
+                        {
+                            var displayAttribute = opcao.GetType().GetMember(opcao.ToString()!).First().GetCustomAttribute<DisplayAttribute>();
+                            string? displayName = displayAttribute != null ? displayAttribute.Name : opcao.ToString();
+                            <option value="@opcao">@displayName</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.TipoLocalQueda, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="row mb-3">
@@ -80,7 +93,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="local" class="form-label">Local de Queda</label>
-                    <input type="text" asp-for="LocalQueda" class="form-control" id="local" placeholder="Informe o local de queda" />
+                    <input type="text" asp-for="LocalQueda" required class="form-control" id="local" placeholder="Informe o local de queda" />
                     @Html.ValidationMessageFor(x => x.LocalQueda, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-3">

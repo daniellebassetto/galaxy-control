@@ -1,79 +1,95 @@
 .galaxy-background {
-    background: url('~/img/galaxia.jpg') no-repeat center center fixed;
+    background-image: url(../img/galaxia.jpg);
     background-size: cover;
-    height: 100vh; /* Ocupa toda a altura da tela */
+    height: 100vh;
     color: white;
-    display: flex; /* Usando flexbox para centralizar o conteúdo */
-    flex-direction: column; /* Coloca os itens na coluna */
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: center; /* Centraliza verticalmente */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .container {
-    width: 100%; /* Permite que a container utilize a largura total */
-    max-width: 1200px; /* Limita a largura máxima para telas grandes */
+    width: 100%;
+    max-width: 1200px;
     padding: 20px;
 }
 
 #loading-bar {
-    color: white;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    text-align: center;
-    animation: fadeIn 1s; /* Animação de aparecimento */
+    width: 80%;
+    height: 20px;
+    background-color: #333;
+    margin: 20px auto;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-@keyframes fadeIn {
+    #loading-bar .progress {
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, #00ff00, #009900);
+        animation: loading 3s forwards;
+        border-radius: 10px;
+    }
+
+@keyframes loading {
     from {
-        opacity: 0;
+        width: 0%;
     }
 
     to {
-        opacity: 1;
+        width: 100%;
     }
+}
+
+#loading-message {
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.5rem;
 }
 
 .patos-container {
-    position: relative; /* Para posicionar os patos */
-    height: 60vh; /* Altura do container para os patos */
-    overflow: hidden; /* Evitar que os patos saiam do container */
-    border: 2px solid rgba(255, 255, 255, 0.7); /* Borda semi-transparente para destacar o container */
-    border-radius: 10px; /* Bordas arredondadas */
-    background: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente para melhorar a legibilidade */
-    display: flex; /* Flexbox para centralizar o conteúdo */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
+    position: relative;
+    height: 60vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 20px;
 }
 
-#info-container {
-    margin-top: 20px;
-    color: white;
-    text-align: left;
-    max-height: 30vh; /* Limitar a altura do container de informações */
-    overflow-y: auto; /* Permitir rolagem se necessário */
-    background: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente */
-    padding: 10px; /* Espaçamento interno */
-    border-radius: 10px; /* Bordas arredondadas */
-}
-
-#info-list {
-    list-style-type: none; /* Remove marcadores */
-    padding: 0; /* Remove padding */
+.pato-container {
+    position: relative;
+    text-align: center;
+    margin: 10px;
+    width: 150px;
 }
 
 .pato {
-    position: absolute; /* Para posicionar os patos de forma absoluta */
-    width: 80px; /* Tamanho da imagem, ajustado para melhor visualização */
-    transition: transform 0.3s; /* Transição suave para movimentos */
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 2px solid white;
+    border-radius: 10px;
 }
 
-/* Exemplo de responsividade */
+.pato-info {
+    color: white;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+/* Ajustes responsivos */
 @media (max-width: 768px) {
-    .pato {
-        width: 60px; /* Reduz o tamanho em telas menores */
+    .pato-container {
+        width: 80px;
     }
 
-    #loading-bar {
-        font-size: 1.2rem; /* Ajusta o tamanho do texto */
+    .pato-info {
+        font-size: 0.8rem;
     }
 }

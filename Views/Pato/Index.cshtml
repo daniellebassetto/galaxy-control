@@ -5,18 +5,16 @@
     <link rel="stylesheet" href="~/css/galaxy.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body>
-    <div class="container galaxy-background">
-        <div class="container">
-            <h1>Monitoramento de Patos Galácticos</h1>
-            <div id="loading-bar" style="display: none;">Conectando ao óculos...</div>
-            <div id="patos-container" class="patos-container"></div>
-            <div id="info-container">
-                <h2>Informações dos Patos</h2>
-                <ul id="info-list"></ul>
-            </div>
-        </div>
-    </div>
 
-    <script src="~/js/patos.js"></script>
-</body>
+<div class="container galaxy-background">
+    <div class="container">
+        <h1>Monitoramento de Patos Galácticos</h1>
+        <div id="loading-bar">
+            <div class="progress"></div>
+        </div>
+        <div id="loading-message">Conectando ao óculos...</div>
+        <div id="patos-container" class="patos-container"></div>
+    </div>
+</div>
+
+<script src="~/js/patos.js"></script>

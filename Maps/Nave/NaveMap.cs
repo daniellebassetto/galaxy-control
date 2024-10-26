@@ -42,6 +42,8 @@ public class NaveMap : IEntityTypeConfiguration<Nave>
 
         builder.Property(x => x.GrauPericulosidade).HasColumnName("grau_periculosidade").IsRequired();
 
+        builder.Property(x => x.StatusReparo).HasColumnName("status_reparo").IsRequired();
+
         builder.Property(x => x.Classificacao).HasColumnName("classificacao").IsRequired();
     }
 }

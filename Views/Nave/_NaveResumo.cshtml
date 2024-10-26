@@ -15,14 +15,15 @@
             <p class="card-text mb-0 text-start"><strong>Tamanho:</strong> @Model.Tamanho</p>
             <p class="card-text mb-0 text-start"><strong>Cor:</strong> @Model.Cor</p>
             <p class="card-text mb-0 text-start"><strong>Local de Queda:</strong> @Model.LocalQueda</p>
+            <p class="card-text mb-0 text-start"><strong>Status do Reparo:</strong> @Model.StatusReparo.GetDisplayName()</p>
             <div class="d-flex justify-content-around mt-3">
-                <a asp-action="Update" asp-controller="Nave" asp-route-id="@Model.Id" class="btn btn-primary">
+                <a asp-action="Update" asp-controller="Nave" asp-route-id="@Model.Id" class="btn btn-primary @(Model.StatusReparo != EnumStatusReparoNave.Aguardando ? "disabled" : "")">
                     <i class="bi bi-pencil" style="color: white;"></i>
                 </a>
                 <a asp-action="View" asp-controller="Nave" asp-route-id="@Model.Id" class="btn btn-secondary">
                     <i class="bi bi-eye" style="color: white;"></i>
                 </a>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#@modalId">
+                <button type="button" class="btn btn-danger" @(Model.StatusReparo != EnumStatusReparoNave.Aguardando ? "disabled" : "") data-bs-toggle="modal" data-bs-target="#@modalId">
                     <i class="bi bi-trash" style="color: white;"></i>
                 </button>
             </div>

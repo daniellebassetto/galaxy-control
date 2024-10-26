@@ -47,5 +47,9 @@ public class AtualizarNaveViewModel
 
     [Required(ErrorMessage = "Informe o grau de periculosidade")]
     public EnumGrauPericulosidadeNave GrauPericulosidade { get; set; }
+
+    [Required(ErrorMessage = "Informe o Status do Reparo")]
+    public EnumStatusReparoNave StatusReparo { get; set; }
+
     public EnumClassificacaoNave Classificacao { get; set; }
 }

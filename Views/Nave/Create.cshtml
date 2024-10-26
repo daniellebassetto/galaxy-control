@@ -32,7 +32,7 @@
                 <div class="row mb-3">
                     <div class="col-md-3">
                         <label for="codigoRastreio" class="form-label">Codigo de Rastreio</label>
-                        <input type="text" maxlength="10" asp-for="CodigoRastreio" class="form-control" id="codigoRastreio" placeholder="Informe o código de rastreio" />
+                        <input type="text" maxlength="10" required asp-for="CodigoRastreio" class="form-control" id="codigoRastreio" placeholder="Informe o código de rastreio" />
                         @Html.ValidationMessageFor(x => x.CodigoRastreio, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-3">
@@ -83,7 +83,7 @@
                     </div>
                     <div class="col-md-3">
                         <label for="local" class="form-label">Local de Queda</label>
-                        <input type="text" maxlength="30" asp-for="LocalQueda" class="form-control" id="local" placeholder="Informe o local de queda" />
+                        <input type="text" maxlength="30" required asp-for="LocalQueda" class="form-control" id="local" placeholder="Informe o local de queda" />
                         @Html.ValidationMessageFor(x => x.LocalQueda, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-3">
