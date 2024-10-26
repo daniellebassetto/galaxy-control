@@ -9,5 +9,4 @@ public interface IUsuarioService
     bool ExitSession();
     bool CheckActiveSession();
     bool RedefinePassword(RedefinirSenhaViewModel redefinirSenhaViewModel);
-    bool SendLinkToRedefinePassword(RedefinirSenhaPeloLoginViewModel redefinirSenhaPeloLoginViewModel);
 }

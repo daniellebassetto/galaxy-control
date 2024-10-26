@@ -14,7 +14,7 @@ public class NaveMap : IEntityTypeConfiguration<Nave>
 
         builder.Property(x => x.Id).HasColumnName("id").IsRequired().ValueGeneratedOnAdd();
 
-        builder.Property(x => x.CodigoRastreio).HasColumnName("codigo_rastreio").IsRequired().HasMaxLength(50);
+        builder.Property(x => x.CodigoRastreio).HasColumnName("codigo_rastreio").IsRequired().HasMaxLength(10);
 
         builder.Property(x => x.DataEncontro).HasColumnName("data_encontro").IsRequired();
 
@@ -24,7 +24,7 @@ public class NaveMap : IEntityTypeConfiguration<Nave>
 
         builder.Property(x => x.TipoLocalQueda).HasColumnName("tipo_local_queda").IsRequired();
 
-        builder.Property(x => x.LocalQueda).HasColumnName("local_queda").IsRequired().HasMaxLength(100);
+        builder.Property(x => x.LocalQueda).HasColumnName("local_queda").IsRequired().HasMaxLength(30);
 
         builder.Property(x => x.Armamento).HasColumnName("armamento").IsRequired();
 
@@ -41,6 +41,8 @@ public class NaveMap : IEntityTypeConfiguration<Nave>
         builder.Property(x => x.PotencialProspeccaoTecnologica).HasColumnName("potencial_prospeccao_tecnologica").IsRequired();
 
         builder.Property(x => x.GrauPericulosidade).HasColumnName("grau_periculosidade").IsRequired();
+
+        builder.Property(x => x.StatusReparo).HasColumnName("status_reparo").IsRequired();
 
         builder.Property(x => x.Classificacao).HasColumnName("classificacao").IsRequired();
     }

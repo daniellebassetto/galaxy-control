@@ -1,0 +1,27 @@
+﻿<head>
+    <title>@ViewData["Title"] - Monitoramento de Patos</title>
+    <link rel="stylesheet" href="~/css/galaxy.css" />
+</head>
+
+<body class="galaxy-background">
+    <div class="container">
+        <h1 class="text-center">Monitoramento de Patos Galácticos</h1>
+        <div id="loading-bar">
+            <div class="progress"></div>
+        </div>
+        <div id="loading-message">Conectando ao óculos...</div>
+        <div id="patos-container" class="patos-container"></div>
+    </div>
+
+    <div id="patoModal" class="modal text-black">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Informações detalhadas do alvo</h2>
+            <p id="tipoDePato"></p>
+            <p id="distancia"></p>
+            <p id="estrategia"></p>
+        </div>
+    </div>
+
+    <script src="~/js/patos.js"></script>
+</body>

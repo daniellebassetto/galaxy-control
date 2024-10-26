@@ -33,7 +33,7 @@
                     <div class="input-group">
                         <label for="email" name="email">Email</label>
                         <div class="input-group">
-                            <input type="email" asp-for="Email" id="email" placeholder="Informe seu e-mail">
+                            <input type="email" asp-for="Email" maxlength="256" id="email" placeholder="Informe seu e-mail">
                         </div>
                         @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
                     </div>
@@ -47,10 +47,6 @@
                         </div>
                         @Html.ValidationMessageFor(x => x.Senha, "", new { @class = "text-danger" })
                     </div>
-                    <p>
-                        Esqueceu sua senha?
-                        <a asp-action="SendLinkToRedefinePassword" asp-controller="Login" class="link-redefinir-senha">Redefinir senha</a>
-                    </p>
 
                     <div class="button-group">
                         <button type="submit" class="btn">Logar</button>

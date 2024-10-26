@@ -22,7 +22,7 @@ body {
 }
 
 .login-left {
-    background-image: url(../img/background-login2.jpg);
+    background-image: url(../img/background-login.jpg);
     background-size: cover;
     display: flex;
     width: 55%;
@@ -120,11 +120,6 @@ h2 {
     .input-group-showPassword:hover {
         background-color: #0094ff;
     }
-
-.link-redefinir-senha {
-    text-decoration: none;
-    color: #00FFFF;
-}
 
 .button-group {
     display: flex;

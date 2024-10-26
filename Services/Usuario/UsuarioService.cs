@@ -1,16 +1,14 @@
-﻿using GalaxyControl.Helpers;
-using GalaxyControl.Models;
+﻿using GalaxyControl.Models;
 using GalaxyControl.Repositories;
 using GalaxyControl.ViewModels;
 using Newtonsoft.Json;
 
 namespace GalaxyControl.Services;
 
-public class UsuarioService(IUsuarioRepository repository, Helpers.ISession session, IEmail email) : IUsuarioService
+public class UsuarioService(IUsuarioRepository repository, Helpers.ISession session) : IUsuarioService
 {
     private readonly IUsuarioRepository _repository = repository;
     private readonly Helpers.ISession _session = session;
-    private readonly IEmail _email = email;
 
     public bool Create(RegistrarUsuarioViewModel usuarioRegisterViewModel)
     {
@@ -18,6 +16,9 @@ public class UsuarioService(IUsuarioRepository repository, Helpers.ISession sess
 
         if (usuario is not null)
             throw new Exception("Já existe um usuário com este e-mail");
+
+        if(usuarioRegisterViewModel.Nome == "Admin")
+            throw new Exception("Nome inválido! Você só pode ser um xenófago.");
 
         if (usuarioRegisterViewModel.Senha == usuarioRegisterViewModel.ConfirmacaoSenha)
         {
@@ -97,27 +98,5 @@ public class UsuarioService(IUsuarioRepository repository, Helpers.ISession sess
         if (_session.GetUserSession() is not null)
             return true;
         return false;
-    }
-
-    public bool SendLinkToRedefinePassword(RedefinirSenhaPeloLoginViewModel redefinirSenhaPeloLoginViewModel)
-    {
-        Usuario? usuario = _repository.GetByEmail(redefinirSenhaPeloLoginViewModel.Email!);
-
-        if (usuario is not null)
-        {
-            string newPassword = usuario.GenerateNewPassword();
-            string message = $"Sua nova senha é: {newPassword}";
-            bool emailSent = _email.Send(usuario.Email!, "GalaxyControl - Nova Senha", message);
-
-            if (emailSent)
-            {
-                _repository.Update(usuario);
-                return true;
-            }
-            else
-                throw new Exception("Ocorreu um erro ao enviar o e-mail. Tente novamente.");
-        }
-
-        throw new Exception("Não foi possível redefinir sua senha. Verifique os dados informados.");
     }
 }

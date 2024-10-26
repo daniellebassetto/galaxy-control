@@ -33,7 +33,8 @@ public class NaveService(INaveRepository repository) : INaveService
             GrauAvaria = criarNaveViewModel.GrauAvaria,
             PotencialProspeccaoTecnologica = criarNaveViewModel.PotencialProspeccaoTecnologica,
             GrauPericulosidade = criarNaveViewModel.GrauPericulosidade,
-            Classificacao = criarNaveViewModel.Classificacao!.Value
+            Classificacao = criarNaveViewModel.Classificacao!.Value,
+            StatusReparo = EnumStatusReparoNave.Aguardando
         };
 
         _repository.Create(novaNave);
@@ -43,6 +44,10 @@ public class NaveService(INaveRepository repository) : INaveService
     public bool Delete(int id)
     {
         Nave? nave = _repository.GetById(id) ?? throw new Exception("Nave não encontrada");
+
+        if (nave.StatusReparo != EnumStatusReparoNave.Aguardando)
+            throw new Exception("Naves reparadas ou com reparo em andamento não podem ser excluídas");
+
         _repository.Delete(nave);
         return true;
     }
@@ -68,7 +73,8 @@ public class NaveService(INaveRepository repository) : INaveService
             GrauAvaria = x.GrauAvaria,
             PotencialProspeccaoTecnologica = x.PotencialProspeccaoTecnologica,
             GrauPericulosidade = x.GrauPericulosidade,
-            Classificacao = x.Classificacao
+            Classificacao = x.Classificacao,
+            StatusReparo = x.StatusReparo
         }).ToList();
     }
 
@@ -94,13 +100,17 @@ public class NaveService(INaveRepository repository) : INaveService
             GrauAvaria = nave.GrauAvaria,
             PotencialProspeccaoTecnologica = nave.PotencialProspeccaoTecnologica,
             GrauPericulosidade = nave.GrauPericulosidade,
-            Classificacao = nave.Classificacao
+            Classificacao = nave.Classificacao,
+            StatusReparo = nave.StatusReparo
         } : null;
     }
 
     public bool Update(AtualizarNaveViewModel atualizarNaveViewModel)
     {
         Nave? nave = _repository.GetById(atualizarNaveViewModel.Id!) ?? throw new Exception("Nave não encontrada");
+
+        if(nave.StatusReparo != EnumStatusReparoNave.Aguardando)
+            throw new Exception("Naves reparadas ou com reparo em andamento não podem ser alteradas");
 
         nave.DataAlteracao = DateTime.Now;
         nave.DataEncontro = atualizarNaveViewModel.DataEncontro;
@@ -117,6 +127,7 @@ public class NaveService(INaveRepository repository) : INaveService
         nave.PotencialProspeccaoTecnologica = atualizarNaveViewModel.PotencialProspeccaoTecnologica;
         nave.GrauPericulosidade = atualizarNaveViewModel.GrauPericulosidade;
         nave.Classificacao = atualizarNaveViewModel.Classificacao;
+        nave.StatusReparo = atualizarNaveViewModel.StatusReparo;
 
         _repository.Update(nave);
         return true;

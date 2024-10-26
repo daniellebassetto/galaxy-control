@@ -14,7 +14,7 @@ public class GalaxyControlContext(DbContextOptions<GalaxyControlContext> options
         modelBuilder.ApplyConfiguration(new UsuarioMap());
         modelBuilder.ApplyConfiguration(new NaveMap());
 
-        modelBuilder.Entity<Usuario>().HasData(new Usuario { Id = 1, Nome = "Admin", Email = "galaxycontrol@outlook.com", Senha = "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", DataCadastro = DateTime.Now });
+        modelBuilder.Entity<Usuario>().HasData(new Usuario { Id = 1, Nome = "Admin", Email = "galaxycontroldsin@outlook.com", Senha = "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", DataCadastro = DateTime.Now });
 
         base.OnModelCreating(modelBuilder);
     }

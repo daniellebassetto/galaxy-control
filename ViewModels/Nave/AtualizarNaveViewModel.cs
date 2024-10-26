@@ -21,6 +21,7 @@ public class AtualizarNaveViewModel
     public EnumTipoLocalQuedaNave TipoLocalQueda { get; set; }
 
     [Required(ErrorMessage = "Informe o local de queda")]
+    [MaxLength(30, ErrorMessage = "O local de queda deve ter de 1 a 30 caracteres")]
     public string? LocalQueda { get; set; }
 
     [Required(ErrorMessage = "Informe o tipo de armamento")]
@@ -46,5 +47,9 @@ public class AtualizarNaveViewModel
 
     [Required(ErrorMessage = "Informe o grau de periculosidade")]
     public EnumGrauPericulosidadeNave GrauPericulosidade { get; set; }
+
+    [Required(ErrorMessage = "Informe o Status do Reparo")]
+    public EnumStatusReparoNave StatusReparo { get; set; }
+
     public EnumClassificacaoNave Classificacao { get; set; }
 }

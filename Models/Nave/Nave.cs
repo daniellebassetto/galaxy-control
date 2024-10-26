@@ -22,4 +22,5 @@ public class Nave
     public EnumPotencialProspeccaoTecnologicaNave PotencialProspeccaoTecnologica { get; set; }
     public EnumGrauPericulosidadeNave GrauPericulosidade { get; set; }
     public EnumClassificacaoNave Classificacao { get; set; }
+    public EnumStatusReparoNave StatusReparo { get; set; }
 }

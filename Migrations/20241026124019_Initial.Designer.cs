@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GalaxyControl.Migrations
 {
     [DbContext(typeof(GalaxyControlContext))]
-    [Migration("20241023225428_Initial")]
+    [Migration("20241026124019_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -44,8 +44,8 @@ namespace GalaxyControl.Migrations
 
                     b.Property<string>("CodigoRastreio")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)")
                         .HasColumnName("codigo_rastreio");
 
                     b.Property<int>("Cor")
@@ -72,13 +72,17 @@ namespace GalaxyControl.Migrations
 
                     b.Property<string>("LocalQueda")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
                         .HasColumnName("local_queda");
 
                     b.Property<int>("PotencialProspeccaoTecnologica")
                         .HasColumnType("int")
                         .HasColumnName("potencial_prospeccao_tecnologica");
+
+                    b.Property<int>("StatusReparo")
+                        .HasColumnType("int")
+                        .HasColumnName("status_reparo");
 
                     b.Property<int>("Tamanho")
                         .HasColumnType("int")
@@ -152,8 +156,8 @@ namespace GalaxyControl.Migrations
                         new
                         {
                             Id = 1,
-                            DataCadastro = new DateTime(2024, 10, 23, 19, 54, 28, 83, DateTimeKind.Local).AddTicks(4762),
-                            Email = "galaxycontrol@outlook.com",
+                            DataCadastro = new DateTime(2024, 10, 26, 9, 40, 18, 943, DateTimeKind.Local).AddTicks(4072),
+                            Email = "galaxycontroldsin@outlook.com",
                             Nome = "Admin",
                             Senha = "7110eda4d09e062aa5e4a390b0a572ac0d2c0220"
                         });

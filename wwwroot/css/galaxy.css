@@ -1,0 +1,135 @@
+.galaxy-background {
+    background-image: url(../img/galaxia.jpg);
+    background-size: cover;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+#loading-bar {
+    width: 80%;
+    height: 20px;
+    background-color: #333;
+    margin: 20px auto;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+    #loading-bar .progress {
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, #00ff00, #009900);
+        animation: loading 3s forwards;
+        border-radius: 10px;
+    }
+
+@keyframes loading {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+#loading-message {
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.patos-container {
+    position: relative;
+    height: 60vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.pato-container {
+    position: absolute;
+    text-align: center;
+    margin: 10px;
+    width: 150px;
+}
+
+.pato {
+    width: 80px;
+    height: auto;
+    display: block;
+}
+    .pato:hover {
+        border-radius: 90px;
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+    }
+
+.pato-info {
+    color: white;
+    margin-top: 10px;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .pato-container {
+        width: 80px;
+    }
+
+    .pato-info {
+        font-size: 0.8rem;
+    }
+}
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    text-align:end;
+}
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }

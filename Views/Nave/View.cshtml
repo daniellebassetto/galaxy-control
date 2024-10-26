@@ -176,7 +176,6 @@
                     @Html.ValidationMessageFor(x => x.Classificacao, "", new { @class = "text-danger" })
                 </div>
             </div>
-
             <div class="row mb-3">
                 <div class="col-md-3">
                     <label for="dataCadastro" class="form-label">Data de Cadastro</label>
@@ -185,8 +184,28 @@
                 </div>
                 <div class="col-md-3">
                     <label for="dataAlteracao" class="form-label">Data de alteração</label>
-                    <input type="date" asp-for="DataAlteracao" class="form-control" id="dataAlteracao" readonly>
+                    @if(Model.DataAlteracao != null)
+                    {
+                        <input type="date" asp-for="DataAlteracao" class="form-control" id="dataAlteracao" readonly>
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" id="dataAlteracao" readonly>
+                    }
                     @Html.ValidationMessageFor(x => x.DataAlteracao, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    <label for="statusReparo" class="form-label">Status do Reparo</label>
+                    <select asp-for="StatusReparo" class="form-select" id="statusReparo" disabled>
+                        <option value="">Selecione</option>
+                        @foreach (var opcao in Enum.GetValues(typeof(EnumStatusReparoNave)))
+                        {
+                            var displayAttribute = opcao.GetType().GetMember(opcao.ToString()!).First().GetCustomAttribute<DisplayAttribute>();
+                            string? displayName = displayAttribute != null ? displayAttribute.Name : opcao.ToString();
+                            <option value="@opcao">@displayName</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.TipoLocalQueda, "", new { @class = "text-danger" })
                 </div>
             </div>
 

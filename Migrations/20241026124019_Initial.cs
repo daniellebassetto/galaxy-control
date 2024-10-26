@@ -23,13 +23,13 @@ namespace GalaxyControl.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     DataCadastro = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     DataAlteracao = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    codigo_rastreio = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    codigo_rastreio = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     data_encontro = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     tamanho = table.Column<int>(type: "int", nullable: false),
                     cor = table.Column<int>(type: "int", nullable: false),
                     tipo_local_queda = table.Column<int>(type: "int", nullable: false),
-                    local_queda = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                    local_queda = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     armamento = table.Column<int>(type: "int", nullable: false),
                     tipo_combustivel = table.Column<int>(type: "int", nullable: false),
@@ -39,7 +39,8 @@ namespace GalaxyControl.Migrations
                     grau_avaria = table.Column<int>(type: "int", nullable: false),
                     potencial_prospeccao_tecnologica = table.Column<int>(type: "int", nullable: false),
                     grau_periculosidade = table.Column<int>(type: "int", nullable: false),
-                    classificacao = table.Column<int>(type: "int", nullable: false)
+                    classificacao = table.Column<int>(type: "int", nullable: false),
+                    status_reparo = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -71,7 +72,7 @@ namespace GalaxyControl.Migrations
             migrationBuilder.InsertData(
                 table: "usuario",
                 columns: new[] { "id", "data_alteracao", "data_cadastro", "email", "nome", "senha" },
-                values: new object[] { 1, null, new DateTime(2024, 10, 23, 19, 54, 28, 83, DateTimeKind.Local).AddTicks(4762), "galaxycontroldsin@outlook.com", "Admin", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220" });
+                values: new object[] { 1, null, new DateTime(2024, 10, 26, 9, 40, 18, 943, DateTimeKind.Local).AddTicks(4072), "galaxycontroldsin@outlook.com", "Admin", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220" });
         }
 
         /// <inheritdoc />

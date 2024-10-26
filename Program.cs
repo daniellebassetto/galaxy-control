@@ -12,7 +12,6 @@ builder.Services.AddDbContext<GalaxyControlContext>(opts => opts.UseMySql(connec
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddScoped<GalaxyControl.Helpers.ISession, Session>();
-builder.Services.AddScoped<IEmail, Email>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<INaveRepository, NaveRepository>();

@@ -42,7 +42,8 @@ public class NaveController(INaveService service) : Controller
             GrauAvaria = nave.GrauAvaria,
             PotencialProspeccaoTecnologica = nave.PotencialProspeccaoTecnologica,
             GrauPericulosidade = nave.GrauPericulosidade,
-            Classificacao = nave.Classificacao
+            Classificacao = nave.Classificacao,
+            StatusReparo = nave.StatusReparo
         };
 
         return View(model);
@@ -85,7 +86,7 @@ public class NaveController(INaveService service) : Controller
         catch (Exception ex)
         {
             TempData["ErrorMessage"] = $"Erro: {ex.Message}";
-            return RedirectToAction("Index");
+            return View(criarNaveViewModel);
         }
     }
 
@@ -105,7 +106,7 @@ public class NaveController(INaveService service) : Controller
         catch (Exception ex)
         {
             TempData["ErrorMessage"] = $"Erro: {ex.Message}";
-            return RedirectToAction("Index");
+            return View(atualizarNaveViewModel);
         }
     }
 

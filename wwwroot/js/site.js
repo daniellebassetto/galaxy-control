@@ -100,7 +100,6 @@ function openAtualizarClassificacaoModal() {
 
 function selecionarClassificacao() {
     var classificacaoSelecionada = $("input[name='classificacao']:checked").val();
-    debugger
     if (classificacaoSelecionada) {
         $("#Classificacao").val(classificacaoSelecionada);
         $("#classificacaoModal").modal('hide');
