@@ -26,7 +26,7 @@ public class NaveController(INaveService service) : Controller
     {
         NaveViewModel nave = _service.GetById(id)!;
 
-        AtualizarNaveViewModel model = new AtualizarNaveViewModel()
+        AtualizarNaveViewModel model = new()
         {
             Id = id,
             DataEncontro = nave.DataEncontro,
@@ -52,12 +52,6 @@ public class NaveController(INaveService service) : Controller
     {
         NaveViewModel nave = _service.GetById(id)!;
         return View(nave);
-    }
-
-    public IActionResult DeleteConfirmation(int id)
-    {
-        NaveViewModel nave = _service.GetById(id)!;
-        return PartialView(nave);
     }
 
     public IActionResult Delete(int id)
@@ -135,6 +129,34 @@ public class NaveController(INaveService service) : Controller
             return View(model);
         }
         catch (Exception ex) 
+        {
+            TempData["ErrorMessage"] = $"Erro: {ex.Message}";
+            return RedirectToAction("Index");
+        }
+    }
+
+    [HttpPost]
+    public IActionResult AtualizarClassificacaoNave(AtualizarNaveViewModel model)
+    {
+        try
+        {
+            if (ModelState.IsValid)
+            {
+                var classificacoes = _service.ClassificarNave(
+                           model.GrauAvaria,
+                           model.PotencialProspeccaoTecnologica,
+                           model.Armamento,
+                           model.GrauPericulosidade,
+                           model.TipoCombustivel
+                           );
+
+                ViewData["ClassificacaoAtual"] = model.Classificacao;
+
+                return PartialView("_ClassificacaoPartial", classificacoes);
+            }
+            return View(model);
+        }
+        catch (Exception ex)
         {
             TempData["ErrorMessage"] = $"Erro: {ex.Message}";
             return RedirectToAction("Index");

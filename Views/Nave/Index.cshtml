@@ -40,22 +40,25 @@
         }
     </div>
 
-    <div class="d-flex justify-content-center">
-        <nav aria-label="Pagination">
-            <ul class="pagination">
-                <li class="page-item @(Model!.HasPreviousPage ? "" : "disabled")">
-                    <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)">Anterior</a>
-                </li>
-                @for (var i = 1; i <= Model.TotalPages; i++)
-                {
-                    <li class="page-item @(Model.PageIndex == i ? "active" : "")">
-                        <a class="page-link" asp-action="Index" asp-route-pageNumber="@i">@i</a>
+    @if (Model != null && Model.Any())
+    {
+        <div class="d-flex justify-content-center">
+            <nav aria-label="Pagination">
+                <ul class="pagination">
+                    <li class="page-item @(Model!.HasPreviousPage ? "" : "disabled")">
+                        <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)">Anterior</a>
                     </li>
-                }
-                <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
-                    <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)">Próximo</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+                    @for (var i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(Model.PageIndex == i ? "active" : "")">
+                            <a class="page-link" asp-action="Index" asp-route-pageNumber="@i">@i</a>
+                        </li>
+                    }
+                    <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+                        <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)">Próximo</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    }    
 </div>

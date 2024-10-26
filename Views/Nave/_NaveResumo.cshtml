@@ -2,6 +2,7 @@
 
 @{
     var diasEncontrada = (DateTime.Now - Model.DataEncontro).Days;
+    var modalId = "modalExemplo-" + Model.Id;
 }
 
 <div class="col-sm-6 col-md-4 mb-4">
@@ -21,9 +22,31 @@
                 <a asp-action="View" asp-controller="Nave" asp-route-id="@Model.Id" class="btn btn-secondary">
                     <i class="bi bi-eye" style="color: white;"></i>
                 </a>
-                <a asp-action="DeleteConfirmation" asp-controller="Nave" asp-route-id="@Model.Id" class="btn btn-danger">
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#@modalId">
                     <i class="bi bi-trash" style="color: white;"></i>
-                </a>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="@modalId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Excluir Nave</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza que deseja excluir a nave @Model.CodigoRastreio?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <a asp-action="Delete" asp-controller="Nave" asp-route-id="@Model.Id" class="btn btn-danger">
+                        Confirmar
+                    </a>
+                </div>
             </div>
         </div>
     </div>

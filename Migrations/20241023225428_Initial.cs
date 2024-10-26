@@ -71,7 +71,7 @@ namespace GalaxyControl.Migrations
             migrationBuilder.InsertData(
                 table: "usuario",
                 columns: new[] { "id", "data_alteracao", "data_cadastro", "email", "nome", "senha" },
-                values: new object[] { 1, null, new DateTime(2024, 10, 23, 19, 54, 28, 83, DateTimeKind.Local).AddTicks(4762), "galaxycontrol@outlook.com", "Admin", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220" });
+                values: new object[] { 1, null, new DateTime(2024, 10, 23, 19, 54, 28, 83, DateTimeKind.Local).AddTicks(4762), "galaxycontroldsin@outlook.com", "Admin", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220" });
         }
 
         /// <inheritdoc />

@@ -11,11 +11,11 @@ public class Email(IConfiguration configuration) : IEmail
     {
         try
         {
-            string host = _configuration.GetValue<string>("SMTP:Host");
-            string name = _configuration.GetValue<string>("SMTP:Name");
-            string userName = _configuration.GetValue<string>("SMTP:UserName");
-            string password = _configuration.GetValue<string>("SMTP:Password");
-            int port = _configuration.GetValue<int>("SMTP:Port");
+            string host = _configuration["SMTP:Host"]!;
+            string name = _configuration["SMTP:Name"]!;
+            string userName = _configuration["SMTP:UserName"]!;
+            string password = _configuration["SMTP:Password"]!;
+            int port = Convert.ToInt32(_configuration["SMTP:Port"]);
 
             MailMessage mail = new()
             {
@@ -26,15 +26,12 @@ public class Email(IConfiguration configuration) : IEmail
             mail.Subject = subject;
             mail.Body = message;
             mail.IsBodyHtml = true;
-            mail.Priority = MailPriority.High;
 
-            using (SmtpClient smtp = new SmtpClient(host, port))
-            {
-                smtp.Credentials = new NetworkCredential(userName, password);
-                smtp.EnableSsl = true;
-                smtp.Send(mail);
-                return true;
-            }
+            using SmtpClient smtp = new(host, port);
+            smtp.Credentials = new NetworkCredential(userName, password);
+            smtp.EnableSsl = true;
+            smtp.Send(mail);
+            return true;
         }
         catch { return false; }
     }

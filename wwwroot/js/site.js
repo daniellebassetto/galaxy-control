@@ -57,7 +57,7 @@ $(document).ready(function () {
 });
 
 function openClassificacaoModal() {
-    if ($("#dataEncontro").val() && $("#tamanho").val() && $("#cor").val()
+    if ($("#codigoRastreio").val() && $("#dataEncontro").val() && $("#tamanho").val() && $("#cor").val()
         && $("#tipoLocal").val() && $("#local").val() && $("#armamento").val() && $("#combustivel").val()
         && $("#tripulanteSaudavel").val() && $("#tripulanteFerido").val() && $("#tripulanteSemVida").val()
         && $("#grauAvaria").val() && $("#potencialTecnologico").val() && $("#grauPericulosidade").val()) {
@@ -77,12 +77,34 @@ function openClassificacaoModal() {
     }
 }
 
+function openAtualizarClassificacaoModal() {
+    if ($("#dataEncontro").val() && $("#tamanho").val() && $("#cor").val()
+        && $("#tipoLocal").val() && $("#local").val() && $("#armamento").val() && $("#combustivel").val()
+        && $("#tripulanteSaudavel").val() && $("#tripulanteFerido").val() && $("#tripulanteSemVida").val()
+        && $("#grauAvaria").val() && $("#potencialTecnologico").val() && $("#grauPericulosidade").val()) {
+        var formData = $("#naveForm").serialize();
+
+        $.ajax({
+            url: '/Nave/AtualizarClassificacaoNave',
+            method: 'POST',
+            data: formData,
+            success: function (data) {
+                $("#atualizarClassificacaoContent").html(data);
+                $("#atualizarClassificacaoModal").modal('show');
+            }
+        });
+    } else {
+        alert("Preencha todos os campos antes de escolher o uso futuro.");
+    }
+}
+
 function selecionarClassificacao() {
     var classificacaoSelecionada = $("input[name='classificacao']:checked").val();
-
+    debugger
     if (classificacaoSelecionada) {
         $("#Classificacao").val(classificacaoSelecionada);
         $("#classificacaoModal").modal('hide');
+        $("#atualizarClassificacaoModal").modal('hide');
         $("#btnSalvar").prop("disabled", false);
     } else {
         alert("Por favor, selecione uma classificação.");

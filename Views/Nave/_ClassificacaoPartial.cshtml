@@ -1,4 +1,8 @@
-﻿@model List<EnumClassificacaoNave>
+﻿@{
+    var classificacaoAtual = ViewData["ClassificacaoAtual"] as EnumClassificacaoNave?;
+}
+
+@model List<EnumClassificacaoNave>
 
 <div>
     <h4 class="mb-4 text-center">Escolha o uso futuro que deseja atribuir para esta nave:</h4>
@@ -8,7 +12,7 @@
         @foreach (var classificacao in Model)
         {
             <li class="list-group-item mb-4">
-                <input type="radio" name="classificacao" value="@classificacao" id="classificacao_@classificacao" class="mr-2" />
+                <input type="radio" name="classificacao" value="@classificacao" id="classificacao_@classificacao" class="mr-2" @(classificacaoAtual.HasValue && classificacaoAtual == classificacao ? "checked" : "") />
 
                 <label for="classificacao_@classificacao" class="ml-2 d-block">
                     @classificacao.GetDisplayName()
