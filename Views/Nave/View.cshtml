@@ -185,7 +185,14 @@
                 </div>
                 <div class="col-md-3">
                     <label for="dataAlteracao" class="form-label">Data de alteração</label>
-                    <input type="date" asp-for="DataAlteracao" class="form-control" id="dataAlteracao" readonly>
+                    @if(Model.DataAlteracao != null)
+                    {
+                        <input type="date" asp-for="DataAlteracao" class="form-control" id="dataAlteracao" readonly>
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" id="dataAlteracao" readonly>
+                    }
                     @Html.ValidationMessageFor(x => x.DataAlteracao, "", new { @class = "text-danger" })
                 </div>
             </div>

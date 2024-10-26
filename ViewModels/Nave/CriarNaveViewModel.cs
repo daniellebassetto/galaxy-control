@@ -6,6 +6,7 @@ namespace GalaxyControl.ViewModels;
 public class CriarNaveViewModel
 {
     [Required(ErrorMessage = "Informe um código de rastreio")]
+    [Length(3, 10, ErrorMessage = "O código de rastreio deve ter de 3 a 10 caracteres")]
     public string? CodigoRastreio { get; set; }
 
     [Required(ErrorMessage = "Informe a data de queda")]
@@ -21,6 +22,7 @@ public class CriarNaveViewModel
     public EnumTipoLocalQuedaNave TipoLocalQueda { get; set; }
 
     [Required(ErrorMessage = "Informe o local de queda")]
+    [MaxLength(30, ErrorMessage = "O local de queda deve ter de 1 a 30 caracteres")]
     public string? LocalQueda { get; set; }
 
     [Required(ErrorMessage = "Informe o tipo de armamento")]

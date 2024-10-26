@@ -1,0 +1,79 @@
+.galaxy-background {
+    background: url('~/img/galaxia.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh; /* Ocupa toda a altura da tela */
+    color: white;
+    display: flex; /* Usando flexbox para centralizar o conteúdo */
+    flex-direction: column; /* Coloca os itens na coluna */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+}
+
+.container {
+    width: 100%; /* Permite que a container utilize a largura total */
+    max-width: 1200px; /* Limita a largura máxima para telas grandes */
+    padding: 20px;
+}
+
+#loading-bar {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    animation: fadeIn 1s; /* Animação de aparecimento */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.patos-container {
+    position: relative; /* Para posicionar os patos */
+    height: 60vh; /* Altura do container para os patos */
+    overflow: hidden; /* Evitar que os patos saiam do container */
+    border: 2px solid rgba(255, 255, 255, 0.7); /* Borda semi-transparente para destacar o container */
+    border-radius: 10px; /* Bordas arredondadas */
+    background: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente para melhorar a legibilidade */
+    display: flex; /* Flexbox para centralizar o conteúdo */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+#info-container {
+    margin-top: 20px;
+    color: white;
+    text-align: left;
+    max-height: 30vh; /* Limitar a altura do container de informações */
+    overflow-y: auto; /* Permitir rolagem se necessário */
+    background: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente */
+    padding: 10px; /* Espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+}
+
+#info-list {
+    list-style-type: none; /* Remove marcadores */
+    padding: 0; /* Remove padding */
+}
+
+.pato {
+    position: absolute; /* Para posicionar os patos de forma absoluta */
+    width: 80px; /* Tamanho da imagem, ajustado para melhor visualização */
+    transition: transform 0.3s; /* Transição suave para movimentos */
+}
+
+/* Exemplo de responsividade */
+@media (max-width: 768px) {
+    .pato {
+        width: 60px; /* Reduz o tamanho em telas menores */
+    }
+
+    #loading-bar {
+        font-size: 1.2rem; /* Ajusta o tamanho do texto */
+    }
+}

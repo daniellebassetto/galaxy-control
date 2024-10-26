@@ -19,6 +19,9 @@ public class UsuarioService(IUsuarioRepository repository, Helpers.ISession sess
         if (usuario is not null)
             throw new Exception("Já existe um usuário com este e-mail");
 
+        if(usuarioRegisterViewModel.Nome == "Admin")
+            throw new Exception("Nome inválido! Você só pode ser um xenófago.");
+
         if (usuarioRegisterViewModel.Senha == usuarioRegisterViewModel.ConfirmacaoSenha)
         {
             var novoUsuario = new Usuario()

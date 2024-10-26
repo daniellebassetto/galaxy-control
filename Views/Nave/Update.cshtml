@@ -113,17 +113,17 @@
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="tripulanteSaudavel" class="form-label">Total Tripulantes Saudáveis</label>
-                    <input type="number" asp-for="TripulantesSaudaveis" class="form-control" id="tripulanteSaudavel" />
+                    <input type="number" min="0" asp-for="TripulantesSaudaveis" class="form-control" id="tripulanteSaudavel" />
                     @Html.ValidationMessageFor(x => x.TripulantesSaudaveis, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-4">
                     <label for="tripulanteFerido" class="form-label">Total Tripulantes Feridos</label>
-                    <input type="number" asp-for="TripulantesFeridos" class="form-control" id="tripulanteFerido" />
+                    <input type="number" min="0" asp-for="TripulantesFeridos" class="form-control" id="tripulanteFerido" />
                     @Html.ValidationMessageFor(x => x.TripulantesFeridos, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-4">
                     <label for="tripulanteSemVida" class="form-label">Total Tripulantes Sem Vida</label>
-                    <input type="number" asp-for="TripulantesSemVida" class="form-control" id="tripulanteSemVida" />
+                    <input type="number" min="0" asp-for="TripulantesSemVida" class="form-control" id="tripulanteSemVida" />
                     @Html.ValidationMessageFor(x => x.TripulantesSemVida, "", new { @class = "text-danger" })
                 </div>
             </div>

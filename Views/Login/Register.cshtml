@@ -16,7 +16,7 @@
                     <div class="input-group">
                         <label for="nome" name="nome">Nome</label>
                         <div class="input-group">
-                            <input type="text" asp-for="Nome" id="nome" placeholder="Informe o nome completo" required>
+                            <input type="text" maxlength="50" asp-for="Nome" id="nome" placeholder="Informe o nome completo" required>
                         </div>
                         @Html.ValidationMessageFor(x => x.Nome, "", new { @class = "text-danger" })
                     </div>
@@ -24,7 +24,7 @@
                         <div class="input-group">
                             <label for="email" name="email">Email</label>
                             <div class="input-group">
-                                <input type="email" asp-for="Email" id="email" placeholder="Informe seu email" required>
+                                <input type="email" maxlength="256" asp-for="Email" id="email" placeholder="Informe seu email" required>
                             </div>
                             @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
                         </div>
