@@ -2,7 +2,7 @@
 
 namespace GalaxyControl.ViewModels;
 
-public class UsuarioRegisterViewModel
+public class RegistrarUsuarioViewModel
 {
     [Required(ErrorMessage = "Informe o nome")]
     public string? Nome { get; set; }

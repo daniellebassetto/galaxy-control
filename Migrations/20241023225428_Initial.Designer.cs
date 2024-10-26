@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GalaxyControl.Migrations
 {
     [DbContext(typeof(GalaxyControlContext))]
-    [Migration("20241022013408_Initial")]
+    [Migration("20241023225428_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -38,6 +38,10 @@ namespace GalaxyControl.Migrations
                         .HasColumnType("int")
                         .HasColumnName("armamento");
 
+                    b.Property<int>("Classificacao")
+                        .HasColumnType("int")
+                        .HasColumnName("classificacao");
+
                     b.Property<string>("CodigoRastreio")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -48,9 +52,15 @@ namespace GalaxyControl.Migrations
                         .HasColumnType("int")
                         .HasColumnName("cor");
 
-                    b.Property<DateTime>("DataQueda")
+                    b.Property<DateTime?>("DataAlteracao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataEncontro")
                         .HasColumnType("datetime(6)")
-                        .HasColumnName("data_queda");
+                        .HasColumnName("data_encontro");
 
                     b.Property<int>("GrauAvaria")
                         .HasColumnType("int")
@@ -82,39 +92,21 @@ namespace GalaxyControl.Migrations
                         .HasColumnType("int")
                         .HasColumnName("tipo_local_queda");
 
+                    b.Property<int>("TripulantesFeridos")
+                        .HasColumnType("int")
+                        .HasColumnName("tripulantes_feridos");
+
+                    b.Property<int>("TripulantesSaudaveis")
+                        .HasColumnType("int")
+                        .HasColumnName("tripulantes_saudaveis");
+
+                    b.Property<int>("TripulantesSemVida")
+                        .HasColumnType("int")
+                        .HasColumnName("tripulantes_sem_vida");
+
                     b.HasKey("Id");
 
                     b.ToTable("nave", (string)null);
-                });
-
-            modelBuilder.Entity("GalaxyControl.Models.Tripulante", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Estado")
-                        .HasColumnType("int")
-                        .HasColumnName("estado");
-
-                    b.Property<int>("NaveId")
-                        .HasColumnType("int")
-                        .HasColumnName("id_nave");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("nome");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NaveId");
-
-                    b.ToTable("tripulante", (string)null);
                 });
 
             modelBuilder.Entity("GalaxyControl.Models.Usuario", b =>
@@ -160,27 +152,11 @@ namespace GalaxyControl.Migrations
                         new
                         {
                             Id = 1,
-                            DataCadastro = new DateTime(2024, 10, 21, 22, 34, 8, 244, DateTimeKind.Local).AddTicks(4838),
+                            DataCadastro = new DateTime(2024, 10, 23, 19, 54, 28, 83, DateTimeKind.Local).AddTicks(4762),
                             Email = "galaxycontrol@outlook.com",
                             Nome = "Admin",
                             Senha = "7110eda4d09e062aa5e4a390b0a572ac0d2c0220"
                         });
-                });
-
-            modelBuilder.Entity("GalaxyControl.Models.Tripulante", b =>
-                {
-                    b.HasOne("GalaxyControl.Models.Nave", "Nave")
-                        .WithMany("Tripulante")
-                        .HasForeignKey("NaveId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Nave");
-                });
-
-            modelBuilder.Entity("GalaxyControl.Models.Nave", b =>
-                {
-                    b.Navigation("Tripulante");
                 });
 #pragma warning restore 612, 618
         }

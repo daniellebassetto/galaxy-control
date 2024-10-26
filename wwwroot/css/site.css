@@ -1,16 +1,11 @@
-.offcanvas-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+body {
+    font-family: 'Orbitron', sans-serif;
 }
 
-.disabled-link {
-    pointer-events: none;
-    color: #6c757d;
-    cursor: not-allowed;
-    opacity: 0.65;
-    text-decoration: none;
+input {
+
 }
 
 .field-validation-error {

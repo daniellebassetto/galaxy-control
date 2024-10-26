@@ -12,7 +12,7 @@ public class UsuarioService(IUsuarioRepository repository, Helpers.ISession sess
     private readonly Helpers.ISession _session = session;
     private readonly IEmail _email = email;
 
-    public bool Create(UsuarioRegisterViewModel usuarioRegisterViewModel)
+    public bool Create(RegistrarUsuarioViewModel usuarioRegisterViewModel)
     {
         Usuario? usuario = _repository.GetByEmail(usuarioRegisterViewModel.Email!);
 

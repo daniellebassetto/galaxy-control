@@ -1,0 +1,202 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using System.Reflection
+
+@model AtualizarNaveViewModel
+@{
+    ViewData["Title"] = "Atualizar nave";
+}
+<div class="container">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-success btn-sm close-alert-success" data-bs-dismiss="alert" arial-label="Close">X</button>
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert-error" data-bs-dismiss="alert" aria-label="Close">X</button>
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <div class="text-center mb-4">
+        <h1 class="display-4">Atualizar Nave</h1>
+    </div>
+
+    <div class="p-4 rounded-3 shadow-sm mx-auto">
+        <form asp-controller="Nave" asp-action="Update" method="post" id="naveForm">
+            <div class="row mb-4">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="Classificacao" />
+
+                <div class="col-md-3">
+                    <label for="dataEncontro" class="form-label">Data de Encontro</label>
+                    <input type="date" asp-for="DataEncontro" max="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" id="dataEncontro" placeholder="Informe a data de encontro">
+                    @Html.ValidationMessageFor(x => x.DataEncontro, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    <label for="tamanho" class="form-label">Tamanho</label>
+                    <select asp-for="Tamanho" class="form-select" id="tamanho">
+                        <option value="">Selecione</option>
+                        @foreach (var opcao in Enum.GetValues(typeof(EnumTamanhoNave)))
+                        {
+                            var displayAttribute = opcao.GetType().GetMember(opcao.ToString()!).First().GetCustomAttribute<DisplayAttribute>();
+                            string? displayName = displayAttribute != null ? displayAttribute.Name : opcao.ToString();
+                            <option value="@opcao">@displayName</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.Tamanho, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    <label for="cor" class="form-label">Cor</label>
+                    <select asp-for="Cor" class="form-select" id="cor">
+                        <option value="">Selecione</option>
+                        @foreach (var opcao in Enum.GetValues(typeof(EnumCorNave)))
+                        {
+                            var displayAttribute = opcao.GetType().GetMember(opcao.ToString()!).First().GetCustomAttribute<DisplayAttribute>();
+                            string? displayName = displayAttribute != null ? displayAttribute.Name : opcao.ToString();
+                            <option value="@opcao">@displayName</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.Cor, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <label for="tipoLocal" class="form-label">Tipo Local de Queda</label>
+                    <select asp-for="TipoLocalQueda" class="form-select" id="tipoLocal">
+                        <option value="">Selecione</option>
+                        @foreach (var opcao in Enum.GetValues(typeof(EnumTipoLocalQuedaNave)))
+                        {
+                            var displayAttribute = opcao.GetType().GetMember(opcao.ToString()!).First().GetCustomAttribute<DisplayAttribute>();
+                            string? displayName = displayAttribute != null ? displayAttribute.Name : opcao.ToString();
+                            <option value="@opcao">@displayName</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.TipoLocalQueda, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    <label for="local" class="form-label">Local de Queda</label>
+                    <input type="text" asp-for="LocalQueda" class="form-control" id="local" placeholder="Informe o local de queda" />
+                    @Html.ValidationMessageFor(x => x.LocalQueda, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    <label for="armamento" class="form-label">Armamento</label>
+                    <select asp-for="Armamento" class="form-select" id="armamento">
+                        <option value="">Selecione</option>
+                        @foreach (var opcao in Enum.GetValues(typeof(EnumArmamentoNave)))
+                        {
+                            var displayAttribute = opcao.GetType().GetMember(opcao.ToString()!).First().GetCustomAttribute<DisplayAttribute>();
+                            string? displayName = displayAttribute != null ? displayAttribute.Name : opcao.ToString();
+                            <option value="@opcao">@displayName</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.Armamento, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    <label for="combustivel" class="form-label">Tipo de Combustível</label>
+                    <select asp-for="TipoCombustivel" class="form-select" id="combustivel">
+                        <option value="">Selecione</option>
+                        @foreach (var opcao in Enum.GetValues(typeof(EnumTipoCombustivelNave)))
+                        {
+                            var displayAttribute = opcao.GetType().GetMember(opcao.ToString()!).First().GetCustomAttribute<DisplayAttribute>();
+                            string? displayName = displayAttribute != null ? displayAttribute.Name : opcao.ToString();
+                            <option value="@opcao">@displayName</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.TipoCombustivel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="tripulanteSaudavel" class="form-label">Total Tripulantes Saudáveis</label>
+                    <input type="number" asp-for="TripulantesSaudaveis" class="form-control" id="tripulanteSaudavel" />
+                    @Html.ValidationMessageFor(x => x.TripulantesSaudaveis, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    <label for="tripulanteFerido" class="form-label">Total Tripulantes Feridos</label>
+                    <input type="number" asp-for="TripulantesFeridos" class="form-control" id="tripulanteFerido" />
+                    @Html.ValidationMessageFor(x => x.TripulantesFeridos, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    <label for="tripulanteSemVida" class="form-label">Total Tripulantes Sem Vida</label>
+                    <input type="number" asp-for="TripulantesSemVida" class="form-control" id="tripulanteSemVida" />
+                    @Html.ValidationMessageFor(x => x.TripulantesSemVida, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="grauAvaria" class="form-label">Grau de Avaria</label>
+                    <select asp-for="GrauAvaria" class="form-select" id="grauAvaria">
+                        <option value="">Selecione</option>
+                        @foreach (var opcao in Enum.GetValues(typeof(EnumGrauAvariaNave)))
+                        {
+                            var displayAttribute = opcao.GetType().GetMember(opcao.ToString()!).First().GetCustomAttribute<DisplayAttribute>();
+                            string? displayName = displayAttribute != null ? displayAttribute.Name : opcao.ToString();
+                            <option value="@opcao">@displayName</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.GrauAvaria, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    <label for="potencialTecnologico" class="form-label">Potencial de Prospecção Tecnologica</label>
+                    <select asp-for="PotencialProspeccaoTecnologica" class="form-select" id="potencialTecnologico">
+                        <option value="">Selecione</option>
+                        @foreach (var opcao in Enum.GetValues(typeof(EnumPotencialProspeccaoTecnologicaNave)))
+                        {
+                            var displayAttribute = opcao.GetType().GetMember(opcao.ToString()!).First().GetCustomAttribute<DisplayAttribute>();
+                            string? displayName = displayAttribute != null ? displayAttribute.Name : opcao.ToString();
+                            <option value="@opcao">@displayName</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.PotencialProspeccaoTecnologica, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    <label for="grauPericulosidade" class="form-label">Grau de Periculosidade</label>
+                    <select asp-for="GrauPericulosidade" class="form-select" id="grauPericulosidade">
+                        <option value="">Selecione</option>
+                        @foreach (var opcao in Enum.GetValues(typeof(EnumGrauPericulosidadeNave)))
+                        {
+                            var displayAttribute = opcao.GetType().GetMember(opcao.ToString()!).First().GetCustomAttribute<DisplayAttribute>();
+                            string? displayName = displayAttribute != null ? displayAttribute.Name : opcao.ToString();
+                            <option value="@opcao">@displayName</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.GrauPericulosidade, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-primary" id="escolherUsoFuturo" onclick="openAtualizarClassificacaoModal()">
+                    <i class="bi bi-bullseye" style="color: white;"></i> Escolher uso futuro
+                </button>
+                <div class="justify-content-end">
+                    <a class="btn btn-danger" role="button" asp-controller="Nave" asp-action="Index">
+                        <i class="bi bi-arrow-left-circle" style="color: white;"></i> Voltar
+                    </a>
+                    <button type="submit" class="btn btn-success" id="btnSalvar">
+                        <i class="bi bi-floppy" style="color: white;"></i> Salvar
+                    </button>
+                </div>
+            </div>
+
+            <div id="atualizarClassificacaoModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Escolher Classificação</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="border: none; background: transparent; font-size: 1.5rem;">
+                                <span aria-hidden="true" style="color: #999;">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" id="atualizarClassificacaoContent">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

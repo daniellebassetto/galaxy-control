@@ -16,11 +16,11 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-auto bg-light min-vh-100 p-0">
+            <div class="col-sm-auto p-0 sidebar">
                 @await Component.InvokeAsync("Menu")
             </div>
 
-            <div class="col-sm p-3">
+            <div class="col-sm p-3 content">
                 @RenderBody()
             </div>
         </div>

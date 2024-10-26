@@ -1,0 +1,64 @@
+﻿@using System.ComponentModel.DataAnnotations;
+@using System;
+@using GalaxyControl.Helpers.Pagination
+
+@model PaginatedList<NaveViewModel>
+@{
+    ViewData["Title"] = "Listagem de Naves";
+}
+
+<div class="container text-center">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-success btn-sm close-alert-success" data-bs-dismiss="alert" arial-label="Close">X</button>
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert-error" data-bs-dismiss="alert" aria-label="Close">X</button>
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-1">
+        <a class="btn btn-success" role="button" asp-controller="Nave" asp-action="Create">Adicionar</a>
+    </div>
+
+    <h1 class="display-4">Listagem de Naves</h1>
+
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (NaveViewModel nave in Model)
+            {
+                <partial name="_NaveResumo" for="@nave" />
+            }
+        }
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="d-flex justify-content-center">
+            <nav aria-label="Pagination">
+                <ul class="pagination">
+                    <li class="page-item @(Model!.HasPreviousPage ? "" : "disabled")">
+                        <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)">Anterior</a>
+                    </li>
+                    @for (var i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(Model.PageIndex == i ? "active" : "")">
+                            <a class="page-link" asp-action="Index" asp-route-pageNumber="@i">@i</a>
+                        </li>
+                    }
+                    <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+                        <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)">Próximo</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    }    
+</div>

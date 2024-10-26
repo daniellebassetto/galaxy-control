@@ -10,12 +10,17 @@ public class NaveRepository(GalaxyControlContext context) : INaveRepository
 
     public Nave? GetById(int id)
     {
-        return _context.Naves.AsNoTracking().Include(n => n.Tripulante).FirstOrDefault(n => n.Id == id);
+        return _context.Naves.AsNoTracking().FirstOrDefault(n => n.Id == id);
+    }
+
+    public Nave? GetByCodigoRastreio(string codigoRastreio)
+    {
+        return _context.Naves.AsNoTracking().FirstOrDefault(n => n.CodigoRastreio == codigoRastreio);
     }
 
     public IEnumerable<Nave> GetAll()
     {
-        return _context.Naves.AsNoTracking().Include(n => n.Tripulante).ToList();
+        return [.. _context.Naves.AsNoTracking()];
     }
 
     public Nave Create(Nave nave)
@@ -32,45 +37,10 @@ public class NaveRepository(GalaxyControlContext context) : INaveRepository
         return nave;
     }
 
-    public bool Delete(int id)
+    public bool Delete(Nave nave)
     {
-        var nave = GetById(id);
-        if (nave != null)
-        {
-            _context.Naves.Remove(nave);
-            _context.SaveChanges();
-            return true;
-        }
-        return false;
-    }
-
-    public bool AddTripulante(int naveId, Tripulante tripulante)
-    {
-        var nave = GetById(naveId);
-        if (nave != null)
-        {
-            tripulante.NaveId = naveId;
-            nave.Tripulante ??= [];
-            nave.Tripulante.Add(tripulante);
-            _context.SaveChanges();
-            return true;
-        }
-        return false;
-    }
-
-    public bool RemoveTripulante(int naveId, int tripulanteId)
-    {
-        var nave = GetById(naveId);
-        if (nave != null)
-        {
-            var tripulante = _context.Tripulantes.Find(tripulanteId);
-            if (tripulante != null)
-            {
-                nave.Tripulante?.Remove(tripulante);
-                _context.SaveChanges();
-                return true;
-            }
-        }
-        return false;
+        _context.Naves.Remove(nave);
+        _context.SaveChanges();
+        return true;
     }
 }
