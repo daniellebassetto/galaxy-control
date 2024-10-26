@@ -47,10 +47,6 @@
                         </div>
                         @Html.ValidationMessageFor(x => x.Senha, "", new { @class = "text-danger" })
                     </div>
-                    <p>
-                        Esqueceu sua senha?
-                        <a asp-action="SendLinkToRedefinePassword" asp-controller="Login" class="link-redefinir-senha">Redefinir senha</a>
-                    </p>
 
                     <div class="button-group">
                         <button type="submit" class="btn">Logar</button>

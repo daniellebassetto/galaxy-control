@@ -120,8 +120,6 @@ function abrirModal(distancia, isXenofago, emBando) {
 
     if (isXenofago) {
         estrategiaElement.innerHTML = gerarEstrategia(distancia, emBando);
-    } else {
-        estrategiaElement.innerHTML = "<strong>Estratégia:</strong> Ufaaa, é só um pato galáctico comum!";
     }
 
     modal.style.display = 'block';

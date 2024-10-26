@@ -40,31 +40,6 @@ public class LoginController(IUsuarioService usuarioService) : Controller
         return RedirectToAction("Index", "Login");
     }
 
-    public IActionResult SendLinkToRedefinePassword()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult SendLinkToRedefinePassword(RedefinirSenhaPeloLoginViewModel redefinirSenhaPeloLoginViewModel)
-    {
-        try
-        {
-            if (ModelState.IsValid)
-            {
-                _usuarioService.SendLinkToRedefinePassword(redefinirSenhaPeloLoginViewModel);
-                TempData["SuccessMessage"] = $"Enviamos para seu e-mail cadastrado uma nova senha.";
-                return RedirectToAction("Index", "Login");
-            }
-            return View("Index");
-        }
-        catch (Exception ex)
-        {
-            TempData["ErrorMessage"] = $"Erro: {ex.Message}";
-            return RedirectToAction("Index");
-        }
-    }
-
     public IActionResult Register()
     {
         return View();
