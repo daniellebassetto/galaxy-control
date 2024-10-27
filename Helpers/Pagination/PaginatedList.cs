@@ -20,7 +20,7 @@ public class PaginatedList<T> : List<T>
     {
         if (source == null)
             return new PaginatedList<T>([], 0, pageIndex, pageSize);
-        
+
         var count = source.Count();
         var items = source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
         return new PaginatedList<T>(items, count, pageIndex, pageSize);

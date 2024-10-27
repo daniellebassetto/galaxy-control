@@ -33,7 +33,7 @@ public class NaveMap : IEntityTypeConfiguration<Nave>
         builder.Property(x => x.TripulantesSaudaveis).HasColumnName("tripulantes_saudaveis").IsRequired();
 
         builder.Property(x => x.TripulantesFeridos).HasColumnName("tripulantes_feridos").IsRequired();
-        
+
         builder.Property(x => x.TripulantesSemVida).HasColumnName("tripulantes_sem_vida").IsRequired();
 
         builder.Property(x => x.GrauAvaria).HasColumnName("grau_avaria").IsRequired();

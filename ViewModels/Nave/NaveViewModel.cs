@@ -1,6 +1,4 @@
 ﻿using GalaxyControl.Enums;
-using GalaxyControl.Models;
-using System.ComponentModel.DataAnnotations;
 
 namespace GalaxyControl.ViewModels;
 

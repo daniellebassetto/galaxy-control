@@ -109,7 +109,7 @@ public class NaveService(INaveRepository repository) : INaveService
     {
         Nave? nave = _repository.GetById(atualizarNaveViewModel.Id!) ?? throw new Exception("Nave não encontrada");
 
-        if(nave.StatusReparo != EnumStatusReparoNave.Aguardando)
+        if (nave.StatusReparo != EnumStatusReparoNave.Aguardando)
             throw new Exception("Naves reparadas ou com reparo em andamento não podem ser alteradas");
 
         nave.DataAlteracao = DateTime.Now;
@@ -133,33 +133,27 @@ public class NaveService(INaveRepository repository) : INaveService
         return true;
     }
 
-    public List<EnumClassificacaoNave> ClassificarNave(EnumGrauAvariaNave grauAvaria, EnumPotencialProspeccaoTecnologicaNave potencialTecnologico, EnumArmamentoNave armamento, 
+    public List<EnumClassificacaoNave> ClassificarNave(EnumGrauAvariaNave grauAvaria, EnumPotencialProspeccaoTecnologicaNave potencialTecnologico, EnumArmamentoNave armamento,
         EnumGrauPericulosidadeNave periculosidade, EnumTipoCombustivelNave combustivel)
     {
         var classificacoes = new List<EnumClassificacaoNave>();
 
-        // Critério 1: Se a nave está muito destruída ou com perda total e possui pouco ou nenhum valor tecnológico, é Sucata Espacial
         if ((grauAvaria == EnumGrauAvariaNave.MuitoDestruida || grauAvaria == EnumGrauAvariaNave.PerdaTotal) &&
             (potencialTecnologico == EnumPotencialProspeccaoTecnologicaNave.Inexistente || potencialTecnologico == EnumPotencialProspeccaoTecnologicaNave.Baixo))
             classificacoes.Add(EnumClassificacaoNave.SucataEspacial);
 
-        // Critério 2: Se o potencial de prospecção tecnológica é alto, é uma Joia Tecnológica
         if (potencialTecnologico == EnumPotencialProspeccaoTecnologicaNave.Revolucionario || potencialTecnologico == EnumPotencialProspeccaoTecnologicaNave.Alto)
             classificacoes.Add(EnumClassificacaoNave.JoiaTecnologica);
 
-        // Critério 3: Se a nave possui armamento pesado, é um Arsenal Alienígena
         if (armamento == EnumArmamentoNave.Pesado)
             classificacoes.Add(EnumClassificacaoNave.ArsenalAlienigena);
 
-        // Critério 4: Se o grau de periculosidade é crítico ou alto, é uma Ameaça em Potencial
         if (periculosidade == EnumGrauPericulosidadeNave.Critico || periculosidade == EnumGrauPericulosidadeNave.Alto)
             classificacoes.Add(EnumClassificacaoNave.AmeacaPotencial);
 
-        // Critério 5: Se o combustível é de uma tecnologia única ou incomum, pode ser uma Fonte de Energia Alternativa
         if (combustivel == EnumTipoCombustivelNave.Alternativo)
             classificacoes.Add(EnumClassificacaoNave.FonteEnergiaAlternativa);
 
-        // Se nenhuma classificação for encontrada, adicionar "Mistureba"
         if (classificacoes.Count == 0)
             classificacoes.Add(EnumClassificacaoNave.MisturebaInconclusiva);
 
