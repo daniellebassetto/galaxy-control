@@ -39,14 +39,14 @@
 - **Salvamento Condicional:** O botão de salvar só é habilitado se todos os campos obrigatórios estiverem preenchidos e um uso futuro for definido.
 
 #### Usos Futuros da Nave
-Os usuários podem atribuir uma das seguintes classificações ao adicionar uma nave caída:
+Ao adicionar uma nave caída, com base nos dados informados, o sistema mostra os possíveis usos futuros da nave, sendo que pode ter apenas um ou mais se a nave possuir excelentes atributos. O usuário poderá escolher qual deseja atribuir e será possível editá-lo depois desde que a nave ainda esteja aguardando reparo. As classificações são as seguintes:
 
-- **Sucata Espacial:** Nave muito destruída, com pouco valor tecnológico.
-- **Joia Tecnológica:** Potencial tecnológico alto ou revolucionário.
-- **Arsenal Alienígena:** Nave com armamento pesado.
-- **Ameaça em Potencial:** Nave com grau de periculosidade crítico.
-- **Fonte de Energia Alternativa:** Combustível de tecnologia alternativa.
-- **Mistureba Inconclusiva:** Combina várias características.
+- **Sucata Espacial:** nave muito destruída ou com perda total e possui pouco ou nenhum valor tecnológico.
+- **Joia Tecnológica:** nave com potencial de prospecção tecnológica alto ou revolucionário.
+- **Arsenal Alienígena:** nave com armamento pesado.
+- **Ameaça em Potencial:** nave com grau de periculosidade crítico ou alto.
+- **Fonte de Energia Alternativa:** nave com combustível de tecnologia alternativa.
+- **Mistureba Inconclusiva:** nenhuma classificação anterior atende, significa que é um tipo de nave que mistura várias características mas não é a melhor em uma em específico.
 
 ### 3. Monitoramento de Patos Galácticos
 - **Exibição:** Mostra a distância e imagens dos patos galácticos.
