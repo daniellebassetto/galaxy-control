@@ -64,7 +64,7 @@ Na documentação entregue, consta os dados para acessar o site através da EC2.
    - MySQL Server
      - [Download do MySQL Server](https://dev.mysql.com/downloads/installer/)
 
-2. **Clone o repositório:**
+2. **Clone o repositório e exlcua a pasta "Capturas de tela e video":**
    ```bash
    git clone <URL_DO_REPOSITORIO>
    cd GalaxyControl
