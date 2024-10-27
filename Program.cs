@@ -1,5 +1,6 @@
 using GalaxyControl.Data;
 using GalaxyControl.Helpers;
+using GalaxyControl.Middleware;
 using GalaxyControl.Repositories;
 using GalaxyControl.Services;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +37,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseMiddleware<RedirectToLoginMiddleware>();
 
 app.UseRouting();
 

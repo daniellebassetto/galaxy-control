@@ -11,7 +11,7 @@ public class Menu : ViewComponent
         string? userSession = HttpContext.Session.GetString("loggedUserSession");
 
         if (string.IsNullOrEmpty(userSession))
-            return null;
+            throw new UnauthorizedAccessException("User is not logged in.");
 
         UsuarioViewModel user = JsonConvert.DeserializeObject<UsuarioViewModel>(userSession)!;
 

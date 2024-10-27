@@ -194,11 +194,11 @@ h2 {
         height: 100%;
     }
 
-    .register-left {
+    .register-right {
         display: none;
     }
 
-    .register-right {
+    .register-left {
         flex: 1;
         padding: 20px;
         width: 100%;

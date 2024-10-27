@@ -4,10 +4,6 @@ body {
     font-family: 'Orbitron', sans-serif;
 }
 
-input {
-
-}
-
 .field-validation-error {
     color: red;
     font-size: 12px;

@@ -8,6 +8,8 @@
 
 .sidebar {
     background: #222;
+    display: flex;
+    justify-content: center;
     align-items: center;
     position: fixed;
     top: 0;
@@ -35,4 +37,11 @@
 
 i {
     color: #00FFFF;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        height: 100%;
+        width: 75px;
+    }   
 }
