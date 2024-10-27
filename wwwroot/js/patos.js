@@ -115,12 +115,13 @@ function abrirModal(distancia, isXenofago, emBando) {
     const distanciaElement = document.getElementById('distancia');
     const estrategiaElement = document.getElementById('estrategia');
 
+    tipoDePatoElement.textContent = '';
+    distanciaElement.innerHTML = '';
+    estrategiaElement.textContent = '';
+
     tipoDePatoElement.textContent = isXenofago ? (emBando ? "VISHHH É UM BANDO DE XENÓFAGOS" : `VISHHH É UM XENÓFAGO`) : (emBando ? "UFAAA, SÃO SÓ PATOS COMUNS" : "UFAAA, É SÓ UM PATO COMUM");
     distanciaElement.innerHTML = `<strong>Distância:</strong> ${distancia} parsecs`;
-
-    if (isXenofago) {
-        estrategiaElement.innerHTML = gerarEstrategia(distancia, emBando);
-    }
+    estrategiaElement.textContent = isXenofago ? gerarEstrategia(distancia, emBando) : "Não será necessário capturar pois não oferecem perigo!";
 
     modal.style.display = 'block';
 

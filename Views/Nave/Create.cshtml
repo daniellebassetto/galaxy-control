@@ -32,7 +32,7 @@
                 <div class="row mb-3">
                     <div class="col-md-3">
                         <label for="codigoRastreio" class="form-label">Codigo de Rastreio</label>
-                        <input type="text" maxlength="10" required asp-for="CodigoRastreio" class="form-control" id="codigoRastreio" placeholder="Informe o código de rastreio" />
+                        <input type="text" maxlength="10" required asp-for="CodigoRastreio" class="form-control" id="codigoRastreio" placeholder="Ex: NAV01" />
                         @Html.ValidationMessageFor(x => x.CodigoRastreio, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-3">

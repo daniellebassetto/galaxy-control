@@ -1,0 +1,98 @@
+﻿@{
+    ViewData["Title"] = "Sobre o GalaxyControl";
+}
+
+<body>
+    <div class="container mt-5">
+        <h1 class="display-4 text-center">Sobre o GalaxyControl</h1>
+        <p class="lead text-center">Descubra como o GalaxyControl ajuda você a catalogar naves caídas e monitorar seus potenciais usos futuros.</p>
+
+        <div>
+            <h2 class="text-center">Classificação de Naves Caídas</h2>
+            <p>Ao adicionar uma nave caída, com base nos dados informados, o sistema mostra os possíveis usos futuros da nave, sendo que pode ter apenas um ou mais se a nave possuir excelentes atributos. O usuário poderá escolher qual deseja atribuir e será possível editá-lo depois desde que a nave ainda esteja aguardando reparo. As classificações são as seguintes:</p>
+
+            <div class="list-group">
+                <div class="list-group-item">
+                    <h5>Sucata Espacial</h5>
+                    <p>Se a nave está muito destruída ou com perda total e possui pouco ou nenhum valor tecnológico.</p>
+                    <img src="~/img/sucataespacial.jpg" alt="Sucata Espacial" class="img-fluid" style="max-width: 200px;">
+                </div>
+                <div class="list-group-item">
+                    <h5>Joia Tecnológica</h5>
+                    <p>Se o potencial de prospecção tecnológica é alto ou revolucionário.</p>
+                    <img src="~/img/joiatecnologica.jpg" alt="Joia Tecnológica" class="img-fluid" style="max-width: 200px;">
+                </div>
+                <div class="list-group-item">
+                    <h5>Arsenal Alienígena</h5>
+                    <p>Se a nave possui armamento pesado.</p>
+                    <img src="~/img/arsenalalienigena.jpg" alt="Arsenal Alienígena" class="img-fluid" style="max-width: 200px;">
+                </div>
+                <div class="list-group-item">
+                    <h5>Ameaça em Potencial</h5>
+                    <p>Se o grau de periculosidade é crítico ou alto.</p>
+                    <img src="~/img/ameacapotencial.jpg" alt="Ameaça em Potencial" class="img-fluid" style="max-width: 200px;">
+                </div>
+                <div class="list-group-item">
+                    <h5>Fonte de Energia Alternativa</h5>
+                    <p>Se o tipo de combustível é de uma tecnologia alternativa.</p>
+                    <img src="~/img/fonteenergiaalternativa.jpg" alt="Fonte de Energia Alternativa" class="img-fluid" style="max-width: 200px;">
+                </div>
+                <div class="list-group-item">
+                    <h5>Mistureba Inconclusiva</h5>
+                    <p>Se nenhuma classificação anterior atende, significa que é um tipo de nave que mistura várias características.</p>
+                    <img src="~/img/misturebainconclusiva.jpg" alt="Mistureba Inconclusiva" class="img-fluid" style="max-width: 200px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <h2 class="text-center">Pontos importantes da catalogação de naves</h2>
+            <ul class="list-group">
+                <li class="list-group-item">Quando uma nave é criada, o status de reparo é definido como "Aguardando". Depois, o usuário poderá editar esse campo para "Em Andamento" e posteriormente "Finalizado".</li>
+                <li class="list-group-item">Não é possível editar ou excluir uma nave com status de reparo "Em Andamento" ou "Finalizado" devido à integridade dos dados.</li>
+                <li class="list-group-item">O número de tripulantes sobreviventes é o somatório de feridos e saudáveis.</li>
+                <li class="list-group-item">O código de rastreio é único por nave e não é possível editá-lo.</li>
+                <li class="list-group-item">O botão de salvar, tanto na criação quanto na edição, só ficará habilitado se o uso futuro estiver definido.</li>
+                <li class="list-group-item">A escolha do uso futuro só será possível se todos os campos estiverem preenchidos.</li>
+            </ul>
+        </div>
+
+        <section class="mt-5">
+            <h2 class="text-center">Monitoramento de Patos Galácticos</h2>
+            <p>O GalaxyControl também permite o monitoramento de patos galácticos, mostrando sua distância e imagem.</p>
+            <p>As imagens indicam se estão sozinhos, em bando, se são xenófagos ou normais. Ao clicar em um pato, é possível visualizar estratégias de captura para quando se trata de um xenófago.</p>
+            <p>A estratégia de captura e arma a ser utilizada é definida com base na distância do xenófago e se ele está em bando ou não</p>
+
+            <div class="row text-center">
+                <div class="col-md-6 mb-4">
+                    <h5>Bando Xenófago</h5>
+                    <img src="~/img/bando_pato_xenofago.png" alt="Bando Xenófago" class="img-fluid">
+                    <p>Muitos patos xenófagos juntos! O verdadeiro perigo espacial.</p>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h5>Xenófago</h5>
+                    <img src="~/img/pato_xenofago.png" alt="Xenófago" class="img-fluid">
+                    <p>Podem ser identificados pela coloração esverdeada e comportamento errático. Possuem bicos menores e coloração esverdeada, além de um sotaque alienígena distinto.</p>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h5>Bando Normal</h5>
+                    <img src="~/img/bando_pato_normal.png" alt="Bando Normal" class="img-fluid">
+                    <p>Muitos patos comuns juntos, apenas desbravando o espaço.</p>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h5>Normal</h5>
+                    <img src="~/img/pato_normal.png" alt="Normal" class="img-fluid">
+                    <p>Patos normais, que não apresentam características xenofágicas e são muito amigáveis.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="mt-5 text-center">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">Voltar para a Home</a>
+        </div>
+
+        <footer class="mt-5">
+            <p class="text-muted text-center">© 2024 GalaxyControl. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+</body>

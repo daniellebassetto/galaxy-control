@@ -125,11 +125,13 @@ public class NaveController(INaveService service) : Controller
                            model.TipoCombustivel
                            );
 
+                ViewData["ClassificacaoAtual"] = model.Classificacao;
+
                 return PartialView("_ClassificacaoPartial", classificacoes);
             }
             return View(model);
         }
-        catch (Exception ex) 
+        catch (Exception ex)
         {
             TempData["ErrorMessage"] = $"Erro: {ex.Message}";
             return RedirectToAction("Index");

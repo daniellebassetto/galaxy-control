@@ -2,7 +2,31 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<body>
+    <div class="container text-center">
+        <h1 class="display-4">Bem-vindo(a) ao GalaxyControl!</h1>
+
+        <div class="alert alert-info">
+            <strong>Protegido por login!</strong> Para evitar o acesso de xenófagos, você precisou passar por essa etapa. Se você chegou até aqui, pode ficar contente! 🎉
+        </div>
+
+        <div>
+            <a class="btn btn-warning" role="button" asp-controller="Home" asp-action="Sobre">Guia de Uso</a>
+        </div>
+
+        <div class="mt-5">
+            <h2>O que temos:</h2>
+            <ul class="list-group">
+                <li class="list-group-item">Catalogação e acompanhamento de reparo de naves caídas</li>
+                <li class="list-group-item">Monitoramento de patos galácticos (xenófagos ou não) em tempo real</li>
+                <li class="list-group-item">Escolha de reuso da nave com base nos dados informados</li>
+                <li class="list-group-item">Exibição de melhores estratégias de captura de xenófagos da região</li>
+            </ul>
+        </div>
+
+        <footer class="mt-5">
+            <p class="text-muted">© 2024 GalaxyControl. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+</body>
