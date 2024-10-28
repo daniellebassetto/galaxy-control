@@ -92,5 +92,11 @@ Na documentação entregue, consta os dados para acessar o site através da EC2.
 
 ---
 
+## Capturas de Tela e Vídeo
+
+As capturas de tela e o vídeo de apresentação do projeto foram arquivados na pasta "Capturas de tela e video" aqui no repositório. 
+
+---
+
 ## Contato
 Para dúvidas ou mais informações, entre em contato pelo e-mail: [danibbassetto@hotmail.com](mailto:danibbassetto@hotmail.com).
