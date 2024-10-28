@@ -28,8 +28,8 @@
 ## 🌐 Arquitetura e Infraestrutura 
 A escolha da arquitetura MVC foi estratégica para o projeto, e aqui está o porquê:
 
-✅ Facilidade de Entendimento: O padrão MVC é simples de compreender e estruturar, facilitando a divisão entre o backend e o frontend.
-✅ Integração Eficiente: Ele promove uma interação suave entre o backend e o frontend, tornando o desenvolvimento e a manutenção muito mais ágeis.
+✅ Facilidade de Entendimento: O padrão MVC é simples de compreender e estruturar, facilitando a divisão entre o backend e o frontend. <br/>
+✅ Integração Eficiente: Ele promove uma interação suave entre o backend e o frontend, tornando o desenvolvimento e a manutenção muito mais ágeis. <br/>
 ✅ Menor Uso de Recursos: Em comparação com uma arquitetura baseada em API, o MVC exige menos recursos para execução. Usar uma API exigiria escalar backend e frontend separadamente, aumentando a complexidade e introduzindo riscos de falhas de comunicação. No MVC, isso é tudo mais direto e integrado!
 
 Para o deploy, utilizei uma instância EC2 Windows 10 do tipo t3.medium, que oferece o desempenho ideal para garantir que a aplicação funcione com boa disponibilidade. 
