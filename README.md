@@ -185,5 +185,30 @@ Confesso que gerir o tempo sempre é a questão mais desafiadora! Por isso, util
 
 ---
 
+🧼 Conceitos de Clean Code no Projeto
+
+Ao desenvolver o projeto, apliquei diversos princípios de Clean Code para garantir que o código fosse legível, fácil de manter e eficiente. Aqui estão alguns dos conceitos chave que utilizei:
+
+🔁 DRY (Don't Repeat Yourself)
+Evite a Repetição de Código: Sempre que possível, reutilizei funções e métodos em vez de duplicar blocos de código. Isso garante que, se houver necessidade de mudanças, elas sejam feitas em um único lugar, reduzindo o risco de erros e inconsistências.
+
+✨ KISS (Keep It Simple, Stupid)
+Mantenha o Código Simples: Complexidade excessiva muitas vezes gera problemas. Apliquei o princípio KISS ao buscar sempre a solução mais simples e direta para cada problema. Isso não significa fazer o "mais fácil", mas sim evitar complicações desnecessárias que poderiam dificultar a leitura e manutenção do código.
+Em vez de usar estruturas complexas para resolver problemas simples, optei por métodos claros e bem definidos, facilitando a compreensão do fluxo do sistema.
+
+🔄 SRP (Single Responsibility Principle)
+Princípio da Responsabilidade Única: Cada classe e método foi desenvolvido para cumprir uma única função. Seguindo o SRP, evitei que uma mesma classe tivesse várias responsabilidades. Isso facilita a manutenção e a evolução do código, além de tornar o sistema mais modular.
+
+📜 Código Autodocumentado
+Nomes Claros e Significativos: Um ponto importante de Clean Code é o código falar por si só. Utilizei nomes de variáveis, métodos e classes que expressam claramente o que fazem. Isso reduz a necessidade de comentários excessivos e facilita a leitura para outros desenvolvedores.
+
+🌱 YAGNI (You Aren't Gonna Need It)
+Evite Funcionalidades Desnecessárias: Fui cuidadosa para não implementar funcionalidades que "poderiam ser úteis no futuro", mas que não eram necessárias no momento. O foco foi construir o que era essencial para o funcionamento do sistema, evitando desperdícios de tempo e recursos.
+
+🔄 Refatoração Constante
+Melhoria Contínua do Código: Refatorei o código sempre que necessário para mantê-lo limpo, eficiente e fácil de entender. Isso incluiu melhorar a legibilidade, reduzir a complexidade e garantir a consistência em todo o sistema.
+
+---
+
 ## 📞 Contato
 Para dúvidas ou mais informações, entre em contato pelo e-mail: [danibbassetto@hotmail.com](mailto:danibbassetto@hotmail.com).
