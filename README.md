@@ -185,7 +185,7 @@ Confesso que gerir o tempo sempre é a questão mais desafiadora! Por isso, util
 
 ---
 
-🧼 Conceitos de Clean Code no Projeto
+## 🧼 Conceitos de Clean Code no Projeto
 
 Ao desenvolver o projeto, apliquei diversos princípios de Clean Code para garantir que o código fosse legível, fácil de manter e eficiente. Aqui estão alguns dos conceitos chave que utilizei:
 
